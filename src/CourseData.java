@@ -137,10 +137,13 @@ public class CourseData {
 	}
 	
 	public static boolean checkClash(String time1, String time2) {
+		if(time1.contains("NULL")||time2.contains("NULL")) {
+			return false;
+		}
 		//05-1030-1230 DD-HHMM-HHMM 
 		String[] time1_split = time1.split("-");
 		String[] time2_split = time2.split("-");
-		System.out.println(time1_split[0]);
+		//System.out.println(time1_split[0] + "test");
 		//check if same day 
 		int day1 = Integer.parseInt(time1_split[0]);
 		int day2 = Integer.parseInt(time2_split[0]);
@@ -165,6 +168,7 @@ public class CourseData {
 				}
 			}
 		}
+		
 		return false;
 		
 	}
