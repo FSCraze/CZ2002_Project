@@ -52,5 +52,11 @@ public static String returnPassword (String password) throws NoSuchAlgorithmExce
 	password = String.format("%064x", new BigInteger(1, digest));
 	return password;
 }
+
+	public static void newStudent (String m_num, String password) throws NoSuchAlgorithmException
+	{
+		password = returnPassword(password);
+		// Write to LoginPage m_num,password ; 
+	}
 }
 

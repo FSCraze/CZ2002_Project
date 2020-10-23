@@ -34,7 +34,7 @@ public class MainPage {
 			System.out.println("");
 			System.out.println("Student login successful");
 			System.out.println("Welcome student " + userName);
-			System.out.println("(1) Add Course");
+			System.out.println("(1) Add Course"); 
 			System.out.println("(2) Drop Course"); 
 			System.out.println("(3) Display registered Course"); // Done;
 			System.out.println("(4) Check vacancies available"); // Done
