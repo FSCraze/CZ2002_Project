@@ -341,6 +341,61 @@ public class IndexData {
 		return student_list;
 	}
 	
+	public static String [][] swapIndexWithStudents(String m_num1,String m_num2, String index_1 , String index_2, String index_data[][], String [][] course_data, String [][] student_data)
+	{
+		int x,y,z=0;
+		boolean a = false;
+		for(x=0;x<100;x++) // Check if m_num1 exists in index_1 
+		{
+			if(index_data[x][1]==null)
+				break;
+			if(index_data[x][1].equals(index_1))
+			{
+				String [] temp1 = index_data[x][2].split("-");
+				y=temp1.length;
+				for(z=0;z<y;z++)
+				{
+					if(temp1[y].equals(m_num1))
+					{
+						a = true;
+					}
+				}
+				if(a== false)
+				{
+					return index_data;
+				}
+			}
+			if(index_data[x][1].equals(index_2))
+			{
+				String [] temp2 = index_data[x][2].split("-");
+				y=temp2.length;
+				for(z=0;z<y;z++)
+				{
+					if(temp2[y].equals(m_num1))
+					{
+						a = true;
+					}
+				}
+				if(a == false)
+				{
+					return index_data;
+				}
+			}
+		}
+
+		 
+		 for(x=0;x<100;x++)
+		 {
+			 if(student_data[x][0].equals(index_1))
+			 {
+				 String [] temp1 = student_data[x][4].split("-");
+			 }
+		 }
+		
+		
+		
+		return index_data;
+	}
 
 
 }
