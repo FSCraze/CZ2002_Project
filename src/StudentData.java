@@ -302,11 +302,8 @@ public class StudentData {
 						}
 						if(course_data[e][2].equals(temp[z]))
 						{
-							System.out.println("a");
 							a= CourseData.checkClash(course_data[e][4],new_class_index_timings[0]); // 4 & 5 & 6
-							System.out.println("b");
 							b= CourseData.checkClash(course_data[e][5],new_class_index_timings[1]); // 4 & 5 & 6
-							System.out.println("c");
 							c= CourseData.checkClash(course_data[e][6],new_class_index_timings[2]); // 4 & 5 & 6
 							if(a==true || b==true || c==true)
 							{

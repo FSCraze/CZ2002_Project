@@ -61,7 +61,6 @@ public static String returnPassword (String password) throws NoSuchAlgorithmExce
 	public static void newStudent (String m_num, String password) throws NoSuchAlgorithmException
 	{
 		password = returnPassword(password);
-		password = returnPassword(password);
 	    try {
 			FileWriter fwStudent = new FileWriter("login.txt",true);
 			fwStudent.write("\n"+m_num+","+password);

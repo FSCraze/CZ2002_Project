@@ -34,7 +34,7 @@ public class MainPage {
 			System.out.println("");
 			System.out.println("Student login successful");
 			System.out.println("Welcome student " + userName);
-			System.out.println("(1) Add Course"); 
+			System.out.println("(1) Add Course"); //Done
 			System.out.println("(2) Drop Course"); //Done
 			System.out.println("(3) Display registered Course"); // Done;
 			System.out.println("(4) Check vacancies available"); // Done
@@ -154,6 +154,7 @@ public class MainPage {
 					System.out.println("Enter Nationality");
 					String nationality = sc.nextLine();
 					student_data = StudentData.addStudent(newName, newPassword, newGender, newMnum, nationality, student_data);
+					LoginPage.newStudent(newMnum,newPassword);
 					// System.out.println(LoginPage.returnPassword(newPassword));
 					for(x = 0;x<16;x++)
 					{
