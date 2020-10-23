@@ -141,7 +141,6 @@ public class StudentData {
 					if(temp1[z].equals(class_index))
 					{					
 						System.out.println("You have dropped "+class_index);
-						a=1;
 					}
 					else
 					{

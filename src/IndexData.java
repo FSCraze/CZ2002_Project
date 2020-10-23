@@ -31,15 +31,7 @@ public class IndexData {
 				y++;
 				
 		}
-		for(y = 0;y<3;y++)
-		{
-			for(z=0;z<5;z++)
-			{
-				System.out.print(test[y][z] + " ");
-			}
-			System.out.println("");
-			
-		}
+
 		/*
 		getWaitList("A01",test);
 		System.out.println("");
@@ -51,7 +43,7 @@ public class IndexData {
 		test = dropStudent("A01","U01",test);
 		*/
 		System.out.println("");
-		test = swapIndex("A01","A02","U01",test);
+		test = dropStudent("E01","U01",test);
 		
 		for(y = 0;y<12;y++)
 		{
@@ -132,6 +124,14 @@ public class IndexData {
 			{
 				if(!student_List[x][3].equals("0") && student_List[x][4].equals("NULL"))
 				{
+					if(student_List[x][2].equals("NULL"))
+					{
+						student_List[x][2] = ""+Student_num;
+						y = Integer.parseInt(student_List[x][3]);
+						y = y-1;
+						student_List[x][3] = Integer.toString(y);
+						break;
+					}
 					temp = student_List[x][2];
 					temp = temp+"-"+Student_num;
 					student_List[x][2] = temp;
@@ -142,6 +142,12 @@ public class IndexData {
 				}
 				else
 				{
+					if(student_List[x][4].equals("NULL"));
+					{
+
+						student_List[x][4] = Student_num;
+						
+					}
 					student_List[x][4] =student_List[x][4]+"-"+Student_num;
 				}
 			}
@@ -154,6 +160,7 @@ public class IndexData {
 	{
 		int x,y,z=0;
 		int a;
+		int count = 0;
 		String temp = "";
 		for(x=0;x<100;x++)
 		{
@@ -165,9 +172,15 @@ public class IndexData {
 				y=temp1.length;
 				for(z=0;z<y;z++)
 				{
+					if(y==1)
+					{
+						System.out.println(x);
+						student_List[x][2]="NULL";
+						count = 1;
+						break;
+					}
 					if(temp1[z].equals(Student_num))
 					{
-						System.out.println("test");
 					}
 					else
 					{
@@ -208,16 +221,24 @@ public class IndexData {
 						}
 					}
 				}
+				if(count == 1)
+				{
+						student_List[x][2]="NULL";
+						y = Integer.parseInt(student_List[x][3]);
+						y = y+1;
+						student_List[x][3] = Integer.toString(y);
+						return student_List;
+					}
+				}
 				else
 				{
-					student_List[x][2] = temp;
-					student_List[x][2] = temp;
+
 					y = Integer.parseInt(student_List[x][3]);
 					y = y+1;
 					student_List[x][3] = Integer.toString(y);
 				}
 			}
-		}
+		
 		return student_List;
 	}
 	
@@ -320,6 +341,6 @@ public class IndexData {
 		return student_list;
 	}
 	
-	
+
 
 }

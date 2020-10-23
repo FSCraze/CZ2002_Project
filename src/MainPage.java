@@ -54,11 +54,23 @@ public class MainPage {
 					System.out.println("Please insert the course index that you want to add : ");
 					a = sc.nextLine();
 					student_data = StudentData.addClass(a, userName, student_data, course_data);
-					for(x=0; x<16;x++)
+					index_data = IndexData.addStudent(a, userName, index_data);
+					
+					for(x=0;x<15;x++)
 					{
 						for(y=0;y<5;y++)
 						{
 							System.out.print(student_data[x][y]);
+						}
+						System.out.println("");
+					}
+					
+					for(x=0;x<12;x++)
+					{
+						for(y=0;y<5;y++)
+						{
+							System.out.print(index_data[x][y]);
+							System.out.print(" ");
 						}
 						System.out.println("");
 					}
@@ -69,7 +81,15 @@ public class MainPage {
 					a=sc.nextLine();
 					student_data=StudentData.dropClass(a, userName, student_data);
 					index_data = IndexData.dropStudent(a, userName, index_data);
-					
+					for(x=0;x<12;x++)
+					{
+						for(y=0;y<5;y++)
+						{
+							System.out.print(index_data[x][y]);
+							System.out.print(" ");
+						}
+						System.out.println("");
+					}
 				
 					break;
 				case 3:
