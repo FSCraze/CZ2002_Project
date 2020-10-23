@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
 import java.io.FileWriter;
 import java.io.FileReader;
-
+//test
 public class MainPage {
 	public static void main(String args[]) throws NoSuchAlgorithmException, IOException
 	{

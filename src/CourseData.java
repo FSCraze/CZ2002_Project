@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 public class CourseData {
+	// test
 	public static void main (String args[]) throws FileNotFoundException
 	{
 		String[][] test = new String[100][7];
