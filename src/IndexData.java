@@ -396,6 +396,21 @@ public class IndexData {
 		
 		return index_data;
 	}
-
+	
+	public static String[][] newIndex (String course_code,String index_code,String vacancy,String[][] index_data)
+	{
+		int x,y=0;
+		for(x=0;x<100;x++)
+		{
+			if(index_data[x][0] == null)
+				break;
+		}
+		index_data[x][0] = course_code; 
+		index_data[x][1] = index_code; 
+		index_data[x][2] = "NULL"; 
+		index_data[x][3] = vacancy; 
+		index_data[x][4] = "NULL"; 
+		return index_data;
+	}
 
 }

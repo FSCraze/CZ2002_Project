@@ -81,7 +81,7 @@ public class MainPage {
 					a=sc.nextLine();
 					student_data=StudentData.dropClass(a, userName, student_data);
 					index_data = IndexData.dropStudent(a, userName, index_data);
-					for(x=0;x<12;x++)
+					/*for(x=0;x<12;x++)
 					{
 						for(y=0;y<5;y++)
 						{
@@ -90,7 +90,7 @@ public class MainPage {
 						}
 						System.out.println("");
 					}
-				
+				*/
 					break;
 				case 3:
 					StudentData.getClasses(userName, student_data);
@@ -109,6 +109,7 @@ public class MainPage {
 					b=sc.nextLine();
 					index_data = IndexData.swapIndex(a, b, userName, index_data);
 					student_data = StudentData.swapIndex(a, b, userName, student_data);
+					/*
 					for(x=0; x<16;x++)
 					{
 						for(y=0;y<5;y++)
@@ -126,6 +127,7 @@ public class MainPage {
 						}
 						System.out.println("");
 					}
+					*/
 					break;
 				case 6:		
 					break;
@@ -218,9 +220,39 @@ public class MainPage {
 				case 4:
 					buffer = sc.nextLine();
 					System.out.println("Please input the course code that you want to change : ");
-					a=sc.nextLine();
 					System.out.println("Enter 1 if you want to change the course Name ");
 					System.out.println("Enter 2 if you want to add a course index ");
+					x=sc.nextInt();
+					if(x==1)
+					{
+						System.out.println("Please enter the course code : ");
+						a = sc.nextLine();
+						System.out.println("Please enter the new name for "+a+" : ");
+						b = sc.nextLine();
+						course_data=CourseData.changeCourseName(a, b, course_data);
+					}
+					else if(x==2)
+					{
+						System.out.println("Please enter the course code : ");
+						a = sc.nextLine();
+						System.out.println("Please enter the index code : ");
+						b = sc.nextLine();
+						System.out.println("Please enter the vacancy : ");
+						c = sc.nextLine();
+						System.out.println("Please enter the Lecture Timing : ");
+						d = sc.nextLine();
+						System.out.println("Please enter the Lab Timing : ");
+						e = sc.nextLine();
+						System.out.println("Please enter the Tutorial Timing : ");
+						f = sc.nextLine();
+						course_data = CourseData.addNewIndex(a, b, c, d, e, f, course_data);
+						index_data = IndexData.newIndex(a, b, c, index_data);
+					}
+					else
+					{
+						System.out.println("Error input!");
+					}
+					
 					break;
 				case 5:
 					buffer = sc.nextLine();

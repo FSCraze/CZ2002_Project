@@ -54,6 +54,16 @@ public class CourseData {
 		System.out.println("Get Index");
 		getIndex("Algorithms",test);
 		*/
+		test = changeCourseName("C06","DS",test);
+		for(y = 0;y<16;y++)
+		{
+			for(z=0;z<7;z++)
+			{
+				System.out.print(test[y][z] + " ");
+			}
+			System.out.println("");
+			
+		}
 		
 
 	}
@@ -172,6 +182,70 @@ public class CourseData {
 		
 		return false;
 		
+	}
+	
+	public static String[][] addNewIndex (String course_code, String index_code, String vacancy, String Lecture, String lab, String tutorial, String[][] course_data )
+	{	boolean course_exist = false;
+		int x,y = 0,z=0;
+		for(x=0;x<100;x++)
+		{
+			if(course_data[x][0] == null)
+				break;
+			if(course_data[x][0].equals(course_code))
+			{
+				y=x;
+				course_exist = true;
+				break;
+			}
+		}
+		if(course_exist == false)
+		{
+			System.out.println("Error! No such Course Code");
+			return course_data;
+		}
+		for(x=0;x<100;x++)
+		{
+			if(course_data[x][0] == null)
+			{
+				z = x;
+				break;
+			}
+			if(course_data[x][2].equals(index_code))
+			{
+				System.out.println("Index code already exist");
+				return course_data;
+			}
+		}
+		course_data[x][0] = course_code;
+		course_data[x][1] = course_data[y][1];
+		course_data[x][2] = index_code;
+		course_data[x][3] = vacancy;
+		course_data[x][4] = Lecture;
+		course_data[x][5] = lab;
+		course_data[x][6] = tutorial;
+		return course_data;
+	}
+	
+	public static String[][] changeCourseName (String course_code, String new_name, String[][] course_data)
+	{
+		int x,y=0;
+		for(x=0;x<100;x++)
+		{
+			if(course_data[x][0]==null)
+			{
+				break;
+			}
+			if(course_data[x][0].equals(course_code))
+			{
+				course_data[x][1] = new_name;
+				y=1;
+			}
+		}
+		if(y==0)
+		{
+			System.out.println("Error! No such Course code");
+		}
+		return course_data;
 	}
 	
 }
