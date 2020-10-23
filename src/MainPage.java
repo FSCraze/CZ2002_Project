@@ -35,7 +35,7 @@ public class MainPage {
 			System.out.println("Student login successful");
 			System.out.println("Welcome student " + userName);
 			System.out.println("(1) Add Course");
-			System.out.println("(2) Drop Course");
+			System.out.println("(2) Drop Course"); 
 			System.out.println("(3) Display registered Course"); // Done;
 			System.out.println("(4) Check vacancies available"); // Done
 			System.out.println("(5) Change Index number of course"); // Done but please help to test to see if both array got changed
@@ -50,6 +50,18 @@ public class MainPage {
 				switch(choice)
 				{
 				case 1:
+					buffer =sc.nextLine();
+					System.out.println("Please insert the course index that you want to add : ");
+					a = sc.nextLine();
+					student_data = StudentData.addClass(a, userName, student_data, course_data);
+					for(x=0; x<16;x++)
+					{
+						for(y=0;y<5;y++)
+						{
+							System.out.print(student_data[x][y]);
+						}
+						System.out.println("");
+					}
 					break;
 				case 2:
 					buffer = sc.nextLine();

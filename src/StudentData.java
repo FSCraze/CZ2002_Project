@@ -44,8 +44,7 @@ public class StudentData {
 		System.out.println("");
 		test= dropClass("A01","U01",test);
 		*/
-		addStudent("Name","Name","Name","U16","Name", test);
-		test = swapIndex("A10","A02","U01",test);
+		/*
 		for(y = 0;y<16;y++)
 		{
 			for(z=0;z<5;z++)
@@ -55,6 +54,7 @@ public class StudentData {
 			System.out.println("");
 			
 		}
+		*/
 
 
 	}
@@ -121,28 +121,6 @@ public class StudentData {
 				break;
 			System.out.println(student_list[x][1]);
 		}
-	}
-	public static String[][] addClass (String class_index, String student_num, String student_list[][])
-	{
-		int x,y=0;
-		for(x=0;x<100;x++)
-		{
-			if(student_list[x][0] == null)
-				break;
-			if(student_list[x][0].equals(student_num))
-			{
-				String[] temp = student_list[x][4].split("-");
-				if(temp.length>=3) // Maximum number of courses
-				{
-					System.out.println("You can't take this module as you're have too many modules");
-					break;
-				}
-				student_list[x][4] = student_list[x][4]+"-"+class_index; // Append the String
-				System.out.println("You have successfully added "+class_index);
-				break;
-			}
-		}
-		return student_list;
 	}
 	
 	public static String[][] dropClass (String class_index, String student_num, String student_list[][])
@@ -263,4 +241,84 @@ public class StudentData {
 		}
 		return student_list;
 	}
+	
+	public static String[][] addClass (String class_index, String student_num, String student_list[][], String course_data[][] )
+	{
+		boolean a = false;
+		boolean b = false;
+		boolean c = false;
+		String a1 ="";
+		String [] new_class_index_timings = new String[3];
+		int e,f,g=0;
+		int x,y,z=0;
+		// get timing of the new class_index
+		for(x=0;x<100;x++)
+		{
+			if(course_data[x][2] == null)
+			{
+				System.out.println("There are no such index : "+class_index);
+				return student_list;
+			}
+				
+			if(course_data[x][2].equals(class_index)) // Get the class_index timings that we want to add 
+			{
+				new_class_index_timings[0] = course_data[x][4]; 
+				new_class_index_timings[1] = course_data[x][5]; 
+				new_class_index_timings[2] = course_data[x][6]; 
+				break;
+			}
+		}
+		for(x=0;x<100;x++)
+		{
+			if(student_list[x][0]==null)
+			{
+				break;
+			}
+			if(student_list[x][0].equals(student_num))
+			{
+				a1= class_index.substring(0,1); // return first character of the class
+				String [] temp = student_list[x][4].split("-");
+				y = temp.length;
+				for(z=0;z<y;z++) // Check if similar index already exist
+				{
+					if(temp[0].contains(a1))
+					{
+						System.out.println("You are already taking this course with another index");
+						return student_list;
+					}
+				}
+				// Check clashes
+				
+				for(z=0;z<y;z++)
+				{
+					for(e=0;e<100;e++)
+					{
+						if(course_data[e][0] == null)
+						{
+							break;
+						}
+						if(course_data[e][2].equals(temp[z]))
+						{
+							System.out.println("a");
+							a= CourseData.checkClash(course_data[e][4],new_class_index_timings[0]); // 4 & 5 & 6
+							System.out.println("b");
+							b= CourseData.checkClash(course_data[e][5],new_class_index_timings[1]); // 4 & 5 & 6
+							System.out.println("c");
+							c= CourseData.checkClash(course_data[e][6],new_class_index_timings[2]); // 4 & 5 & 6
+							if(a==true || b==true || c==true)
+							{
+								System.out.println("You can't take this index as it clashes with "+course_data[e][2]);
+								return student_list;
+							}
+						}
+					}
+
+				}
+				student_list[x][4] = student_list[x][4]+"-"+class_index;
+			}
+		}
+		return student_list;
+	}
 }
+
+
