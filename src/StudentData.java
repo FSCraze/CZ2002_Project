@@ -45,6 +45,7 @@ public class StudentData {
 		test= dropClass("A01","U01",test);
 		*/
 		addStudent("Name","Name","Name","U16","Name", test);
+		test = swapIndex("A10","A02","U01",test);
 		for(y = 0;y<16;y++)
 		{
 			for(z=0;z<5;z++)
@@ -208,6 +209,57 @@ public class StudentData {
 				return student_list;
 			}
 			
+		}
+		return student_list;
+	}
+	
+	public static String[][] swapIndex (String current_course_index, String future_course_index, String m_num, String [][] student_list)
+	{
+		int x,y,z=0;
+		int a,b=0;
+		for(x =0; x<100;x++)
+		{
+			if(student_list[x][0]==null) // No such m_num;
+			{
+				System.out.println("Error! Invalid Matriculation Number");
+				return student_list;
+			}
+			if(student_list[x][0].equals(m_num))
+			{
+				String [] temp = student_list[x][4].split("-");
+				y=temp.length;			
+				for(a=0;a<y;a++)
+				{
+					if(temp[a].equals(current_course_index))
+					{
+						b=1;
+					}
+					if(b!=1)
+					{
+						System.out.println("You are not registered to "+current_course_index);
+						return student_list;
+					}
+				}
+				student_list[x][4] = "";
+				for(z=0;z<y;z++)
+				{
+					if(temp[z].equals(current_course_index))
+					{
+						temp[z] = future_course_index;
+					}
+					if(z==(y-1))
+					{
+						student_list[x][4]= student_list[x][4]+"-"+temp[z];
+						return student_list;
+					}
+					if(z==0)
+					{
+						student_list[x][4] = temp[0];
+						continue;
+					}
+					student_list[x][4] = student_list[x][4]+"-"+temp[z];
+				}
+			}
 		}
 		return student_list;
 	}

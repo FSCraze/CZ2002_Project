@@ -50,10 +50,10 @@ public class IndexData {
 		System.out.println("");
 		test = dropStudent("A01","U01",test);
 		*/
-		test=addStudent("A01","U06",test);
 		System.out.println("");
+		test=swapIndex("E01","E02","U01",test);
 		
-		for(y = 0;y<3;y++)
+		for(y = 0;y<12;y++)
 		{
 			for(z=0;z<5;z++)
 			{
@@ -76,13 +76,13 @@ public class IndexData {
 			if(student_list[x][1].equals(IndexCode))
 			{
 				System.out.println("Index : "+IndexCode+" has "+student_list[x][3]+" vancancies left");
+				break;
 			}
 		}
 	}
 	
 	public static void getStudentList(String IndexCode, String student_List[][]) // Returns the list of students
-	{
-		
+	{		
 		int x,y,z=0;
 		for(x=0;x<100;x++)
 		{
@@ -247,6 +247,73 @@ public class IndexData {
 				}
 			}
 		}
+	}
+	public static String [][] swapIndex (String current_course_index, String future_course_index, String m_num, String student_list[][])
+	{
+		int a,b,c,x,y,z=0;
+		int temp1 = -1,temp2 =-1;
+		for(x=0; x<100; x++)
+		{
+			if(student_list[x][1] == null)
+			{
+				System.out.println("There is no such index of " + future_course_index);
+				break;
+			}
+			if(student_list[x][1].equals(current_course_index))
+			{
+				temp1 = x;
+			}
+			if(student_list[x][1].equals(future_course_index))
+			{
+				temp2 = x;
+			}
+			
+		}
+		if(temp1 == -1)
+		{
+			System.out.println("You are not registered to "+current_course_index+"in the first place");
+			return student_list;
+		}
+		if(temp2 == -1)
+		{
+			System.out.println(future_course_index+"Does not exist");
+			return student_list;
+		}
+		if(temp1 != -1 && temp2 != -1)
+		{
+			if(student_list[temp2][3].equals(0))
+			{
+				System.out.println("The index you wanted is full");
+			}
+			String [] temp3 = student_list[temp1][2].split("-");
+			y = temp3.length;
+			for(z=0;z<y;z++)
+			{
+				if(temp3[z].equals(m_num))
+				{
+					student_list[temp2][2] = student_list[temp2][2] + "-" + m_num;
+					student_list[temp1][2] = "";
+					int inum = Integer.parseInt(student_list[temp1][3]);
+					inum= inum+1;
+					student_list[temp1][3] = Integer.toString(inum);
+					student_list[temp1][2] = "NULL";
+					for(a=0;a<y;a++)
+					{	
+						if(temp3[a].equals(m_num))
+						{
+							continue;
+						}
+						if(a==(y-1))
+						{
+							student_list[temp1][2] = student_list[temp1][2]+temp3[a];
+							break;
+						}
+						student_list[temp1][2] = student_list[temp1][2]+"-"+temp3[a];
+					}
+				}
+			}
+		}
+		return student_list;
 	}
 	
 

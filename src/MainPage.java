@@ -37,8 +37,8 @@ public class MainPage {
 			System.out.println("(1) Add Course");
 			System.out.println("(2) Drop Course");
 			System.out.println("(3) Display registered Course"); // Done;
-			System.out.println("(4) Check vacancies available");
-			System.out.println("(5) Change Index number of course");
+			System.out.println("(4) Check vacancies available"); // Done
+			System.out.println("(5) Change Index number of course"); // Done but please help to test to see if both array got changed
 			System.out.println("(6) Swap index Number with another student");
 			System.out.println("(7) Exit");
 			
@@ -61,8 +61,19 @@ public class MainPage {
 					StudentData.getClasses(userName, student_data);
 					break;
 				case 4:
+					buffer =sc.nextLine();
+					System.out.println("Please insert the course index that you want to retrieve : ");
+					a=sc.nextLine();
+					IndexData.getVancanciesLeft(a, index_data);
 					break;
 				case 5:
+					buffer=sc.nextLine();
+					System.out.println("Please enter the current index that you want to swap : ");
+					a=sc.nextLine();
+					System.out.println("Please enter the future index that you want to changed to : ");
+					b=sc.nextLine();
+					index_data = IndexData.swapIndex(a, b, userName, index_data);
+					student_data = StudentData.swapIndex(a, b, userName, student_data);
 					break;
 				case 6:		
 					break;
@@ -86,7 +97,8 @@ public class MainPage {
 			System.out.println("(5) Check avilable slot for a index"); // Done
 			System.out.println("(6) Print student list by index number"); // Done
 			System.out.println("(7) Print Student list by course"); // Done
-			System.out.println("(8) Exit");
+			System.out.println("(8) Save Data");// Done
+			System.out.println("(9) Exit");
 			
 			System.out.print("Enter the number of your choice: ");
 			choice = sc.nextInt();
