@@ -51,7 +51,7 @@ public class IndexData {
 		test = dropStudent("A01","U01",test);
 		*/
 		System.out.println("");
-		test=swapIndex("E01","E02","U01",test);
+		test = swapIndex("A01","A02","U01",test);
 		
 		for(y = 0;y<12;y++)
 		{
@@ -248,6 +248,7 @@ public class IndexData {
 			}
 		}
 	}
+	
 	public static String [][] swapIndex (String current_course_index, String future_course_index, String m_num, String student_list[][])
 	{
 		int a,b,c,x,y,z=0;
@@ -267,6 +268,8 @@ public class IndexData {
 			{
 				temp2 = x;
 			}
+			if(temp1!=-1 && temp2 !=-1)
+				break;
 			
 		}
 		if(temp1 == -1)
@@ -281,9 +284,10 @@ public class IndexData {
 		}
 		if(temp1 != -1 && temp2 != -1)
 		{
-			if(student_list[temp2][3].equals(0))
+			if(student_list[temp2][3].equals("0"))
 			{
 				System.out.println("The index you wanted is full");
+				return student_list;
 			}
 			String [] temp3 = student_list[temp1][2].split("-");
 			y = temp3.length;
@@ -315,6 +319,7 @@ public class IndexData {
 		}
 		return student_list;
 	}
+	
 	
 
 }

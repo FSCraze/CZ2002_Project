@@ -35,11 +35,11 @@ public class MainPage {
 			System.out.println("Student login successful");
 			System.out.println("Welcome student " + userName);
 			System.out.println("(1) Add Course"); 
-			System.out.println("(2) Drop Course"); 
+			System.out.println("(2) Drop Course"); //Done
 			System.out.println("(3) Display registered Course"); // Done;
 			System.out.println("(4) Check vacancies available"); // Done
-			System.out.println("(5) Change Index number of course"); // Done but please help to test to see if both array got changed
-			System.out.println("(6) Swap index Number with another student");
+			System.out.println("(5) Change Index number of course"); // Done
+			System.out.println("(6) Swap index Number with another student"); 
 			System.out.println("(7) Exit");
 			
 			System.out.print("Enter the number of your choice: ");
@@ -68,6 +68,9 @@ public class MainPage {
 					System.out.println("Please insert the course index that you want to drop : ");
 					a=sc.nextLine();
 					student_data=StudentData.dropClass(a, userName, student_data);
+					index_data = IndexData.dropStudent(a, userName, index_data);
+					
+				
 					break;
 				case 3:
 					StudentData.getClasses(userName, student_data);
@@ -86,6 +89,23 @@ public class MainPage {
 					b=sc.nextLine();
 					index_data = IndexData.swapIndex(a, b, userName, index_data);
 					student_data = StudentData.swapIndex(a, b, userName, student_data);
+					for(x=0; x<16;x++)
+					{
+						for(y=0;y<5;y++)
+						{
+							System.out.print(student_data[x][y]+" ");
+						}
+						System.out.println("");
+					}
+					
+					for(x=0; x<12;x++)
+					{
+						for(y=0;y<5;y++)
+						{
+							System.out.print(index_data[x][y]+" ");
+						}
+						System.out.println("");
+					}
 					break;
 				case 6:		
 					break;

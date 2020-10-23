@@ -44,7 +44,7 @@ public class StudentData {
 		System.out.println("");
 		test= dropClass("A01","U01",test);
 		*/
-		/*
+		test=swapIndex("E01","E02","U01",test);
 		for(y = 0;y<16;y++)
 		{
 			for(z=0;z<5;z++)
@@ -54,7 +54,7 @@ public class StudentData {
 			System.out.println("");
 			
 		}
-		*/
+		
 
 
 	}
@@ -210,13 +210,16 @@ public class StudentData {
 				{
 					if(temp[a].equals(current_course_index))
 					{
+						
 						b=1;
+						break;
 					}
-					if(b!=1)
-					{
-						System.out.println("You are not registered to "+current_course_index);
-						return student_list;
-					}
+				
+				}
+				if(b!=1)
+				{
+					System.out.println("You are not registered to "+current_course_index);
+					return student_list;
 				}
 				student_list[x][4] = "";
 				for(z=0;z<y;z++)
