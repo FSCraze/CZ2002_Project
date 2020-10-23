@@ -43,7 +43,7 @@ public class IndexData {
 		test = dropStudent("A01","U01",test);
 		*/
 		System.out.println("");
-		test = dropStudent("E01","U01",test);
+		test = updateVacancies ("E03", "20", test) ;
 		
 		for(y = 0;y<12;y++)
 		{
@@ -412,5 +412,29 @@ public class IndexData {
 		index_data[x][4] = "NULL"; 
 		return index_data;
 	}
+	
+	public static String[][] updateVacancies (String index_code, String vacancies, String[][] index_data) 
+	{
+		int x,y=0;
+		for(x=0;x<100;x++)
+		{
+			if(index_data[x][0] == null)
+			{
+				System.out.println("Error! No such index number");
+			}
+			if(index_data[x][1].equals(index_code))
+			{
+				String [] temp = index_data[x][2].split("-");
+				y=temp.length;
+				int inum = Integer.parseInt(vacancies);
+				inum = inum -y;
+				index_data[x][3] = Integer.toString(inum);
+				break;
+
+			}
+		}
+		return index_data;
+	}
+
 
 }

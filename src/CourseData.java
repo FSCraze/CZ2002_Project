@@ -54,7 +54,7 @@ public class CourseData {
 		System.out.println("Get Index");
 		getIndex("Algorithms",test);
 		*/
-		test = changeCourseName("C06","DS",test);
+		test = changeVacancies ("D03", "20",test);
 		for(y = 0;y<16;y++)
 		{
 			for(z=0;z<7;z++)
@@ -244,6 +244,25 @@ public class CourseData {
 		if(y==0)
 		{
 			System.out.println("Error! No such Course code");
+		}
+		return course_data;
+	}
+	
+	public static String[][] changeVacancies (String index_code, String vacancies, String [][] course_data)
+	{
+		int x,y=0;
+		for(x=0;x<100;x++)
+		{
+			if(course_data[x][0] == null)
+			{
+				System.out.println("No such index code");
+				break;
+			}
+			if(course_data[x][2].equals(index_code))
+			{
+				course_data[x][3] = vacancies;
+				break;
+			}
 		}
 		return course_data;
 	}

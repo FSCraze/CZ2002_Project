@@ -222,6 +222,7 @@ public class MainPage {
 					System.out.println("Please input the course code that you want to change : ");
 					System.out.println("Enter 1 if you want to change the course Name ");
 					System.out.println("Enter 2 if you want to add a course index ");
+					System.out.println("Enter 3 if you want to update a index's vacancy");
 					x=sc.nextInt();
 					if(x==1)
 					{
@@ -247,6 +248,15 @@ public class MainPage {
 						f = sc.nextLine();
 						course_data = CourseData.addNewIndex(a, b, c, d, e, f, course_data);
 						index_data = IndexData.newIndex(a, b, c, index_data);
+					}
+					else if(x==3)
+					{
+						System.out.println("Please enter the index code : ");
+						a = sc.nextLine();
+						System.out.println("Please enter the new number of vacancies : ");
+						b = sc.nextLine();
+						course_data = CourseData.changeVacancies(a, b, course_data);
+						index_data = IndexData.updateVacancies(a, b, index_data);
 					}
 					else
 					{
