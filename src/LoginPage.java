@@ -1,6 +1,9 @@
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -43,6 +46,8 @@ public static String verifyLogin(String username, String password)
 
 		return "z";	
 	}
+
+
 public static String returnPassword (String password) throws NoSuchAlgorithmException
 {
 	MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -56,7 +61,17 @@ public static String returnPassword (String password) throws NoSuchAlgorithmExce
 	public static void newStudent (String m_num, String password) throws NoSuchAlgorithmException
 	{
 		password = returnPassword(password);
-		// Write to LoginPage m_num,password ; 
+		password = returnPassword(password);
+	    try {
+			FileWriter fwStudent = new FileWriter("login.txt",true);
+			fwStudent.write("\n"+m_num+","+password);
+			fwStudent.close();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
 	}
 }
 
