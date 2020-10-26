@@ -129,7 +129,39 @@ public class MainPage {
 					}
 					*/
 					break;
-				case 6:		
+				case 6:	
+					/*buffer=sc.nextLine();
+					System.out.println("Please enter the index that you want to be swapped : ");
+					a=sc.nextLine();
+					System.out.println("Please enter the Matriculation number of the 2nd student : ");
+					b=sc.nextLine();
+					System.out.println("Please enter the index that you want to be swapped : ");
+					=sc.nextLine();
+					*/
+					index_data = IndexData.swapIndexWithStudents("U16", "U17" , "D03", "D04", index_data, course_data, student_data);
+					student_data = StudentData.swapIndexWithStudents("U16", "U17", "D03", "D04", index_data, student_data);
+					for(int abc = 0; abc<100; abc++)
+					{
+						if(index_data[abc][0] == null)
+							break;
+						System.out.print(index_data[abc][0] + " ");
+						System.out.print(index_data[abc][1] + " ");
+						System.out.print(index_data[abc][2] + " ");
+						System.out.print(index_data[abc][3]);
+						System.out.println("");
+					}
+					
+					for(int abcd = 0; abcd<100; abcd++)
+					{
+						if(student_data[abcd][0] == null)
+							break;
+						System.out.print(student_data[abcd][0] + " ");
+						System.out.print(student_data[abcd][1] + " ");
+						System.out.print(student_data[abcd][2] + " ");
+						System.out.print(student_data[abcd][3] + " ");
+						System.out.print(student_data[abcd][4]);
+						System.out.println("");
+					}
 					break;
 				}
 				System.out.println();

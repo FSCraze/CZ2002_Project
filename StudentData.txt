@@ -13,3 +13,5 @@ U12,June,Female,Singaporean,A03-O03-G02
 U13,Thomas,Male,Singaporean,A03-O03-G02
 U14,Jane,Female,Singaporean,A03-O03-G02
 U15,John,Male,Singaporean,A03-O03-G03
+U16,Mary,Female,Singaporean,D03
+U17,kathy,Female,Singaporean,D04

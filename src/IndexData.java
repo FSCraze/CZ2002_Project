@@ -340,63 +340,7 @@ public class IndexData {
 		}
 		return student_list;
 	}
-	
-	public static String [][] swapIndexWithStudents(String m_num1,String m_num2, String index_1 , String index_2, String index_data[][], String [][] course_data, String [][] student_data)
-	{
-		int x,y,z=0;
-		boolean a = false;
-		for(x=0;x<100;x++) // Check if m_num1 exists in index_1 
-		{
-			if(index_data[x][1]==null)
-				break;
-			if(index_data[x][1].equals(index_1))
-			{
-				String [] temp1 = index_data[x][2].split("-");
-				y=temp1.length;
-				for(z=0;z<y;z++)
-				{
-					if(temp1[y].equals(m_num1))
-					{
-						a = true;
-					}
-				}
-				if(a== false)
-				{
-					return index_data;
-				}
-			}
-			if(index_data[x][1].equals(index_2))
-			{
-				String [] temp2 = index_data[x][2].split("-");
-				y=temp2.length;
-				for(z=0;z<y;z++)
-				{
-					if(temp2[y].equals(m_num1))
-					{
-						a = true;
-					}
-				}
-				if(a == false)
-				{
-					return index_data;
-				}
-			}
-		}
-
-		 
-		 for(x=0;x<100;x++)
-		 {
-			 if(student_data[x][0].equals(index_1))
-			 {
-				 String [] temp1 = student_data[x][4].split("-");
-			 }
-		 }
 		
-		
-		
-		return index_data;
-	}
-	
 	public static String[][] newIndex (String course_code,String index_code,String vacancy,String[][] index_data)
 	{
 		int x,y=0;
@@ -436,5 +380,264 @@ public class IndexData {
 		return index_data;
 	}
 
+	public static String [][] swapIndexWithStudents(String m_num1,String m_num2, String index_1 , String index_2, String index_data[][], String [][] course_data, String [][] student_data)
+	{
+		// m_num1 = user 1
+		// m_num2 = user 2
+		//index_1 belongs to user1
+		//index_2 belongs to user2
+		// check if m_num 1 & m_num 2 exist or not
+		int s1 = 0;
+		int s2 = 0;
+		int x,y,z=0;
+		int a=0;
+		int b=0;
+		for(x=0;x<100;x++) // check if m_num1 exist and if m_num1 got index_1
+		{
+			if(student_data[x][0] == null)
+				break;
+			if(student_data[x][0].equals(m_num1))
+			{
+				s1 = x;
+				String [] temp1 = student_data[x][4].split("-");
+				y = temp1.length;
+				for(z=0;z<y;z++)
+				{
+					if(temp1[z].equals(index_1))
+					{
+						a = 1; // M_num1 has index1
+						break;
+					}
+				}
+				break;
+			}
+		}		
+		for(x=0;x<100;x++) // check if m_num2 exist and if m_num2 got index_2
+		{
+			if(student_data[x][0] == null)
+				break;
+			if(student_data[x][0].equals(m_num2))
+			{
+				s2 = x;
+				String [] temp2 = student_data[x][4].split("-");
+				y = temp2.length;
+				for(z=0;z<y;z++)
+				{
+					if(temp2[z].equals(index_2))
+					{
+						b = 1; // M_num1 has index1
+						break;
+					}
+				}
+				break;
+			}
+		}
+		if(a == 0 || b == 0) // Either M_num1 does not have index1 or M_num2 does not have index2
+		{
+			return index_data;
+		}
+		
+		// check if the new index clash anot.
+		// temp1 = student 1 classes
+		// temp2 = student 2 classes
+		
+		String [] s1_classes = student_data[s1][4].split("-"); // get student 1 classes
+		String [] s2_classes = student_data[s2][4].split("-"); // get student 2 classes
+		a = s1_classes.length;
+		b = s2_classes.length;
+		String [] index_1_timings = new String[3]; // index_1 timings
+		for(x=0;x<100;x++)
+		{
+			if(course_data[x][2].equals(index_1))
+			{
+				if(course_data[x][2]==null)
+				{
+					return index_data;
+				}
+				index_1_timings[0] = course_data[x][4];
+				index_1_timings[1] = course_data[x][5];
+				index_1_timings[2] = course_data[x][6];
+				break;
+			}
+		}
+		
+		String [] index_2_timings = new String[3]; // index_1 timings
+		for(x=0;x<100;x++)
+		{
+			if(course_data[x][2]==null)
+			{
+				return index_data;
+			}
+			if(course_data[x][2].equals(index_1))
+			{
+				index_2_timings[0] = course_data[x][4];
+				index_2_timings[1] = course_data[x][5];
+				index_2_timings[2] = course_data[x][6];
+				break;
+			}
+		}
+		
+		String [][] classes_timing = new String [10][3];
+		for(x=0;x<a;x++) // check if index_2 clashes with any of M_num1 classes
+		{
+			if(a==1)
+				break;
+			if(s1_classes[x].equals(index_1))
+				continue;
+			
+			for(y=0;y<100;y++)
+			{
+				if(course_data[y][2]==null)
+				{
+					return index_data;
+				}
+				if(course_data[y][2].equals(s1_classes[x]))
+				{
+					classes_timing[x][0] = course_data[y][4]; // lecture timing
+					classes_timing[x][1] = course_data[y][5]; // Lab timing
+					classes_timing[x][2] = course_data[y][6]; // Tutorial Timing
+					if(CourseData.checkClash(index_2_timings[0], classes_timing[x][0])) // If lecture clashes
+					{
+						return index_data;
+					}
+					if(CourseData.checkClash(index_2_timings[1], classes_timing[x][1])) // If lab clashes
+					{
+						return index_data;
+					}
+					if(CourseData.checkClash(index_2_timings[2], classes_timing[x][2])) // If tutorial clashes
+					{
+						return index_data;
+					}
+				}
+			}
+		}
+		
 
+		for(x=0;x<b;x++) // check if index_1 clashes with any of M_num2 classes
+		{
+			if(b==1)
+				break;
+			
+			if(s2_classes[x].equals(index_2))
+				continue;
+			
+			for(y=0;y<100;y++)
+			{
+				if(course_data[y][2]==null)
+				{
+					return index_data;
+				}
+				if(course_data[y][2].equals(s2_classes[x]))
+				{
+					classes_timing[x][0] = course_data[y][4]; // lecture timing
+					classes_timing[x][1] = course_data[y][5]; // Lab timing
+					classes_timing[x][2] = course_data[y][6]; // Tutorial Timing
+					if(CourseData.checkClash(index_1_timings[0], classes_timing[x][0])) // If lecture clashes
+					{
+						return index_data;
+					}
+					if(CourseData.checkClash(index_1_timings[1], classes_timing[x][1])) // If lab clashes
+					{
+						return index_data;
+					}
+					if(CourseData.checkClash(index_1_timings[2], classes_timing[x][2])) // If tutorial clashes
+					{
+						return index_data;
+					}
+				}
+			}
+		}
+		
+		// index_1 goes to m_num2 & index_2 goes to m_num1;
+		for(x=0;x<100;x++)
+		{
+			if(index_data[x][0]==null)
+				break;
+			if(index_data[x][1].equals(index_1))
+			{
+				String [] temp6 = index_data[x][2].split("-");
+				y = temp6.length;
+				index_data[x][2] = "";
+				for(z=0;z<y;z++)
+				{
+					if(temp6[z].equals(m_num1))
+					{
+						temp6[z] = m_num2;
+					}
+				}
+				for(z=0;z<y;z++)
+				{
+					if(z==(y-1))
+					{
+						index_data[x][2]=index_data[x][2] + temp6[z];
+						break;
+					}
+						index_data[x][2] = index_data[x][2] + temp6[z] + "-";
+				}
+				break;
+			}
+			
+		}
+		
+		for(x=0;x<100;x++)
+		{
+			if(index_data[x][0]==null)
+				break;
+			if(index_data[x][1].equals(index_2))
+			{
+				String [] temp6 = index_data[x][2].split("-");
+				y = temp6.length;
+				index_data[x][2] = "";
+				for(z=0;z<y;z++)
+				{
+					if(temp6[z].equals(m_num2))
+					{
+						temp6[z] = m_num1;
+					}
+				}
+				for(z=0;z<y;z++)
+				{
+					if(z==(y-1))
+					{
+						index_data[x][2]=index_data[x][2] + temp6[z];
+						break;
+					}
+						index_data[x][2] = index_data[x][2] + temp6[z] + "-";
+				}
+				break;
+			}
+			
+		}
+		
+		
+		
+		return index_data;
+		
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
