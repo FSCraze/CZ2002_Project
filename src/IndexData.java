@@ -614,6 +614,28 @@ public class IndexData {
 		return index_data;
 		
 	}
+	
+	public static String [][] newCourse (String [][] index_data , String course_code,  String []Vacancies , String [] noOfIndex, int count)
+	{
+		int x,y=0;
+		for(x=0;x<100;x++)
+		{
+			if(index_data[x][0] == null)
+			{
+				for(y=0;y<count;y++)
+				{
+					index_data[x][0] = course_code;
+					index_data[x][1] = noOfIndex[y];
+					index_data[x][2] = "NULL";
+					index_data[x][3] = Vacancies[y];
+					index_data[x][4] = "NULL";
+					x++;					
+				}
+				break;
+			}
+		}
+		return index_data;
+	}
 }
 
 

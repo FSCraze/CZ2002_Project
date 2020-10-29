@@ -240,17 +240,28 @@ public class MainPage {
 						noOfIndex[y] = sc.nextLine();
 						System.out.println("Please enter the number of vancancies for index code : "+ noOfIndex[y]);
 						Vacancies[y]= sc.nextLine();
-						System.out.println(Vacancies[y]);
 						System.out.println("Please enter the lab date and timing in the format of DD-HHMM-HHMM for index " + noOfIndex[y]);
 						LabTiming[y] = sc.nextLine();
-						System.out.println(LabTiming[y]);
 						System.out.println("Please enter the Tutorial date and timing in the format of DD-HHMM-HHMM for index " + noOfIndex[y]);
 						TutorialTiming[y] = sc.nextLine();
-						System.out.println(TutorialTiming[y]);
 					}
 					System.out.println("Please enter the lecture timing : ");
-					c=sc.nextLine();
-					course_data=CourseData.addCourse(a, b, noOfIndex, Vacancies, c, TutorialTiming, LabTiming, course_data,x);									
+					c=sc.nextLine(); // lecture timing
+					course_data=CourseData.addCourse(a, b, noOfIndex, Vacancies, c, TutorialTiming, LabTiming, course_data,x);	
+					index_data = IndexData.newCourse(index_data,a,Vacancies, noOfIndex,x);
+					/*
+					for(int abc=0;abc<100;abc++)
+					{
+						if(index_data[abc][0]==null)
+							break;
+						System.out.print(index_data[abc][0]);
+						System.out.print(index_data[abc][1]);
+						System.out.print(index_data[abc][2]);
+						System.out.print(index_data[abc][3]);
+						System.out.print(index_data[abc][4]);
+						System.out.println("");
+					}
+					*/
 					break;
 					
 				case 4:
@@ -343,13 +354,14 @@ public class MainPage {
 				choice = sc.nextInt();
 				
 			}
-		}
 		else
 		{
 			System.out.println("Login Error!");
 		}
 		
 	}
+
+
 	
 
 	
