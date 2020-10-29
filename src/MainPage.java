@@ -30,7 +30,7 @@ public class MainPage {
 		String userName = sc.nextLine();
 		System.out.println("Enter Password");
 		String password = sc.nextLine();
-		if((LoginPage.verifyLogin(userName,password)) == "s") // password is password1
+		if((LoginPage.verifyLogin(userName,password)) == "s" && LoginPage.verifyAccess()== true) // password is password1
 		{
 			System.out.println("");
 			System.out.println("Student login successful");

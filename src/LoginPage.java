@@ -9,7 +9,32 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.nio.charset.StandardCharsets;
 import java.math.BigInteger;
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
+import java.util.GregorianCalendar;
+
+
 public class LoginPage {
+	
+	
+	public static boolean verifyAccess() {
+		Calendar cal = Calendar.getInstance();
+	      int year = cal.get(Calendar.YEAR);
+	      int month = cal.get(Calendar.MONTH);      
+	      int day = cal.get(Calendar.DAY_OF_MONTH);
+	      int hour = cal.get(Calendar.HOUR_OF_DAY);
+	      int minute = cal.get(Calendar.MINUTE);
+		SimpleDateFormat dFormat = new SimpleDateFormat("YYYY,MM,d,HH,mm");
+		Calendar startAccess, endAccess,dateNow;
+		 dateNow = new GregorianCalendar(year,month,day,hour,minute);
+		 startAccess = new GregorianCalendar(2020,9,28,13,30); //change this to start of access period
+		 endAccess = new GregorianCalendar(2020,10,29,13,30); //change this to end of access period 
+		
+		if (dateNow.after(startAccess) && dateNow.before(endAccess)) {
+			return true;
+		}
+		return false;
+	}
 
 public static String verifyLogin(String username, String password) 
 	{
