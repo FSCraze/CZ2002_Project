@@ -72,5 +72,36 @@ public static String returnPassword (String password) throws NoSuchAlgorithmExce
 		}
 	    
 	}
+public static String [][] newStudent (String login_data [][], String m_num, String password)
+	{
+		int x,y=0;
+		for(x=0;x<100;x++)
+		{
+			if(login_data[x][0]==null)
+			{
+				login_data[x][0] = m_num;
+				login_data[x][1] = password;
+			}
+		}
+		return login_data;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

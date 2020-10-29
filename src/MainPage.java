@@ -16,6 +16,7 @@ public class MainPage {
 		String [][] course_data = getCourseDataArray();
 		String [][] index_data = getIndexData();
 		String [][] student_data = getStudentData();
+		String [][] login_data = getLogin();
 		String [] noOfIndex = new String[10];
 		String [] LabTiming = new String[10];
 		String [] TutorialTiming = new String[10];
@@ -130,16 +131,16 @@ public class MainPage {
 					*/
 					break;
 				case 6:	
-					/*buffer=sc.nextLine();
+					buffer=sc.nextLine();
 					System.out.println("Please enter the index that you want to be swapped : ");
 					a=sc.nextLine();
 					System.out.println("Please enter the Matriculation number of the 2nd student : ");
 					b=sc.nextLine();
-					System.out.println("Please enter the index that you want to be swapped : ");
-					=sc.nextLine();
-					*/
-					index_data = IndexData.swapIndexWithStudents("U16", "U17" , "D03", "D04", index_data, course_data, student_data);
-					student_data = StudentData.swapIndexWithStudents("U16", "U17", "D03", "D04", index_data, student_data);
+					System.out.println("Please enter the index that you want from the 2nd student : ");
+					c=sc.nextLine();
+					
+					index_data = IndexData.swapIndexWithStudents(userName, b , a , c, index_data, course_data, student_data);
+					student_data = StudentData.swapIndexWithStudents(userName, b, a, c, index_data, student_data);
 					for(int abc = 0; abc<100; abc++)
 					{
 						if(index_data[abc][0] == null)
@@ -209,13 +210,16 @@ public class MainPage {
 					String nationality = sc.nextLine();
 					student_data = StudentData.addStudent(newName, newPassword, newGender, newMnum, nationality, student_data);
 					LoginPage.newStudent(newMnum,newPassword);
-					// System.out.println(LoginPage.returnPassword(newPassword));
-					for(x = 0;x<16;x++)
+					a = (LoginPage.returnPassword(newPassword));
+					login_data = LoginPage.newStudent(login_data,newMnum,a);
+					for(x = 0;x<20;x++)
 					{
-						for(y=0;y<5;y++)
+						if(login_data[x][0] == null)
 						{
-							System.out.print(student_data[x][y] + " ");
+							break;
 						}
+						System.out.print(login_data[x][0] + " ");
+						System.out.print(login_data[x][1] + " ");
 						System.out.println("");					
 					}
 					// write to login file
@@ -321,7 +325,7 @@ public class MainPage {
 					break;
 				}
 				
-				
+				/*
 				for(y = 0;y<100;y++)
 				{
 					if(course_data[y][0]==null)
@@ -331,6 +335,7 @@ public class MainPage {
 						System.out.print(course_data[y][z] + " ");
 					}
 					System.out.println("");
+					*/
 					
 				}
 				System.out.println();
@@ -489,6 +494,23 @@ public static void setStudentData(String [][] student_data) throws IOException{
 				test[y][3] = d;
 				test[y][4] = e;
 				y++;
+		}
+		return test;
+	}
+	public static String [][] getLogin() throws FileNotFoundException
+	{
+		String [][] test = new String[100][2];
+		String a,b;
+		int y = 0;
+		Scanner x = new Scanner(new File("login.txt"));
+		x.useDelimiter("[,\n]");
+		while(x.hasNext())
+		{
+			a=x.next().trim();
+			b=x.next().trim();
+			test[y][0] = a;
+			test[y][1] = b;
+			y++;
 		}
 		return test;
 	}
