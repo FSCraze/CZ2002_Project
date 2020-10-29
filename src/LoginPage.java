@@ -21,7 +21,6 @@ public class LoginPage {
 		Scanner accessScan;
 		int i = 0;
 		int[] acc = new int[20];
-		String[] test = new String[20];
 		accessScan = new Scanner(new File("AccessPeriod.txt")); 
 		/*first line = start of access period 
 		 * 2nd line = end of access period  */
