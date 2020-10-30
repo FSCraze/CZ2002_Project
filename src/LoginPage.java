@@ -17,7 +17,20 @@ import java.util.GregorianCalendar;
 public class LoginPage {
 	
 	
-	public static boolean verifyAccess() {
+	public static boolean verifyAccess() throws FileNotFoundException {
+		Scanner accessScan;
+		int i = 0;
+		int[] acc = new int[20];
+		accessScan = new Scanner(new File("AccessPeriod.txt")); 
+		/*first line = start of access period 
+		 * 2nd line = end of access period  */
+		accessScan.useDelimiter("[,\n]");
+		while(accessScan.hasNext()) {
+			acc[i]= Integer.parseInt(accessScan.next().trim());
+			i++;
+		}
+		
+		
 		Calendar cal = Calendar.getInstance();
 	      int year = cal.get(Calendar.YEAR);
 	      int month = cal.get(Calendar.MONTH);      
@@ -25,10 +38,10 @@ public class LoginPage {
 	      int hour = cal.get(Calendar.HOUR_OF_DAY);
 	      int minute = cal.get(Calendar.MINUTE);
 		SimpleDateFormat dFormat = new SimpleDateFormat("YYYY,MM,d,HH,mm");
-		Calendar startAccess, endAccess,dateNow;
+		Calendar dateNow,startAccess,endAccess;
 		 dateNow = new GregorianCalendar(year,month,day,hour,minute);
-		 startAccess = new GregorianCalendar(2020,9,30,13,30); //change this to start of access period
-		 endAccess = new GregorianCalendar(2020,10,29,13,30); //change this to end of access period 
+		 endAccess = new GregorianCalendar(acc[5],acc[6],acc[7],acc[8],acc[9]); //change this to end of access period 
+		 startAccess = new GregorianCalendar(acc[0],acc[1],acc[2],acc[3],acc[4]); //change this to start of access period
 		
 		if (dateNow.after(startAccess) && dateNow.before(endAccess)) {
 			return true;
