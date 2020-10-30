@@ -27,7 +27,7 @@ public class LoginPage {
 		SimpleDateFormat dFormat = new SimpleDateFormat("YYYY,MM,d,HH,mm");
 		Calendar startAccess, endAccess,dateNow;
 		 dateNow = new GregorianCalendar(year,month,day,hour,minute);
-		 startAccess = new GregorianCalendar(2020,9,28,13,30); //change this to start of access period
+		 startAccess = new GregorianCalendar(2020,9,30,13,30); //change this to start of access period
 		 endAccess = new GregorianCalendar(2020,10,29,13,30); //change this to end of access period 
 		
 		if (dateNow.after(startAccess) && dateNow.before(endAccess)) {

@@ -43,7 +43,7 @@ public class IndexData {
 		test = dropStudent("A01","U01",test);
 		*/
 		System.out.println("");
-		test = updateVacancies ("E03", "20", test) ;
+		
 		
 		for(y = 0;y<12;y++)
 		{
@@ -156,7 +156,7 @@ public class IndexData {
 	}
 	
 	
-	public static String[][] dropStudent(String IndexCode,String Student_num, String student_List[][])
+	public static String[][] dropStudent(String IndexCode,String Student_num, String student_List[][] , String [][]student_data) throws FileNotFoundException
 	{
 		int x,y,z=0;
 		int a;
@@ -205,6 +205,7 @@ public class IndexData {
 				{
 					String []temp2 = student_List[x][4].split("-");
 					student_List[x][2] = student_List[x][2]+"-"+temp2[0];
+					SendMailTLS.SendEmail(student_data, temp2[0]);
 					y = temp2.length;
 					temp ="";
 					if(y==1)
@@ -214,7 +215,7 @@ public class IndexData {
 					}
 					for(a=1;a<y;a++)
 					{
-						temp = temp+temp2[y];
+						temp = temp+temp2[a];
 						if(a!=(y-1))
 						{
 							temp = temp+"-";
@@ -270,7 +271,7 @@ public class IndexData {
 		}
 	}
 	
-	public static String [][] swapIndex (String current_course_index, String future_course_index, String m_num, String student_list[][])
+	public static String [][] swapIndex (String current_course_index, String future_course_index, String m_num, String student_list[][], String [][] student_data) throws FileNotFoundException
 	{
 		int a,b,c,x,y,z=0;
 		int temp1 = -1,temp2 =-1;
@@ -334,6 +335,74 @@ public class IndexData {
 							break;
 						}
 						student_list[temp1][2] = student_list[temp1][2]+"-"+temp3[a];
+					}
+				}
+			}
+			int abc =0;
+			for(x=0;x<100;x++)
+			{
+				if(student_list[x][1].equals(current_course_index))
+				{
+					if(student_list[x][4].equals("NULL"))
+					{
+						break;
+					}
+					else
+					{
+						String [] temp4 = student_list[x][4].split("-");
+						student_list[x][4] = "";
+						y=temp4.length;
+						System.out.println(y);
+						if(student_list[x][2].equals("NULL"))
+						{
+							abc = 1;
+							student_list[x][2] = "";
+						}
+						for(z=1;z<y+1;z++)
+						{
+							if(y==1)
+							{
+								System.out.println(student_list[x][4]);
+								student_list[x][4] = "NULL";
+								break;
+							}
+							if(z==(y-1)) 
+							{
+								student_list[x][4] = student_list[x][4] + temp4[z];
+								break;
+							}
+							student_list[x][4] = student_list[x][4] + temp4[z] + "-";
+						}
+						
+						if(abc==1)
+						{
+							student_list[x][2] = temp4[0];
+						}
+						else
+						{
+							student_list[x][2] = student_list[x][2] + "-" + temp4[0];
+						}
+						int inum2 = Integer.parseInt(student_list[x][3]); 
+						inum2 = inum2-1;
+						student_list[x][3] = Integer.toString(inum2);
+						// send email to temp4[0];
+						SendMailTLS.SendEmail(student_data, temp4[0]);
+						
+						for(x=0;x<100;x++)
+						{
+							if(student_data[x][0].equals(temp4[0]))
+							{
+								if(student_data[x][4].equals("NULL"))
+								{
+									student_data[x][4] = current_course_index;
+								}
+								else
+								{
+								student_data[x][4] = student_data[x][4] + "-" + current_course_index;
+								}
+							}
+						}
+						break;
 					}
 				}
 			}

@@ -81,7 +81,7 @@ public class MainPage {
 					System.out.println("Please insert the course index that you want to drop : ");
 					a=sc.nextLine();
 					student_data=StudentData.dropClass(a, userName, student_data);
-					index_data = IndexData.dropStudent(a, userName, index_data);
+					index_data = IndexData.dropStudent(a, userName, index_data, student_data);
 					/*for(x=0;x<12;x++)
 					{
 						for(y=0;y<5;y++)
@@ -108,7 +108,7 @@ public class MainPage {
 					a=sc.nextLine();
 					System.out.println("Please enter the future index that you want to changed to : ");
 					b=sc.nextLine();
-					index_data = IndexData.swapIndex(a, b, userName, index_data);
+					index_data = IndexData.swapIndex(a, b, userName, index_data,student_data);
 					student_data = StudentData.swapIndex(a, b, userName, student_data);
 					/*
 					for(x=0; x<16;x++)
@@ -141,6 +141,7 @@ public class MainPage {
 					
 					index_data = IndexData.swapIndexWithStudents(userName, b , a , c, index_data, course_data, student_data);
 					student_data = StudentData.swapIndexWithStudents(userName, b, a, c, index_data, student_data);
+					/*
 					for(int abc = 0; abc<100; abc++)
 					{
 						if(index_data[abc][0] == null)
@@ -163,6 +164,7 @@ public class MainPage {
 						System.out.print(student_data[abcd][4]);
 						System.out.println("");
 					}
+					*/
 					break;
 				}
 				System.out.println();
@@ -486,7 +488,7 @@ public static void setStudentData(String [][] student_data) throws IOException{
 	}
 	public static String[][] getStudentData() throws FileNotFoundException
 	{
-		String[][] test = new String[100][5];
+		String[][] test = new String[100][6];
 		String a,b,c,d,e,f;
 		int y = 0;
 		int z =0;
@@ -500,11 +502,13 @@ public static void setStudentData(String [][] student_data) throws IOException{
 				c=x.next().trim();
 				d=x.next().trim();
 				e=x.next().trim();
+				f=x.next().trim();
 				test[y][0] = a;
 				test[y][1] = b;
 				test[y][2] = c;
 				test[y][3] = d;
 				test[y][4] = e;
+				test[y][5] = f;
 				y++;
 		}
 		return test;

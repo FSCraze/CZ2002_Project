@@ -9,7 +9,7 @@ import java.io.FileReader;
 public class StudentData {
 	public static void main (String args[]) throws FileNotFoundException
 	{
-		String[][] test = new String[100][5];
+		String[][] test = new String[100][6];
 		String a,b,c,d,e,f;
 		int y = 0;
 		int z =0;
@@ -23,11 +23,13 @@ public class StudentData {
 				c=x.next().trim();
 				d=x.next().trim();
 				e=x.next().trim();
+				f=x.next().trim();
 				test[y][0] = a;
 				test[y][1] = b;
 				test[y][2] = c;
 				test[y][3] = d;
 				test[y][4] = e;
+				test[y][5] = f;
 				y++;
 				
 		}
@@ -44,10 +46,10 @@ public class StudentData {
 		System.out.println("");
 		test= dropClass("A01","U01",test);
 		*/
-		test=swapIndex("E01","E02","U01",test);
+		//test=swapIndex("E01","E02","U01",test);
 		for(y = 0;y<16;y++)
 		{
-			for(z=0;z<5;z++)
+			for(z=0;z<6;z++)
 			{
 				System.out.print(test[y][z] + " ");
 			}
