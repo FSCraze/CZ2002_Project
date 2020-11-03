@@ -340,8 +340,7 @@ public class MainPage {
 		 startAccess = new GregorianCalendar(acc[0],acc[1],acc[2],acc[3],acc[4]); //change this to start of access period*/
 	//2020,11,01,13,30
 
-<<<<<<< HEAD
-=======
+
 public static int  setAccessPeriod(String start, String end ) throws IOException {
 	String[]startS = new String[10];
 	String[] endS = new String[10];
@@ -402,10 +401,7 @@ public static int  setAccessPeriod(String start, String end ) throws IOException
 	
 
 	
-	
->>>>>>> master
-	
-	public static void setCourseData(String [][] course_data) throws IOException {
+public static void setCourseData(String [][] course_data) throws IOException {
 		
 		FileWriter fwCourse = new FileWriter("CourseData.txt",true);
 		
