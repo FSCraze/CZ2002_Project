@@ -33,7 +33,7 @@ public class StudentData {
 				y++;
 				
 		}
-		
+		test=dropClass ("E01", "U01", test);
 		/*System.out.println("Please input the name of the Student : ");
 		String name = abc.nextLine();
 		System.out.println("Get classes");
@@ -47,6 +47,7 @@ public class StudentData {
 		test= dropClass("A01","U01",test);
 		*/
 		//test=swapIndex("E01","E02","U01",test);
+		
 		for(y = 0;y<16;y++)
 		{
 			for(z=0;z<6;z++)
@@ -116,11 +117,14 @@ public class StudentData {
 	
 	public static void getStudent (String student_list[][])
 	{
+		System.out.println("Current list of students ");
 		int x,y = 0;
 		for(x = 0; x<100;x++)
 		{
 			if(student_list[x][1] == null)
 				break;
+			System.out.print(student_list[x][0]);
+			System.out.print(" ");
 			System.out.println(student_list[x][1]);
 		}
 	}
@@ -152,8 +156,7 @@ public class StudentData {
 							temp = temp+temp1[z];
 							break;
 						}                                                                          
-						temp = temp+temp1[z]+"-";
-						
+					temp = temp+temp1[z]+"-";						
 					}
 				}				
 				student_list[x][4] = temp;
@@ -167,10 +170,9 @@ public class StudentData {
 		System.out.println("You are not registered in "+class_index);
 		return student_list;
 	}
-	public static String[][] addStudent(String Name,String Password,String Gender,String m_num,String Nationality, String student_list[][])
+	public static String[][] addStudent(String Name,String Password,String Gender,String m_num,String Nationality, String student_list[][], String email)
 	{
 		int x,y=0;
-		
 		for(x=0;x<100;x++)
 		{
 			if(student_list[x][0] == null)
@@ -180,6 +182,7 @@ public class StudentData {
 				student_list[x][2] = Gender;
 				student_list[x][3] = Nationality;
 				student_list[x][4] = "NULL";
+				student_list[x][5] = email+"@hotmail.com";
 				System.out.println(Name+" has been added.");
 				break;			
 			}
@@ -247,22 +250,60 @@ public class StudentData {
 		return student_list;
 	}
 	
-	public static String[][] addClass (String class_index, String student_num, String student_list[][], String course_data[][] )
+	public static String[][] addClass (String class_index, String student_num, String student_list[][], String course_data[][], String index_data[][] )
 	{
 		boolean a = false;
 		boolean b = false;
 		boolean c = false;
+		int a2 = 0;
 		String a1 ="";
 		String [] new_class_index_timings = new String[3];
-		int e,f,g=0;
+		int e,f=0,g=0;
 		int x,y,z=0;
 		// get timing of the new class_index
+		for(x=0;x<100;x++)
+		{
+			if(index_data[x][1] == null)
+				break;
+			if(index_data[x][1].equals(index_data))
+			{
+				a2=1;
+			}
+		}
+		for(x=0;x<100;x++)
+		{
+			if(a2==0)
+			{
+				//System.out.println("Error! Invalid Course");
+				break;
+			}
+			if(index_data[x][1]==null)
+				break;
+			if(index_data[x][1].equals(class_index))
+			{
+				String [] temp = index_data[x][2].split("-");
+				y=temp.length;
+				for(z=0;z<y;z++)
+				{	
+					if(temp[z].equals(student_num))
+					{
+						f=1;
+						break;
+					}
+				}
+			}
+		}
+		if(f==0)
+		{
+			return student_list;
+		}
+		
 		for(x=0;x<100;x++)
 		{
 			if(course_data[x][2] == null)
 			{
 				System.out.println("There are no such index : "+class_index);
-				return student_list;
+				break;
 			}
 				
 			if(course_data[x][2].equals(class_index)) // Get the class_index timings that we want to add 
@@ -273,8 +314,11 @@ public class StudentData {
 				break;
 			}
 		}
+		
+
 		for(x=0;x<100;x++)
 		{
+
 			if(student_list[x][0]==null)
 			{
 				break;
@@ -288,7 +332,7 @@ public class StudentData {
 				{
 					if(temp[0].contains(a1))
 					{
-						System.out.println("You are already taking this course with another index");
+						//System.out.println("You are already taking this course with another index");
 						return student_list;
 					}
 				}
@@ -434,7 +478,7 @@ public class StudentData {
 				test[y][2] = c;
 				test[y][3] = d;
 				test[y][4] = e;
-				test[y][5] = f;
+				test[y][5] = f; // email;
 				y++;
 		}
 		return test;

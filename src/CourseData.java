@@ -35,15 +35,6 @@ public class CourseData {
 				y++;
 				
 		}
-		for(y = 0;y<4;y++)
-		{
-			for(z=0;z<7;z++)
-			{
-				System.out.print(test[y][z] + " ");
-			}
-			System.out.println("");
-			
-		}
 		/*
 		System.out.println("Get Lecture");
 		getLecture("J01",test);
@@ -53,9 +44,7 @@ public class CourseData {
 		getTutorial("J01",test);
 		System.out.println("Get Index");
 		getIndex("Algorithms",test);
-		*/
-		test = changeVacancies ("D03", "20",test);
-		for(y = 0;y<16;y++)
+			for(y = 0;y<16;y++)
 		{
 			for(z=0;z<7;z++)
 			{
@@ -64,6 +53,10 @@ public class CourseData {
 			System.out.println("");
 			
 		}
+		*/
+		printCourse(test);
+		
+	
 		
 
 	}
@@ -122,29 +115,36 @@ public class CourseData {
 			}
 		}
 	}
-	public static String [][] addCourse (String Course_Code, String Course_Name,String []Course_index, String[] vacancy, String lecutre, String [] tutorial, String [] Lab, String test[][], int a)
+	public static String [][] addCourse (String Course_Code, String Course_Name,String []Course_index, String[] vacancy, String lecutre, String [] tutorial, String [] Lab, String course_data[][], int a)
 	{
 		int x,y,z=0;
 		y=Course_index.length;
+		
 		for(x=0;x<100;x++)
 		{
-			if(test[x][0] == null)
+			if(course_data[x][0].equals(Course_Code))
+			{
+				System.out.println("Error! Course code already exist");
+				break;
+			}
+			
+			if(course_data[x][0] == null)
 			{
 				for(z=0;z<a;z++)
 				{
-					test[x][0] = Course_Code;
-					test[x][1] = Course_Name;
-					test[x][2] = Course_index[z];
-					test[x][3] = vacancy[z];
-					test[x][4] = lecutre;
-					test[x][5] = tutorial[z];
-					test[x][6] = Lab[z];
+					course_data[x][0] = Course_Code;
+					course_data[x][1] = Course_Name;
+					course_data[x][2] = Course_index[z];
+					course_data[x][3] = vacancy[z];
+					course_data[x][4] = lecutre;
+					course_data[x][5] = tutorial[z];
+					course_data[x][6] = Lab[z];
 					x++;
 				}
-				return test;
+				return course_data;
 			}
 		}
-		return test;
+		return course_data;
 	}
 	
 	public static boolean checkClash(String time1, String time2) {
@@ -172,6 +172,7 @@ public class CourseData {
 			int time2_dur = time2_end - time2_start;
 			for(int i = 0; i < time1_dur; i++) {
 					if((time1_start+i==time2_start) || (time2_start+i==time1_start)){
+						System.out.println("Error! You can't add this course as it clashes with your other courses");
 						return true;
 					}
 					else {
@@ -295,6 +296,20 @@ public class CourseData {
 				
 		}
 		return test;
+	}
+	public static void printCourse(String [][] course_data)
+	{
+		int x,y=0;
+		for(x=0;x<100;x++)
+		{
+			if(course_data[x][0]==null)
+				break;
+			System.out.print(course_data[x][0]);
+			System.out.print(" ");
+			System.out.print(course_data[x][1]);
+			System.out.print(" Index : ");
+			System.out.println(course_data[x][2]);
+		}
 	}
 	
 }

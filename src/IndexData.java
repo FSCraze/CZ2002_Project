@@ -112,47 +112,146 @@ public class IndexData {
 		}
 	}
 	
-	public static String[][] addStudent(String IndexCode,String Student_num, String student_List[][])
+	public static String[][] addStudent(String IndexCode,String Student_num, String index_data[][], String student_data[][], String course_data[][])
 	{
 		String temp;
-		int x,y=0;
+		int a =0;
+		boolean a2,b,c;
+		int e = 0;
+		int x,y=0,z=0;;
 		for(x=0;x<100;x++)
 		{
-			if(student_List[x][1]==null)
-				break;
-			if(student_List[x][1].equals(IndexCode))
+			if(index_data[x][1] == null)
+				break;			
+			if(index_data[x][1].equals(IndexCode))
 			{
-				if(!student_List[x][3].equals("0") && student_List[x][4].equals("NULL"))
+				String [] temp1 = index_data[x][2].split("-");
+				y = temp1.length;
+				for(z=0;z<y;z++)
 				{
-					if(student_List[x][2].equals("NULL"))
+					if(temp1[z].equals(Student_num))
 					{
-						student_List[x][2] = ""+Student_num;
-						y = Integer.parseInt(student_List[x][3]);
+						System.out.println("You're already registered in the course");
+						return index_data;
+					}
+				}
+			}
+		}
+		
+		for(x=0;x<100;x++)
+		{
+			if(index_data[x][1] == null)
+				break;
+			if(index_data[x][1].equals(IndexCode))
+			{
+				a=1;
+			}
+		}
+		if(a==0)
+		{
+			System.out.println("Error! Invalid Course");
+			return index_data;
+		}
+		
+		String [] new_class_index_timings = new String[3];
+		for(x=0;x<100;x++)
+		{	if(course_data[x][1]== null)
+				break;
+			if(course_data[x][2].equals(IndexCode))
+			{
+				new_class_index_timings[0] = course_data[x][4];
+				new_class_index_timings[1] = course_data[x][5];
+				new_class_index_timings[2] = course_data[x][6];	
+				break;
+			}
+		}
+		String a1 = "";
+		for(x=0;x<100;x++)
+		{
+			if(student_data[x][0]==null)
+			{
+				break;
+			}
+			if(student_data[x][0].equals(Student_num))
+			{
+				a1= IndexCode.substring(0,1);
+				String [] temp2 = student_data[x][4].split("-");
+				y=temp2.length;
+				for(z=0;z<y;z++)
+				{
+					if(temp2[0].contains(a1)) 
+					{
+						return index_data;
+					}
+				}
+				
+				for(z=0;z<y;z++)
+				{
+					for(e=0;e<100;e++)
+					{
+						if(course_data[e][0] == null)
+						{
+							break;
+						}
+						if(course_data[e][2].equals(temp2[z]))
+						{
+							//System.out.println(new_class_index_timings[0]);
+							//System.out.println("");
+							//System.out.println(course_data[e][4]);
+							a2= CourseData.checkClash(course_data[e][4],new_class_index_timings[0]); // 4 & 5 & 6
+							b= CourseData.checkClash(course_data[e][5],new_class_index_timings[1]); // 4 & 5 & 6
+							c= CourseData.checkClash(course_data[e][6],new_class_index_timings[2]); // 4 & 5 & 6
+							if(a2==true || b==true || c==true)
+							{
+								System.out.println("You can't take this index as it clashes with "+course_data[e][2]);
+								return index_data;
+							}
+						}
+					}
+
+				}
+			}
+		}
+		
+		for(x=0;x<100;x++)
+		{
+			if(index_data[x][1]==null)
+				break;
+			if(index_data[x][1].equals(IndexCode))
+			{
+				if(!index_data[x][3].equals("0") && index_data[x][4].equals("NULL"))
+				{
+					if(index_data[x][2].equals("NULL"))
+					{
+						index_data[x][2] = ""+Student_num;
+						y = Integer.parseInt(index_data[x][3]);
 						y = y-1;
-						student_List[x][3] = Integer.toString(y);
+						index_data[x][3] = Integer.toString(y);
 						break;
 					}
-					temp = student_List[x][2];
+					temp = index_data[x][2];
 					temp = temp+"-"+Student_num;
-					student_List[x][2] = temp;
-					y = Integer.parseInt(student_List[x][3]);
+					index_data[x][2] = temp;
+					y = Integer.parseInt(index_data[x][3]);
 					y = y-1;
-					student_List[x][3] = Integer.toString(y);
+					index_data[x][3] = Integer.toString(y);
 					break;
 				}
 				else
 				{
-					if(student_List[x][4].equals("NULL"));
+					System.out.println("Currently the class has no vacancies, you will be put in the waitlist");
+					if(index_data[x][4].equals("NULL"));
 					{
-
-						student_List[x][4] = Student_num;
-						
+						if(index_data[x][4].equals("NULL"))
+							index_data[x][4] = Student_num;
+						else
+							index_data[x][4] = index_data[x][4]+ "-" + Student_num;
 					}
-					student_List[x][4] =student_List[x][4]+"-"+Student_num;
+
 				}
 			}
-	}
-		return student_List;
+		}
+		return index_data;
 	}
 	
 	
@@ -174,7 +273,6 @@ public class IndexData {
 				{
 					if(y==1)
 					{
-						System.out.println(x);
 						student_List[x][2]="NULL";
 						count = 1;
 						break;
@@ -689,6 +787,10 @@ public class IndexData {
 		int x,y=0;
 		for(x=0;x<100;x++)
 		{
+			if(index_data[x][0].equals(course_code))
+			{
+				return index_data;
+			}
 			if(index_data[x][0] == null)
 			{
 				for(y=0;y<count;y++)

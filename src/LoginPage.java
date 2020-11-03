@@ -115,6 +115,11 @@ public static String [][] newStudent (String login_data [][], String m_num, Stri
 		int x,y=0;
 		for(x=0;x<100;x++)
 		{
+			if(login_data[x][0].equals(m_num))
+			{
+				System.out.println("Error! Student with that matriculation number already exist");
+				break;
+			}
 			if(login_data[x][0]==null)
 			{
 				login_data[x][0] = m_num;

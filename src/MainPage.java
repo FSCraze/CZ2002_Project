@@ -45,6 +45,7 @@ public class MainPage {
 			System.out.println("(5) Change Index number of course"); // Done
 			System.out.println("(6) Swap index Number with another student"); 
 			System.out.println("(7) Exit");
+			System.out.println("(8) Save Data");
 			
 			System.out.print("Enter the number of your choice: ");
 			choice = sc.nextInt();
@@ -57,26 +58,42 @@ public class MainPage {
 					buffer =sc.nextLine();
 					System.out.println("Please insert the course index that you want to add : ");
 					a = sc.nextLine();
-					student_data = StudentData.addClass(a, userName, student_data, course_data);
-					index_data = IndexData.addStudent(a, userName, index_data);
+					index_data = IndexData.addStudent(a, userName, index_data, student_data, course_data);
+					student_data = StudentData.addClass(a, userName, student_data, course_data, index_data);
 					
-					for(x=0;x<15;x++)
+					for(int abc=0;abc<100;abc++)
 					{
-						for(y=0;y<5;y++)
+						if(index_data[abc][1] == null)
 						{
-							System.out.print(student_data[x][y]);
+							break;
 						}
-						System.out.println("");
+						System.out.print(index_data[abc][0]);
+						System.out.print(" ");
+						System.out.print(index_data[abc][1]);
+						System.out.print(" ");
+						System.out.print(index_data[abc][2]);
+						System.out.print(" ");
+						System.out.print(index_data[abc][3]);
+						System.out.print(" " + index_data[abc][4]);
+						System.out.println(" ");
 					}
 					
-					for(x=0;x<12;x++)
+					for(int abc=0;abc<100;abc++)
 					{
-						for(y=0;y<5;y++)
+						if(student_data[abc][1] == null)
 						{
-							System.out.print(index_data[x][y]);
-							System.out.print(" ");
+							break;
 						}
-						System.out.println("");
+						System.out.print(student_data[abc][0]);
+						System.out.print(" ");
+						System.out.print(student_data[abc][1]);
+						System.out.print(" ");
+						System.out.print(student_data[abc][2]);
+						System.out.print(" ");
+						System.out.print(student_data[abc][3]);
+						System.out.print(" " + student_data[abc][4]);
+						System.out.print(" " + student_data[abc][5]);
+						System.out.println(" ");
 					}
 					break;
 				case 2:
@@ -85,16 +102,6 @@ public class MainPage {
 					a=sc.nextLine();
 					student_data=StudentData.dropClass(a, userName, student_data);
 					index_data = IndexData.dropStudent(a, userName, index_data, student_data);
-					/*for(x=0;x<12;x++)
-					{
-						for(y=0;y<5;y++)
-						{
-							System.out.print(index_data[x][y]);
-							System.out.print(" ");
-						}
-						System.out.println("");
-					}
-				*/
 					break;
 				case 3:
 					StudentData.getClasses(userName, student_data);
@@ -113,25 +120,6 @@ public class MainPage {
 					b=sc.nextLine();
 					index_data = IndexData.swapIndex(a, b, userName, index_data,student_data);
 					student_data = StudentData.swapIndex(a, b, userName, student_data);
-					/*
-					for(x=0; x<16;x++)
-					{
-						for(y=0;y<5;y++)
-						{
-							System.out.print(student_data[x][y]+" ");
-						}
-						System.out.println("");
-					}
-					
-					for(x=0; x<12;x++)
-					{
-						for(y=0;y<5;y++)
-						{
-							System.out.print(index_data[x][y]+" ");
-						}
-						System.out.println("");
-					}
-					*/
 					break;
 				case 6:	
 					buffer=sc.nextLine();
@@ -144,30 +132,11 @@ public class MainPage {
 					
 					index_data = IndexData.swapIndexWithStudents(userName, b , a , c, index_data, course_data, student_data);
 					student_data = StudentData.swapIndexWithStudents(userName, b, a, c, index_data, student_data);
-					/*
-					for(int abc = 0; abc<100; abc++)
-					{
-						if(index_data[abc][0] == null)
-							break;
-						System.out.print(index_data[abc][0] + " ");
-						System.out.print(index_data[abc][1] + " ");
-						System.out.print(index_data[abc][2] + " ");
-						System.out.print(index_data[abc][3]);
-						System.out.println("");
-					}
-					
-					for(int abcd = 0; abcd<100; abcd++)
-					{
-						if(student_data[abcd][0] == null)
-							break;
-						System.out.print(student_data[abcd][0] + " ");
-						System.out.print(student_data[abcd][1] + " ");
-						System.out.print(student_data[abcd][2] + " ");
-						System.out.print(student_data[abcd][3] + " ");
-						System.out.print(student_data[abcd][4]);
-						System.out.println("");
-					}
-					*/
+					break;
+				case 8:
+					setCourseData(course_data);
+					setIndexData(index_data);
+					setStudentData(student_data);
 					break;
 				}
 				System.out.println();
@@ -209,15 +178,23 @@ public class MainPage {
 					String newName = sc.nextLine();
 					System.out.println("Enter Password");
 					String newPassword = sc.nextLine();
-					System.out.println("Enter Gender");
+					System.out.println("Enter Gender : M for Male or F for Female");
 					String newGender = sc.nextLine();
+					if(!newGender.equals("M") && !newGender.equals("F"))
+					{
+						System.out.println("Error! Invalid data entries");
+						break;
+					}
 					System.out.println("Enter matriculation number ");
 					String newMnum = sc.nextLine();
 					System.out.println("Enter Nationality");
 					String nationality = sc.nextLine();
-					student_data = StudentData.addStudent(newName, newPassword, newGender, newMnum, nationality, student_data);
+					System.out.println("Enter Email address ");
+					String email = sc.nextLine();
+					student_data = StudentData.addStudent(newName, newPassword, newGender, newMnum, nationality, student_data,email);
 					LoginPage.newStudent(newMnum,newPassword);
 					a = (LoginPage.returnPassword(newPassword));
+					StudentData.getStudent(student_data);
 					break;
 				case 3:
 					
@@ -244,7 +221,7 @@ public class MainPage {
 					c=sc.nextLine(); // lecture timing
 					course_data=CourseData.addCourse(a, b, noOfIndex, Vacancies, c, TutorialTiming, LabTiming, course_data,x);	
 					index_data = IndexData.newCourse(index_data,a,Vacancies, noOfIndex,x);
-
+					CourseData.printCourse(course_data);
 					break;
 					
 				case 4:
@@ -336,11 +313,6 @@ public class MainPage {
 		
 	}
 
-
-	
-
-	
-	
 	
 	public static void setCourseData(String [][] course_data) throws IOException {
 		
@@ -398,7 +370,7 @@ public static void setStudentData(String [][] student_data) throws IOException{
 	
 	for(int i=0; i < student_data.length; i++) {
 		if(student_data[i][0]!=null) {
-		fwStudent.write(student_data[i][0]+","+student_data[i][1]+","+student_data[i][2]+","+student_data[i][3]+","+student_data[i][4]+"\n");
+		fwStudent.write(student_data[i][0]+","+student_data[i][1]+","+student_data[i][2]+","+student_data[i][3]+","+student_data[i][4]+","+student_data[i][5]+"\n");
 		}
 	}
 	fwStudent.close();
