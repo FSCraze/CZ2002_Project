@@ -22,6 +22,7 @@ public class MainPage {
 		String [] TutorialTiming = new String[10];
 		String [] Vacancies = new String[10];
 		int choice;
+		boolean check = LoginPage.verifyAccess();
 		int x,y,z;
 		String buffer;
 		String temp = "";
@@ -217,18 +218,6 @@ public class MainPage {
 					student_data = StudentData.addStudent(newName, newPassword, newGender, newMnum, nationality, student_data);
 					LoginPage.newStudent(newMnum,newPassword);
 					a = (LoginPage.returnPassword(newPassword));
-					login_data = LoginPage.newStudent(login_data,newMnum,a);
-					for(x = 0;x<20;x++)
-					{
-						if(login_data[x][0] == null)
-						{
-							break;
-						}
-						System.out.print(login_data[x][0] + " ");
-						System.out.print(login_data[x][1] + " ");
-						System.out.println("");					
-					}
-					// write to login file
 					break;
 				case 3:
 					
@@ -255,19 +244,7 @@ public class MainPage {
 					c=sc.nextLine(); // lecture timing
 					course_data=CourseData.addCourse(a, b, noOfIndex, Vacancies, c, TutorialTiming, LabTiming, course_data,x);	
 					index_data = IndexData.newCourse(index_data,a,Vacancies, noOfIndex,x);
-					/*
-					for(int abc=0;abc<100;abc++)
-					{
-						if(index_data[abc][0]==null)
-							break;
-						System.out.print(index_data[abc][0]);
-						System.out.print(index_data[abc][1]);
-						System.out.print(index_data[abc][2]);
-						System.out.print(index_data[abc][3]);
-						System.out.print(index_data[abc][4]);
-						System.out.println("");
-					}
-					*/
+
 					break;
 					
 				case 4:
@@ -341,28 +318,20 @@ public class MainPage {
 					setStudentData(student_data);
 					break;
 				}
+						
 				
-				/*
-				for(y = 0;y<100;y++)
-				{
-					if(course_data[y][0]==null)
-						break;
-					for(z=0;z<7;z++)
-					{
-						System.out.print(course_data[y][z] + " ");
-					}
-					System.out.println("");
-					*/
-					
-				}
 				System.out.println();
 				System.out.print("Enter the number of your choice: ");
 				choice = sc.nextInt();
-				
 			}
+			}
+		else if(check == false)
+		{
+			System.out.println("Error! You're not able to login as you are out of the access period");
+		}
 		else
 		{
-			System.out.println("Login Error!");
+			System.out.println("Error! Invalid Username or Password");
 		}
 		
 	}

@@ -81,7 +81,6 @@ public static String verifyLogin(String username, String password)
 		{
 			
 		}
-
 		return "z";	
 	}
 
@@ -108,6 +107,7 @@ public static String returnPassword (String password) throws NoSuchAlgorithmExce
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	    return;
 	    
 	}
 public static String [][] newStudent (String login_data [][], String m_num, String password)
