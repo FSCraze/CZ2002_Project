@@ -1,11 +1,11 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
 import java.util.*;
 import java.util.Map.Entry;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
 import java.io.FileWriter;
 import java.io.FileReader;
 //test
@@ -202,6 +202,20 @@ public class MainPage {
 				switch(choice)
 				{
 				case 1:
+					buffer=sc.nextLine();
+					System.out.println("Enter start of access period: (YYYY/MM/DD/HH/MM)");
+					String startAccess = sc.nextLine();
+					System.out.println("Enter end of access period: (YYYY/MM/DD/HH/MM");
+					String endAccess = sc.nextLine();
+					while(setAccessPeriod(startAccess,endAccess)!=0) {
+						System.out.println("Error, please enter again:");
+						System.out.println("Enter start of access period: (YYYY/MM/DD/HH/MM)");
+						 startAccess = sc.nextLine();
+						System.out.println("Enter end of access period: (YYYY/MM/DD/HH/MM)");
+						 endAccess = sc.nextLine();
+						 setAccessPeriod(startAccess,endAccess);
+					}
+					System.out.println("Student access period edited and saved.");
 					break;
 				case 2:
 					buffer = sc.nextLine();
@@ -335,7 +349,75 @@ public class MainPage {
 		}
 		
 	}
+	
+	/* 	Calendar cal = Calendar.getInstance();
+	      int year = cal.get(Calendar.YEAR);
+	      int month = cal.get(Calendar.MONTH);      
+	      int day = cal.get(Calendar.DAY_OF_MONTH);
+	      int hour = cal.get(Calendar.HOUR_OF_DAY);
+	      int minute = cal.get(Calendar.MINUTE);
+		SimpleDateFormat dFormat = new SimpleDateFormat("YYYY,MM,d,HH,mm");
+		Calendar dateNow,startAccess,endAccess;
+		 dateNow = new GregorianCalendar(year,month,day,hour,minute);
+		 endAccess = new GregorianCalendar(acc[5],acc[6],acc[7],acc[8],acc[9]); //change this to end of access period 
+		 startAccess = new GregorianCalendar(acc[0],acc[1],acc[2],acc[3],acc[4]); //change this to start of access period*/
+	//2020,11,01,13,30
 
+public static int  setAccessPeriod(String start, String end ) throws IOException {
+	String[]startS = new String[10];
+	String[] endS = new String[10];
+	startS=start.split("/");
+	endS=end.split("/");
+	int[] startArray = new int[10];
+	int[] endArray = new int[10];
+	try {
+	for(int i = 0; i < startS.length;i++) {
+		startArray[i]=Integer.parseInt(startS[i]);
+		endArray[i] = Integer.parseInt(endS[i]);
+	}}
+	catch(NumberFormatException e) {
+		return 1;
+	}
+	
+		try {
+		Calendar startAccess, endAccess;
+		startAccess = new GregorianCalendar(startArray[0],startArray[1],startArray[2],startArray[3],startArray[4]);
+		endAccess = new GregorianCalendar(endArray[0],endArray[1],endArray[2],endArray[3],endArray[4]);
+		startAccess.setLenient(false);
+		endAccess.setLenient(false);
+		endAccess.getTime();
+		startAccess.getTime();
+		if(startAccess.after(endAccess)) {
+			return 1;
+		}
+		}
+		catch(IllegalArgumentException e) {
+			return 1;
+		}
+	
+	//since month is 0 - 11, minus one to store into txt file 
+	int temp = 0;
+	temp = startArray[1];
+	startArray[1]=temp-1;
+	temp=endArray[1];
+	endArray[1]=temp-1;
+	
+	
+	
+	
+			
+	FileWriter fwAccess = new FileWriter("AccessPeriod.txt", true);
+	FileWriter flushAccess = new FileWriter("AccessPeriod.txt", false);
+	PrintWriter pwAccess = new PrintWriter(flushAccess, false);
+	pwAccess.flush();
+	pwAccess.close();
+	flushAccess.close();
+	fwAccess.write(startArray[0]+","+startArray[1]+","+startArray[2]+","+startArray[3]+","+startArray[4]+"\n");
+	fwAccess.write(endArray[0]+","+endArray[1]+","+endArray[2]+","+endArray[3]+","+endArray[4]);
+	fwAccess.close();
+	return 0;
+	
+}
 
 	
 
