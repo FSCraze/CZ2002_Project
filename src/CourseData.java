@@ -267,4 +267,34 @@ public class CourseData {
 		return course_data;
 	}
 	
+	public static String [][] getCourseDataArray () throws FileNotFoundException
+	{
+		String[][] test = new String[100][7];
+		String a,b,c,d,e,f,g;
+		int y = 0;
+		int z =0;
+		Scanner x = new Scanner(new File("CourseData.txt"));
+		x.useDelimiter("[,\n]");
+		while(x.hasNext())
+		{		
+				a=x.next().trim();
+				b=x.next().trim();
+				c=x.next().trim();
+				d=x.next().trim();
+				e=x.next().trim();
+				f=x.next().trim();
+				g=x.next().trim();
+				test[y][0] = a; // Course Code
+				test[y][1] = b; // Course Name
+				test[y][2] = c; // Course Index
+				test[y][3] = d; // Vacancies
+				test[y][4] = e; // Lecture
+				test[y][5] = f; // Lab
+				test[y][6] = g; // Tutorial
+				y++;
+				
+		}
+		return test;
+	}
+	
 }

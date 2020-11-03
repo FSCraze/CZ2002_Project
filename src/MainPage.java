@@ -13,9 +13,9 @@ public class MainPage {
 	public static void main(String args[]) throws NoSuchAlgorithmException, IOException
 	{
 		String a,b,c,d,e,f,g,h,i;
-		String [][] course_data = getCourseDataArray();
-		String [][] index_data = getIndexData();
-		String [][] student_data = getStudentData();
+		String [][] course_data = CourseData.getCourseDataArray();
+		String [][] index_data = IndexData.getIndexData();
+		String [][] student_data = StudentData.getStudentData();
 		String [][] login_data = getLogin();
 		String [] noOfIndex = new String[10];
 		String [] LabTiming = new String[10];
@@ -33,8 +33,10 @@ public class MainPage {
 		if((LoginPage.verifyLogin(userName,password)) == "s" && LoginPage.verifyAccess()== true) // password is password1
 		{
 			System.out.println("");
+			System.out.println("=========================");
 			System.out.println("Student login successful");
 			System.out.println("Welcome student " + userName);
+			System.out.println("=========================");
 			System.out.println("(1) Add Course"); //Done
 			System.out.println("(2) Drop Course"); //Done
 			System.out.println("(3) Display registered Course"); // Done;
@@ -177,8 +179,10 @@ public class MainPage {
 		else if((LoginPage.verifyLogin(userName,password)) == "a")
 		{
 			System.out.println("");
+			System.out.println("=========================");
 			System.out.println("Admin login successful");
 			System.out.println("Welcome admin " + userName);
+			System.out.println("=========================");
 			System.out.println("(1) Edit student access period");
 			System.out.println("(2) Add a student"); // Done
 			System.out.println("(3) Add a new course"); // Done
@@ -367,35 +371,7 @@ public class MainPage {
 	
 
 	
-	public static String [][] getCourseDataArray () throws FileNotFoundException
-	{
-		String[][] test = new String[100][7];
-		String a,b,c,d,e,f,g;
-		int y = 0;
-		int z =0;
-		Scanner x = new Scanner(new File("CourseData.txt"));
-		x.useDelimiter("[,\n]");
-		while(x.hasNext())
-		{		
-				a=x.next().trim();
-				b=x.next().trim();
-				c=x.next().trim();
-				d=x.next().trim();
-				e=x.next().trim();
-				f=x.next().trim();
-				g=x.next().trim();
-				test[y][0] = a; // Course Code
-				test[y][1] = b; // Course Name
-				test[y][2] = c; // Course Index
-				test[y][3] = d; // Vacancies
-				test[y][4] = e; // Lecture
-				test[y][5] = f; // Lab
-				test[y][6] = g; // Tutorial
-				y++;
-				
-		}
-		return test;
-	}
+	
 	
 	public static void setCourseData(String [][] course_data) throws IOException {
 		
@@ -460,59 +436,9 @@ public static void setStudentData(String [][] student_data) throws IOException{
 	
 	
 }
-	public static String [][] getIndexData() throws FileNotFoundException
-	{
-		String[][] test = new String[100][5];
-		String a,b,c,d,e,f,g;
-		int y = 0;
-		int z =0;
-		Scanner x = new Scanner(new File("IndexData.txt"));
-		Scanner abc = new Scanner(System.in);
-		x.useDelimiter("[,\n]");
-		while(x.hasNext())
-		{		
-				a=x.next().trim();
-				b=x.next().trim();
-				c=x.next().trim();
-				d=x.next().trim();
-				e=x.next().trim();
-				test[y][0] = a;
-				test[y][1] = b;
-				test[y][2] = c;
-				test[y][3] = d;
-				test[y][4] = e;
-				y++;
-				
-		}
-		return test;
-	}
-	public static String[][] getStudentData() throws FileNotFoundException
-	{
-		String[][] test = new String[100][6];
-		String a,b,c,d,e,f;
-		int y = 0;
-		int z =0;
-		Scanner x = new Scanner(new File("StudentData.txt"));
-		Scanner abc = new Scanner(System.in);
-		x.useDelimiter("[,\n]");
-		while(x.hasNext())
-		{		
-				a=x.next().trim();
-				b=x.next().trim();
-				c=x.next().trim();
-				d=x.next().trim();
-				e=x.next().trim();
-				f=x.next().trim();
-				test[y][0] = a;
-				test[y][1] = b;
-				test[y][2] = c;
-				test[y][3] = d;
-				test[y][4] = e;
-				test[y][5] = f;
-				y++;
-		}
-		return test;
-	}
+
+	
+	
 	public static String [][] getLogin() throws FileNotFoundException
 	{
 		String [][] test = new String[100][2];

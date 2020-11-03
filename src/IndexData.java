@@ -705,6 +705,33 @@ public class IndexData {
 		}
 		return index_data;
 	}
+	
+	public static String [][] getIndexData() throws FileNotFoundException
+	{
+		String[][] test = new String[100][5];
+		String a,b,c,d,e,f,g;
+		int y = 0;
+		int z =0;
+		Scanner x = new Scanner(new File("IndexData.txt"));
+		Scanner abc = new Scanner(System.in);
+		x.useDelimiter("[,\n]");
+		while(x.hasNext())
+		{		
+				a=x.next().trim();
+				b=x.next().trim();
+				c=x.next().trim();
+				d=x.next().trim();
+				e=x.next().trim();
+				test[y][0] = a;
+				test[y][1] = b;
+				test[y][2] = c;
+				test[y][3] = d;
+				test[y][4] = e;
+				y++;
+				
+		}
+		return test;
+	}
 }
 
 
