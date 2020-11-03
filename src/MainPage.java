@@ -379,6 +379,13 @@ public static int  setAccessPeriod(String start, String end ) throws IOException
 		return 1;
 	}
 	
+	int temp = 0;
+	temp = startArray[1];
+	startArray[1]=temp-1;
+	temp=endArray[1];
+	endArray[1]=temp-1;
+
+	
 		try {
 		Calendar startAccess, endAccess;
 		startAccess = new GregorianCalendar(startArray[0],startArray[1],startArray[2],startArray[3],startArray[4]);
@@ -396,13 +403,7 @@ public static int  setAccessPeriod(String start, String end ) throws IOException
 		}
 	
 	//since month is 0 - 11, minus one to store into txt file 
-	int temp = 0;
-	temp = startArray[1];
-	startArray[1]=temp-1;
-	temp=endArray[1];
-	endArray[1]=temp-1;
-	
-	
+
 	
 	
 			
