@@ -1,3 +1,4 @@
+package src;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -59,7 +60,7 @@ public class MainPage {
 					a = sc.nextLine();
 					student_data = StudentData.addClass(a, userName, student_data, course_data);
 					index_data = IndexData.addStudent(a, userName, index_data);
-					
+					/*
 					for(x=0;x<15;x++)
 					{
 						for(y=0;y<5;y++)
@@ -78,6 +79,7 @@ public class MainPage {
 						}
 						System.out.println("");
 					}
+					*/
 					break;
 				case 2:
 					buffer = sc.nextLine();
@@ -85,7 +87,7 @@ public class MainPage {
 					a=sc.nextLine();
 					student_data=StudentData.dropClass(a, userName, student_data);
 					index_data = IndexData.dropStudent(a, userName, index_data, student_data);
-					/*for(x=0;x<12;x++)
+					for(x=0;x<12;x++)
 					{
 						for(y=0;y<5;y++)
 						{
@@ -94,7 +96,7 @@ public class MainPage {
 						}
 						System.out.println("");
 					}
-				*/
+				
 					break;
 				case 3:
 					StudentData.getClasses(userName, student_data);
@@ -169,6 +171,11 @@ public class MainPage {
 					}
 					*/
 					break;
+				case 8:
+					setCourseData(course_data);
+					setIndexData(index_data);
+					setStudentData(student_data);
+					break;					
 				}
 				System.out.println();
 				System.out.print("Enter the number of your choice: ");
@@ -481,7 +488,7 @@ public static void setStudentData(String [][] student_data) throws IOException{
 	
 	for(int i=0; i < student_data.length; i++) {
 		if(student_data[i][0]!=null) {
-		fwStudent.write(student_data[i][0]+","+student_data[i][1]+","+student_data[i][2]+","+student_data[i][3]+","+student_data[i][4]+"\n");
+		fwStudent.write(student_data[i][0]+","+student_data[i][1]+","+student_data[i][2]+","+student_data[i][3]+","+student_data[i][4]+","+student_data[i][5]+"\n");
 		}
 	}
 	fwStudent.close();

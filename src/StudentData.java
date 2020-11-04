@@ -1,3 +1,5 @@
+package src;
+
 import java.util.*;
 import java.util.Map.Entry;
 import java.io.File;
@@ -419,7 +421,6 @@ public class StudentData {
 		int y = 0;
 		int z =0;
 		Scanner x = new Scanner(new File("StudentData.txt"));
-		Scanner abc = new Scanner(System.in);
 		x.useDelimiter("[,\n]");
 		while(x.hasNext())
 		{		
