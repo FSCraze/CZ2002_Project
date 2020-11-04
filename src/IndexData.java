@@ -9,6 +9,8 @@ import java.io.FileWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 public class IndexData {
+	private static final Object Student_Num = null;
+
 	public static void main (String args[]) throws FileNotFoundException
 	{
 		String[][] test = new String[100][5];
@@ -176,7 +178,6 @@ public class IndexData {
 				{
 					if(y==1)
 					{
-						System.out.println(x);
 						student_List[x][2]="NULL";
 						count = 1;
 						break;
@@ -224,17 +225,11 @@ public class IndexData {
 						y = y+1;
 						student_List[x][3] = Integer.toString(y);
 						return student_List;
+						
 					}
-				}
-				else
-				{
-
-					y = Integer.parseInt(student_List[x][3]);
-					y = y+1;
-					student_List[x][3] = Integer.toString(y);
+				break;
 				}
 			}
-		System.out.println(student_List[x][2]);
 		for(x=0;x<100;x++)
 		{
 			if(student_List[x][2]==null)
@@ -244,8 +239,14 @@ public class IndexData {
 				String [] temp3 = student_List[x][2].split("-");
 				y= temp3.length;
 				student_List[x][2] = "";
-				temp3[0] = temp3[y-1];
-				System.out.println(y);
+				for(z=0;z<y;z++)
+				{
+					if(temp3[z].equals(Student_num))
+					{
+						temp3[z] = temp3[y-1];
+						break;
+					}
+				}
 				for(z=0;z<y-1;z++)
 				{
 					if(z==0)
@@ -257,7 +258,6 @@ public class IndexData {
 				}
 				break;
 			}
-			//System.out.println(student_List[x][2]);
 		}
 		
 		return student_List;

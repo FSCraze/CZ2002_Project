@@ -84,14 +84,24 @@ public class MainPage {
 				case 2:
 					buffer = sc.nextLine();
 					System.out.println("Please insert the course index that you want to drop : ");
-					a=sc.nextLine();
-					student_data=StudentData.dropClass(a, userName, student_data);
+					a=sc.nextLine();	
 					index_data = IndexData.dropStudent(a, userName, index_data, student_data);
+					student_data=StudentData.dropClass(a, userName, student_data, index_data);
 					for(x=0;x<12;x++)
 					{
 						for(y=0;y<5;y++)
 						{
 							System.out.print(index_data[x][y]);
+							System.out.print(" ");
+						}
+						System.out.println("");
+					}
+					
+					for(x=0;x<17;x++)
+					{
+						for(y=0;y<5;y++)
+						{
+							System.out.print(student_data[x][y]);
 							System.out.print(" ");
 						}
 						System.out.println("");
