@@ -59,7 +59,7 @@ public class MainPage {
 					a = sc.nextLine();
 					student_data = StudentData.addClass(a, userName, student_data, course_data);
 					index_data = IndexData.addStudent(a, userName, index_data);
-					
+					/*
 					for(x=0;x<15;x++)
 					{
 						for(y=0;y<5;y++)
@@ -78,6 +78,7 @@ public class MainPage {
 						}
 						System.out.println("");
 					}
+					*/
 					break;
 				case 2:
 					buffer = sc.nextLine();
@@ -85,7 +86,7 @@ public class MainPage {
 					a=sc.nextLine();
 					student_data=StudentData.dropClass(a, userName, student_data);
 					index_data = IndexData.dropStudent(a, userName, index_data, student_data);
-					/*for(x=0;x<12;x++)
+					for(x=0;x<12;x++)
 					{
 						for(y=0;y<5;y++)
 						{
@@ -94,7 +95,7 @@ public class MainPage {
 						}
 						System.out.println("");
 					}
-				*/
+				
 					break;
 				case 3:
 					StudentData.getClasses(userName, student_data);
@@ -169,6 +170,11 @@ public class MainPage {
 					}
 					*/
 					break;
+				case 8:
+					setCourseData(course_data);
+					setIndexData(index_data);
+					setStudentData(student_data);
+					break;					
 				}
 				System.out.println();
 				System.out.print("Enter the number of your choice: ");
@@ -234,7 +240,8 @@ public class MainPage {
 					a = (LoginPage.returnPassword(newPassword));
 					break;
 				case 3:
-					
+					String tempTimeLab = "";
+					String tempTimeTut = "";
 					buffer = sc.nextLine();
 					System.out.println("Please enter the Course Code of the new Course : ");
 					a=sc.nextLine();
@@ -250,9 +257,21 @@ public class MainPage {
 						System.out.println("Please enter the number of vancancies for index code : "+ noOfIndex[y]);
 						Vacancies[y]= sc.nextLine();
 						System.out.println("Please enter the lab date and timing in the format of DD-HHMM-HHMM for index " + noOfIndex[y]);
-						LabTiming[y] = sc.nextLine();
+						tempTimeLab = sc.nextLine();
+						while(checkisTime(tempTimeLab)!=0) {
+							System.out.println("Please enter the lab date and timing in the format of DD-HHMM-HHMM for index " + noOfIndex[y]);
+							tempTimeLab = sc.nextLine();
+							checkisTime(tempTimeLab);
+						}
+						LabTiming[y] = tempTimeLab;
 						System.out.println("Please enter the Tutorial date and timing in the format of DD-HHMM-HHMM for index " + noOfIndex[y]);
-						TutorialTiming[y] = sc.nextLine();
+						tempTimeTut = sc.nextLine();
+						while(checkisTime(tempTimeTut)!=0) {
+							System.out.println("Please enter the lab date and timing in the format of DD-HHMM-HHMM for index " + noOfIndex[y]);
+							tempTimeTut = sc.nextLine();
+							checkisTime(tempTimeTut);
+						}
+						TutorialTiming[y] = tempTimeTut;
 					}
 					System.out.println("Please enter the lecture timing : ");
 					c=sc.nextLine(); // lecture timing
@@ -421,6 +440,43 @@ public static int  setAccessPeriod(String start, String end ) throws IOException
 }
 
 	
+public static int checkisTime(String d) {
+	//D-HHMM-HHMM
+	String[]timeSplit = new String[10];
+	timeSplit=d.split("-");
+	int[] timeInt = new int[10];
+	try {
+	for(int i = 0; i < timeSplit.length;i++) {
+		timeInt[i]=Integer.parseInt(timeSplit[i]);
+	}
+	if(timeInt[0]>7 || timeInt[0]<1) {
+		System.out.println("Wrong day format (1 = Mon, 2 = Tues, ..., 7 = Sun)");
+		return 1; //not monday to sunday 
+		
+	}
+	else if(timeInt[1]>2359 || timeInt[2]>2359 ||timeInt[1]<0000 || timeInt[2]<0000) {
+		System.out.println("Invalid time, must be within 0000 - 2359");
+		return 1; //invalid time 
+	}
+	
+	else if(timeInt[1] == timeInt[2]) {
+		System.out.println("Start time cannot be the same as end time");
+		return 1; //same start and end time 
+	}
+	else if (timeInt[1]>timeInt[2]) {
+		System.out.println("Start time cannot be later than end time");
+		return 1; //end earlier than start 
+	}
+	
+	}catch(NumberFormatException e){
+		System.out.println("Wrong format, please input D-HHMM-HHMM");
+		return 1; //not numbers 
+		
+	}
+	
+	return 0;
+}
+	
 
 	
 	
@@ -481,7 +537,7 @@ public static void setStudentData(String [][] student_data) throws IOException{
 	
 	for(int i=0; i < student_data.length; i++) {
 		if(student_data[i][0]!=null) {
-		fwStudent.write(student_data[i][0]+","+student_data[i][1]+","+student_data[i][2]+","+student_data[i][3]+","+student_data[i][4]+"\n");
+		fwStudent.write(student_data[i][0]+","+student_data[i][1]+","+student_data[i][2]+","+student_data[i][3]+","+student_data[i][4]+","+student_data[i][5]+"\n");
 		}
 	}
 	fwStudent.close();
