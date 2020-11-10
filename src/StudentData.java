@@ -231,6 +231,7 @@ public class StudentData {
 				System.out.println("Error! Matriculation Number already existed");
 				return student_list;
 			}
+			
 			getStudentData(student_list);			
 		}
 		return student_list;
