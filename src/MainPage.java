@@ -1,4 +1,3 @@
-package src;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -9,6 +8,8 @@ import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.io.FileWriter;
 import java.io.FileReader;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 //test
 public class MainPage {
 	public static void main(String args[]) throws NoSuchAlgorithmException, IOException
@@ -244,8 +245,18 @@ public class MainPage {
 					String newPassword = sc.nextLine();
 					System.out.println("Enter Gender");
 					String newGender = sc.nextLine();
+					while(hasSpecialChar(newGender)!=false) {
+						System.out.println("Gender cannot be empty or have have numbers/special characters in them");
+						System.out.println("re-enter gender:");
+						newGender=sc.nextLine();
+					}
 					System.out.println("Enter Nationality");
 					String nationality = sc.nextLine();
+					while(hasSpecialChar(nationality)!=false) {
+						System.out.println("Nationality cannot be empty or have numbers/special characters in them");
+						System.out.println("re-enter nationality:");
+						nationality=sc.nextLine();
+					}
 					student_data = StudentData.addStudent(newName, newPassword, newGender, newMnum, nationality, student_data);
 					LoginPage.newStudent(newMnum,newPassword);
 					a = (LoginPage.returnPassword(newPassword));
@@ -451,6 +462,20 @@ public static int  setAccessPeriod(String start, String end ) throws IOException
 	
 }
 
+
+
+public static boolean hasSpecialChar(String s) {
+    if (s == null || s.trim().isEmpty()) {
+        return true;
+    }
+    Pattern p = Pattern.compile("[^A-Za-z]");
+    Matcher m = p.matcher(s);
+    boolean b = m.find();
+    if (b)
+    	return true;
+    else
+    return false;
+}
 	
 public static int checkisTime(String d) {
 	//D-HHMM-HHMM
