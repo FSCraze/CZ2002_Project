@@ -231,7 +231,7 @@ public class StudentData {
 				System.out.println("Error! Matriculation Number already existed");
 				return student_list;
 			}
-			
+			getStudentData(student_list);			
 		}
 		return student_list;
 	}
@@ -480,6 +480,25 @@ public class StudentData {
 				y++;
 		}
 		return test;
+	}
+	
+	public static void getStudentData (String student_list[][])
+	{
+		int x,y = 0;
+		for(x = 0; x<100;x++)
+		{
+			if(student_list[x][1] == null)
+				break;
+			System.out.print(student_list[x][0]);
+			System.out.print(" ");
+			System.out.print(student_list[x][1]);
+			System.out.print(" ");
+			System.out.print(student_list[x][2]);
+			System.out.print(" ");
+			System.out.print(student_list[x][3]);
+			System.out.print(" ");
+			System.out.println(student_list[x][4]);
+		}
 	}
 }
 

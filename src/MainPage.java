@@ -249,6 +249,7 @@ public class MainPage {
 					student_data = StudentData.addStudent(newName, newPassword, newGender, newMnum, nationality, student_data);
 					LoginPage.newStudent(newMnum,newPassword);
 					a = (LoginPage.returnPassword(newPassword));
+				
 					break;
 				case 3:
 					String tempTimeLab = "";
