@@ -1,3 +1,5 @@
+package src;
+
 import java.util.*;
 import java.util.Map.Entry;
 import java.io.File;
@@ -125,10 +127,12 @@ public class StudentData {
 		}
 	}
 	
-	public static String[][] dropClass (String class_index, String student_num, String student_list[][])
+	public static String[][] dropClass (String class_index, String student_num, String student_list[][], String index_data[][])
 	{
 		int x,y,z=0;
 		int a = 0;
+		int e,f,g;
+		int b =0;
 		String temp = "";
 		for(x=0;x<100;x++)
 		{
@@ -138,30 +142,69 @@ public class StudentData {
 			{
 				String [] temp1 = student_list[x][4].split("-");
 				y = temp1.length;
+				student_list[x][4] = "";
 				for(z=0;z<y;z++)
-				{
+				{	
+					if(z!=0 && z+1 != y)
+					{
+						temp = temp + "-";
+					}
 					if(temp1[z].equals(class_index))
-					{					
-						System.out.println("You have dropped "+class_index);
-						a=1;
+					{
+						a = 1;
 					}
 					else
 					{
-						if(z==(y-1))
-						{
-							temp = temp+temp1[z];
-							break;
-						}                                                                          
-						temp = temp+temp1[z]+"-";
-						
+						temp = temp + temp1[z];
 					}
+					
 				}				
 				student_list[x][4] = temp;
+				break;
+			}		
+		}
+		x=0; y=0;z=0;
+		for(x=0;x<100;x++)
+		{
+			if(index_data[x][1]==null)
+				break;
+			if(index_data[x][1].equals(class_index))
+			{
+				String [] temp1 = index_data[x][2].split("-"); // student sin the index 
+				y = temp1.length;
+				{
+					for(z=0;z<y;z++)
+					{
+						b=0;
+						for(e=0;e<100;e++)
+						{
+							if(student_list[e][0]==null)
+								break;
+							if(student_list[e][0].equals(temp1[z]))
+							{
+								System.out.println(z);
+								String [] temp2 = student_list[e][4].split("-");
+								int yy = temp2.length;
+								for(int zz=0;zz<yy;zz++)
+								{
+									if(temp2[zz].equals(class_index))
+									{
+										b=1;
+									}
+								}
+								if(b!=1)
+								{
+									student_list[e][4] = student_list[e][4] + "-" + class_index;
+								}
+							}
+						}
+					}
+				}
 			}
-			
 		}
 		if(a==1)
 		{
+			System.out.println("You have dropped "+class_index);
 			return student_list;
 		}
 		System.out.println("You are not registered in "+class_index);
@@ -419,7 +462,6 @@ public class StudentData {
 		int y = 0;
 		int z =0;
 		Scanner x = new Scanner(new File("StudentData.txt"));
-		Scanner abc = new Scanner(System.in);
 		x.useDelimiter("[,\n]");
 		while(x.hasNext())
 		{		
