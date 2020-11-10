@@ -236,14 +236,14 @@ public class MainPage {
 					break;
 				case 2:
 					buffer = sc.nextLine();
+					System.out.println("Enter matriculation number ");
+					String newMnum = sc.nextLine();
 					System.out.println("Enter name");
 					String newName = sc.nextLine();
 					System.out.println("Enter Password");
 					String newPassword = sc.nextLine();
 					System.out.println("Enter Gender");
 					String newGender = sc.nextLine();
-					System.out.println("Enter matriculation number ");
-					String newMnum = sc.nextLine();
 					System.out.println("Enter Nationality");
 					String nationality = sc.nextLine();
 					student_data = StudentData.addStudent(newName, newPassword, newGender, newMnum, nationality, student_data);
