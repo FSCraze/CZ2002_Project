@@ -48,15 +48,7 @@ public class StudentData {
 		*/
 		//test=swapIndex("E01","E02","U01",test);
 		
-		for(y = 0;y<16;y++)
-		{
-			for(z=0;z<6;z++)
-			{
-				System.out.print(test[y][z] + " ");
-			}
-			System.out.println("");
-			
-		}
+		getStudent(test);
 		
 
 
