@@ -329,7 +329,6 @@ public class StudentData {
 					}
 				}
 				// Check clashes
-				System.out.println("test 4");
 				for(z=0;z<y;z++)
 				{
 					for(e=0;e<100;e++)
@@ -350,9 +349,16 @@ public class StudentData {
 							}
 						}
 					}
-					System.out.println("test 5");
 				}
-				student_list[x][4] = student_list[x][4]+"-"+class_index;
+				if(student_list[x][4].equals("NULL"))
+				{
+					student_list[x][4] = class_index;
+				}
+				else
+				{
+					student_list[x][4] = student_list[x][4]+"-"+class_index;
+				}
+				
 			}
 		}
 		return student_list;
