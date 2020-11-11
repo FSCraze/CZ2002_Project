@@ -122,7 +122,6 @@ public class CourseData {
 		
 		for(x=0;x<100;x++)
 		{
-<<<<<<< HEAD
 			if(course_data[x][0].equals(Course_Code))
 			{
 				System.out.println("Error! Course code already exist");
@@ -130,9 +129,6 @@ public class CourseData {
 			}
 			
 			if(course_data[x][0] == null)
-=======
-			if(test[x][0] == null)
->>>>>>> master
 			{
 				for(z=0;z<a;z++)
 				{
@@ -145,21 +141,7 @@ public class CourseData {
 					course_data[x][6] = Lab[z];
 					x++;
 				}
-<<<<<<< HEAD
 				return course_data;
-=======
-				y=1;
-			}
-			if(y==1)
-			{
-				DisplayAllCourse(test);
-				return test;
-			}
-			if(test[x][0].equals(Course_Code))
-			{
-				System.out.println("Error!, Course Code already exists");
-				return test;
->>>>>>> master
 			}
 		}
 		return course_data;
@@ -322,29 +304,11 @@ public class CourseData {
 		{
 			if(course_data[x][0]==null)
 				break;
-<<<<<<< HEAD
 			System.out.print(course_data[x][0]);
 			System.out.print(" ");
 			System.out.print(course_data[x][1]);
 			System.out.print(" Index : ");
 			System.out.println(course_data[x][2]);
-=======
-			}
-			System.out.print(course_data[x][0]);
-			System.out.print(" ");
-			System.out.print(course_data[x][1]);
-			System.out.print(" ");
-			System.out.print(course_data[x][2]);
-			System.out.print(" ");
-			System.out.print(course_data[x][3]);
-			System.out.print(" ");
-			System.out.print(course_data[x][4]);
-			System.out.print(" ");
-			System.out.print(course_data[x][5]);
-			System.out.print(" ");
-			System.out.print(course_data[x][6]);
-			System.out.println(" ");
->>>>>>> master
 		}
 	}
 	
