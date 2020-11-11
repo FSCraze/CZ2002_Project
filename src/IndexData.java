@@ -67,7 +67,7 @@ public class IndexData {
 			}
 			if(student_list[x][1].equals(IndexCode))
 			{
-				System.out.println("Index : "+IndexCode+" has "+student_list[x][3]+" vancancies left");
+				System.out.println("Index : "+IndexCode+" has "+student_list[x][3]+" vacancies left");
 				break;
 			}
 		}
@@ -87,8 +87,9 @@ public class IndexData {
 			{
 				String [] temp = student_List[x][2].split("-");
 				z=temp.length;
+				System.out.println("Index: "+student_List[x][1]);
 				for(y=0;y<z;y++)
-				System.out.println("Inde x: "+student_List[x][1]);
+
 				{
 					System.out.println(temp[y]);
 				}

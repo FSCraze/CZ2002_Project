@@ -1,2 +1,6 @@
 .classpath
 *.class
+
+.idea/
+
+CZ2002 Master.iml
