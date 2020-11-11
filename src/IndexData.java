@@ -243,7 +243,7 @@ public class IndexData {
 					if(index_data[x][4].equals("NULL"));
 					{
 						if(index_data[x][4].equals("NULL"))
-							index_data[x][4] = Student_num;
+							index_data[x][4] = index_data[x][4] + "-" + Student_num;
 						else
 							index_data[x][4] = index_data[x][4]+ "-" + Student_num;
 					}
@@ -439,7 +439,7 @@ public class IndexData {
 			int abc =0;
 			for(x=0;x<100;x++)
 			{
-				if(student_list[x][1].equals(current_course_index))
+				if(student_list[x][1].equals(current_course_index)) // checking waitlist
 				{
 					if(student_list[x][4].equals("NULL"))
 					{
