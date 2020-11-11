@@ -211,29 +211,71 @@ public class MainPage {
 					StudentData.getStudent(student_data);
 					break;
 				case 3:
+<<<<<<< HEAD
 					
+=======
+					String tempTimeLab = "";
+					String tempTimeTut = "";
+					String tempVac = "";
+
+>>>>>>> master
 					buffer = sc.nextLine();
 					System.out.println("Please enter the Course Code of the new Course : ");
 					a=sc.nextLine();
 					System.out.println("Please enter the Course Name of the new Course : ");
 					b=sc.nextLine();
 					System.out.println("Please enter the number of indexes the course will have : ");
-					x=sc.nextInt();
+					int tempIndex = 0;
+					boolean isNum = false;
+					while(!isNum){
+						try{
+							tempIndex=sc.nextInt();
+							isNum = true;
+						} catch(InputMismatchException error){
+							System.out.println("Please enter the number of indexes the course will have (Numbers only): ");
+							sc.nextLine();
+						}
+					}
+					x = tempIndex;
 					buffer = sc.nextLine();
 					for(y=0;y<x;y++)
 					{
 						System.out.println("Please enter the "+(y+1)+ " index code : ");
 						noOfIndex[y] = sc.nextLine();
-						System.out.println("Please enter the number of vancancies for index code : "+ noOfIndex[y]);
-						Vacancies[y]= sc.nextLine();
+						System.out.println("Please enter the number of vacancies for index code : "+ noOfIndex[y]);
+						tempVac = sc.nextLine();
+						while(!tempVac.matches("[-+]?\\d*\\.?\\d+")){
+							System.out.println("Please enter the number of vacancies for index code (Numbers only): "+ noOfIndex[y]);
+							tempVac = sc.nextLine();
+						}
+						Vacancies[y] = tempVac;
 						System.out.println("Please enter the lab date and timing in the format of DD-HHMM-HHMM for index " + noOfIndex[y]);
 						LabTiming[y] = sc.nextLine();
 						System.out.println("Please enter the Tutorial date and timing in the format of DD-HHMM-HHMM for index " + noOfIndex[y]);
+<<<<<<< HEAD
 						TutorialTiming[y] = sc.nextLine();
 					}
 					System.out.println("Please enter the lecture timing : ");
 					c=sc.nextLine(); // lecture timing
 					course_data=CourseData.addCourse(a, b, noOfIndex, Vacancies, c, TutorialTiming, LabTiming, course_data,x);	
+=======
+						tempTimeTut = sc.nextLine();
+						while(checkisTime(tempTimeTut)!=0) {
+							System.out.println("Please enter the Tutorial date and timing in the format of DD-HHMM-HHMM for index " + noOfIndex[y]);
+							tempTimeTut = sc.nextLine();
+							checkisTime(tempTimeTut);
+						}
+						TutorialTiming[y] = tempTimeTut;
+					}
+					System.out.println("Please enter the lecture timing : ");
+					c=sc.nextLine(); // lecture timing
+					while(checkisTime(c)!=0) {
+						System.out.println("Please enter the lab date and timing in the format of DD-HHMM-HHMM for index " + noOfIndex[y]);
+						c = sc.nextLine();
+						checkisTime(c);
+					}
+					course_data=CourseData.addCourse(a, b, noOfIndex, Vacancies, c, TutorialTiming, LabTiming, course_data,x);
+>>>>>>> master
 					index_data = IndexData.newCourse(index_data,a,Vacancies, noOfIndex,x);
 					CourseData.printCourse(course_data);
 					break;
