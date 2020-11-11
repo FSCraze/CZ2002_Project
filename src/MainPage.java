@@ -265,20 +265,38 @@ public class MainPage {
 				case 3:
 					String tempTimeLab = "";
 					String tempTimeTut = "";
+					String tempVac = "";
+
 					buffer = sc.nextLine();
 					System.out.println("Please enter the Course Code of the new Course : ");
 					a=sc.nextLine();
 					System.out.println("Please enter the Course Name of the new Course : ");
 					b=sc.nextLine();
 					System.out.println("Please enter the number of indexes the course will have : ");
-					x=sc.nextInt();
+					int tempIndex = 0;
+					boolean isNum = false;
+					while(!isNum){
+						try{
+							tempIndex=sc.nextInt();
+							isNum = true;
+						} catch(InputMismatchException error){
+							System.out.println("Please enter the number of indexes the course will have (Numbers only): ");
+							sc.nextLine();
+						}
+					}
+					x = tempIndex;
 					buffer = sc.nextLine();
 					for(y=0;y<x;y++)
 					{
 						System.out.println("Please enter the "+(y+1)+ " index code : ");
 						noOfIndex[y] = sc.nextLine();
-						System.out.println("Please enter the number of vancancies for index code : "+ noOfIndex[y]);
-						Vacancies[y]= sc.nextLine();
+						System.out.println("Please enter the number of vacancies for index code : "+ noOfIndex[y]);
+						tempVac = sc.nextLine();
+						while(!tempVac.matches("[-+]?\\d*\\.?\\d+")){
+							System.out.println("Please enter the number of vacancies for index code (Numbers only): "+ noOfIndex[y]);
+							tempVac = sc.nextLine();
+						}
+						Vacancies[y] = tempVac;
 						System.out.println("Please enter the lab date and timing in the format of DD-HHMM-HHMM for index " + noOfIndex[y]);
 						tempTimeLab = sc.nextLine();
 						while(checkisTime(tempTimeLab)!=0) {
@@ -290,7 +308,7 @@ public class MainPage {
 						System.out.println("Please enter the Tutorial date and timing in the format of DD-HHMM-HHMM for index " + noOfIndex[y]);
 						tempTimeTut = sc.nextLine();
 						while(checkisTime(tempTimeTut)!=0) {
-							System.out.println("Please enter the lab date and timing in the format of DD-HHMM-HHMM for index " + noOfIndex[y]);
+							System.out.println("Please enter the Tutorial date and timing in the format of DD-HHMM-HHMM for index " + noOfIndex[y]);
 							tempTimeTut = sc.nextLine();
 							checkisTime(tempTimeTut);
 						}
@@ -303,7 +321,7 @@ public class MainPage {
 						c = sc.nextLine();
 						checkisTime(c);
 					}
-					course_data=CourseData.addCourse(a, b, noOfIndex, Vacancies, c, TutorialTiming, LabTiming, course_data,x);	
+					course_data=CourseData.addCourse(a, b, noOfIndex, Vacancies, c, TutorialTiming, LabTiming, course_data,x);
 					index_data = IndexData.newCourse(index_data,a,Vacancies, noOfIndex,x);
 
 					break;

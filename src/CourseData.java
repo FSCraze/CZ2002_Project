@@ -127,10 +127,6 @@ public class CourseData {
 		y=Course_index.length;
 		for(x=0;x<100;x++)
 		{
-			if(test[x][0].equals(Course_Code))
-			{
-				System.out.println("Error!, Course Code already exists");
-			}
 			if(test[x][0] == null)
 			{
 				for(z=0;z<a;z++)
@@ -149,6 +145,12 @@ public class CourseData {
 			if(y==1)
 			{
 				DisplayAllCourse(test);
+				return test;
+			}
+			if(test[x][0].equals(Course_Code))
+			{
+				System.out.println("Error!, Course Code already exists");
+				return test;
 			}
 		}
 		return test;
@@ -315,17 +317,17 @@ public class CourseData {
 			}
 			System.out.print(course_data[x][0]);
 			System.out.print(" ");
-			System.out.print(course_data[x][0]);
+			System.out.print(course_data[x][1]);
 			System.out.print(" ");
-			System.out.print(course_data[x][0]);
+			System.out.print(course_data[x][2]);
 			System.out.print(" ");
-			System.out.print(course_data[x][0]);
+			System.out.print(course_data[x][3]);
 			System.out.print(" ");
-			System.out.print(course_data[x][0]);
+			System.out.print(course_data[x][4]);
 			System.out.print(" ");
-			System.out.print(course_data[x][0]);
+			System.out.print(course_data[x][5]);
 			System.out.print(" ");
-			System.out.print(course_data[x][0]);
+			System.out.print(course_data[x][6]);
 			System.out.println(" ");
 		}
 		return;
