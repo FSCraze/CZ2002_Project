@@ -1,5 +1,3 @@
-
-
 import java.util.*;
 import java.util.Map.Entry;
 import java.io.File;
@@ -9,8 +7,6 @@ import java.io.FileWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 public class IndexData {
-	private static final Object Student_Num = null;
-
 	public static void main (String args[]) throws FileNotFoundException
 	{
 		String[][] test = new String[100][5];
@@ -307,7 +303,6 @@ public class IndexData {
 				{
 					String []temp2 = student_List[x][4].split("-");
 					student_List[x][2] = student_List[x][2]+"-"+temp2[0];
-					
 					SendMailTLS.SendEmail(student_data, temp2[0]);
 					y = temp2.length;
 					temp ="";
@@ -315,6 +310,14 @@ public class IndexData {
 					{
 						student_List[x][4] = "NULL";
 						break;
+					}
+					for(a=1;a<y;a++)
+					{
+						temp = temp+temp2[a];
+						if(a!=(y-1))
+						{
+							temp = temp+"-";
+						}
 					}
 				}
 				if(count == 1)
@@ -324,40 +327,16 @@ public class IndexData {
 						y = y+1;
 						student_List[x][3] = Integer.toString(y);
 						return student_List;
-						
 					}
-				break;
+				}
+				else
+				{
+
+					y = Integer.parseInt(student_List[x][3]);
+					y = y+1;
+					student_List[x][3] = Integer.toString(y);
 				}
 			}
-		for(x=0;x<100;x++)
-		{
-			if(student_List[x][2]==null)
-				break;
-			if(student_List[x][1].equals(IndexCode))
-			{
-				String [] temp3 = student_List[x][2].split("-");
-				y= temp3.length;
-				student_List[x][2] = "";
-				for(z=0;z<y;z++)
-				{
-					if(temp3[z].equals(Student_num))
-					{
-						temp3[z] = temp3[y-1];
-						break;
-					}
-				}
-				for(z=0;z<y-1;z++)
-				{
-					if(z==0)
-					{
-						student_List[x][2] = temp3[z];
-					}
-					else
-					student_List[x][2] = student_List[x][2] + "-" + temp3[z];
-				}
-				break;
-			}
-		}
 		
 		return student_List;
 	}
