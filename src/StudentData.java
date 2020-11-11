@@ -285,11 +285,11 @@ public class StudentData {
 				}
 			}
 		}
-		if(f==0)
+		/*if(f==0)
 		{
 			return student_list;
 		}
-		
+		*/
 		for(x=0;x<100;x++)
 		{
 			if(course_data[x][2] == null)
@@ -307,7 +307,7 @@ public class StudentData {
 			}
 		}
 		
-
+		System.out.println("test 3");
 		for(x=0;x<100;x++)
 		{
 
@@ -329,7 +329,7 @@ public class StudentData {
 					}
 				}
 				// Check clashes
-				
+				System.out.println("test 4");
 				for(z=0;z<y;z++)
 				{
 					for(e=0;e<100;e++)
@@ -350,7 +350,7 @@ public class StudentData {
 							}
 						}
 					}
-
+					System.out.println("test 5");
 				}
 				student_list[x][4] = student_list[x][4]+"-"+class_index;
 			}

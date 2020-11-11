@@ -203,7 +203,7 @@ public class IndexData {
 							c= CourseData.checkClash(course_data[e][6],new_class_index_timings[2]); // 4 & 5 & 6
 							if(a2==true || b==true || c==true)
 							{
-								System.out.println("You can't take this index as it clashes with "+course_data[e][2]);
+								//System.out.println("You can't take this index as it clashes with "+course_data[e][2]);
 								return index_data;
 							}
 						}

@@ -2,6 +2,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.Map.Entry;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
@@ -203,6 +205,11 @@ public class MainPage {
 					String newMnum = sc.nextLine();
 					System.out.println("Enter Nationality");
 					String nationality = sc.nextLine();
+					while(hasSpecialChar(nationality)!=false) {
+						System.out.println("Nationality cannot be empty or have numbers/special characters in them");
+						System.out.println("re-enter nationality:");
+						nationality=sc.nextLine();
+					}
 					System.out.println("Enter Email address ");
 					String email = sc.nextLine();
 					student_data = StudentData.addStudent(newName, newPassword, newGender, newMnum, nationality, student_data,email);
@@ -211,32 +218,54 @@ public class MainPage {
 					StudentData.getStudent(student_data);
 					break;
 				case 3:
-					
+					String tempTimeLab = "";
+					String tempTimeTut = "";
+					String tempVac = "";
 					buffer = sc.nextLine();
 					System.out.println("Please enter the Course Code of the new Course : ");
 					a=sc.nextLine();
 					System.out.println("Please enter the Course Name of the new Course : ");
 					b=sc.nextLine();
 					System.out.println("Please enter the number of indexes the course will have : ");
-					x=sc.nextInt();
+					int tempIndex = 0;
+					boolean isNum = false;
+					while(!isNum){
+						try{
+							tempIndex=sc.nextInt();
+							isNum = true;
+						} catch(InputMismatchException error){
+							System.out.println("Please enter the number of indexes the course will have (Numbers only): ");
+							sc.nextLine();
+						}
+					}
+					x = tempIndex;
 					buffer = sc.nextLine();
 					for(y=0;y<x;y++)
 					{
 						System.out.println("Please enter the "+(y+1)+ " index code : ");
 						noOfIndex[y] = sc.nextLine();
-						System.out.println("Please enter the number of vancancies for index code : "+ noOfIndex[y]);
-						Vacancies[y]= sc.nextLine();
-						System.out.println("Please enter the lab date and timing in the format of DD-HHMM-HHMM for index " + noOfIndex[y]);
-						LabTiming[y] = sc.nextLine();
-						System.out.println("Please enter the Tutorial date and timing in the format of DD-HHMM-HHMM for index " + noOfIndex[y]);
-						TutorialTiming[y] = sc.nextLine();
+						System.out.println("Please enter the number of vacancies for index code : "+ noOfIndex[y]);
+						tempVac = sc.nextLine();
+						while(!tempVac.matches("[-+]?\\d*\\.?\\d+")){
+							System.out.println("Please enter the number of vacancies for index code (Numbers only): "+ noOfIndex[y]);
+							tempVac = sc.nextLine();
 					}
+					Vacancies[y] = tempVac;
 					System.out.println("Please enter the lecture timing : ");
 					c=sc.nextLine(); // lecture timing
+					while(checkisTime(c)!=0) {
+						System.out.println("Please enter the lab date and timing in the format of DD-HHMM-HHMM for index " + noOfIndex[y]);
+						c = sc.nextLine();
+						checkisTime(c);
+					}
+					
 					course_data=CourseData.addCourse(a, b, noOfIndex, Vacancies, c, TutorialTiming, LabTiming, course_data,x);	
 					index_data = IndexData.newCourse(index_data,a,Vacancies, noOfIndex,x);
 					CourseData.printCourse(course_data);
+					}
 					break;
+					
+					
 					
 				case 4:
 					buffer = sc.nextLine();
@@ -465,6 +494,18 @@ public static void setStudentData(String [][] student_data) throws IOException{
 	
 }
 
+	public static boolean hasSpecialChar(String s) {
+	    if (s == null || s.trim().isEmpty()) {
+	        return true;
+	    }
+	    Pattern p = Pattern.compile("[^A-Za-z]");
+	    Matcher m = p.matcher(s);
+	    boolean b = m.find();
+	    if (b)
+	    	return true;
+	    else
+	    return false;
+	}
 	
 	
 	public static String [][] getLogin() throws FileNotFoundException
@@ -484,4 +525,43 @@ public static void setStudentData(String [][] student_data) throws IOException{
 		}
 		return test;
 	}
+	
+	public static int checkisTime(String d) {
+		//D-HHMM-HHMM
+		String[]timeSplit = new String[10];
+		timeSplit=d.split("-");
+		int[] timeInt = new int[10];
+		try {
+		for(int i = 0; i < timeSplit.length;i++) {
+			timeInt[i]=Integer.parseInt(timeSplit[i]);
+		}
+		if(timeInt[0]>7 || timeInt[0]<1) {
+			System.out.println("Wrong day format (1 = Mon, 2 = Tues, ..., 7 = Sun)");
+			return 1; //not monday to sunday 
+			
+		}
+		else if(timeInt[1]>2359 || timeInt[2]>2359 ||timeInt[1]<0000 || timeInt[2]<0000) {
+			System.out.println("Invalid time, must be within 0000 - 2359");
+			return 1; //invalid time 
+		}
+		
+		else if(timeInt[1] == timeInt[2]) {
+			System.out.println("Start time cannot be the same as end time");
+			return 1; //same start and end time 
+		}
+		else if (timeInt[1]>timeInt[2]) {
+			System.out.println("Start time cannot be later than end time");
+			return 1; //end earlier than start 
+		}
+		
+		}catch(NumberFormatException e){
+			System.out.println("Wrong format, please input D-HHMM-HHMM");
+			return 1; //not numbers 
+			
+		}
+		
+		return 0;
+	}
+	
+	
 }
