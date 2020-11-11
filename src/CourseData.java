@@ -7,7 +7,6 @@ import java.io.FileWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 public class CourseData {
-	// test
 	public static void main (String args[]) throws FileNotFoundException
 	{
 		String[][] test = new String[100][7];
@@ -122,6 +121,7 @@ public class CourseData {
 		
 		for(x=0;x<100;x++)
 		{
+<<<<<<< HEAD
 			if(course_data[x][0].equals(Course_Code))
 			{
 				System.out.println("Error! Course code already exist");
@@ -129,6 +129,13 @@ public class CourseData {
 			}
 			
 			if(course_data[x][0] == null)
+=======
+			if(test[x][0].equals(Course_Code))
+			{
+				System.out.println("Error!, Course Code already exists");
+			}
+			if(test[x][0] == null)
+>>>>>>> master
 			{
 				for(z=0;z<a;z++)
 				{
@@ -141,7 +148,15 @@ public class CourseData {
 					course_data[x][6] = Lab[z];
 					x++;
 				}
+<<<<<<< HEAD
 				return course_data;
+=======
+				y=1;
+			}
+			if(y==1)
+			{
+				DisplayAllCourse(test);
+>>>>>>> master
 			}
 		}
 		return course_data;
@@ -310,6 +325,33 @@ public class CourseData {
 			System.out.print(" Index : ");
 			System.out.println(course_data[x][2]);
 		}
+	}
+	
+	public static void DisplayAllCourse ( String course_data[][])
+	{
+		int x,y;
+		for(x=0;x<100;x++)
+		{
+			if(course_data[x][0]==null)
+			{
+				break;
+			}
+			System.out.print(course_data[x][0]);
+			System.out.print(" ");
+			System.out.print(course_data[x][0]);
+			System.out.print(" ");
+			System.out.print(course_data[x][0]);
+			System.out.print(" ");
+			System.out.print(course_data[x][0]);
+			System.out.print(" ");
+			System.out.print(course_data[x][0]);
+			System.out.print(" ");
+			System.out.print(course_data[x][0]);
+			System.out.print(" ");
+			System.out.print(course_data[x][0]);
+			System.out.println(" ");
+		}
+		return;
 	}
 	
 }
