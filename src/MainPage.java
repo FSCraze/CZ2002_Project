@@ -14,7 +14,7 @@ import java.io.FileReader;
 public class MainPage {
 	public static void main(String args[]) throws NoSuchAlgorithmException, IOException
 	{
-		String a,b,c,d,e,f,g,h,i;
+		String a,b,c = null,d,e,f,g,h,i;
 		String [][] course_data = CourseData.getCourseDataArray();
 		String [][] index_data = IndexData.getIndexData();
 		String [][] student_data = StudentData.getStudentData();
@@ -254,15 +254,34 @@ public class MainPage {
 					System.out.println("Please enter the lecture timing : ");
 					c=sc.nextLine(); // lecture timing
 					while(checkisTime(c)!=0) {
-						System.out.println("Please enter the lab date and timing in the format of DD-HHMM-HHMM for index " + noOfIndex[y]);
+						System.out.println("Please enter the Lecture date and timing in the format of DD-HHMM-HHMM for index " + noOfIndex[y]);
 						c = sc.nextLine();
 						checkisTime(c);
 					}
+				
+					System.out.println("Please enter the Lab date and timing in the format of DD-HHMM-HHMM for index " + noOfIndex[y]);
+					tempTimeLab = sc.nextLine();
+					while(checkisTime(tempTimeLab)!=0) {
+						System.out.println("Please enter the Lab date and timing in the format of DD-HHMM-HHMM for index " + noOfIndex[y]);
+						tempTimeLab = sc.nextLine();
+						checkisTime(tempTimeLab);
+					}
+					LabTiming[y] = tempTimeLab;
 					
+					System.out.println("Please enter the Tutorial date and timing in the format of DD-HHMM-HHMM for index " + noOfIndex[y]);
+					tempTimeTut = sc.nextLine();
+					while(checkisTime(tempTimeTut)!=0) {
+						System.out.println("Please enter the Tutorial date and timing in the format of DD-HHMM-HHMM for index " + noOfIndex[y]);
+						tempTimeTut = sc.nextLine();
+						checkisTime(tempTimeTut);
+					}
+					
+					TutorialTiming[y] = tempTimeTut;
+					}
 					course_data=CourseData.addCourse(a, b, noOfIndex, Vacancies, c, TutorialTiming, LabTiming, course_data,x);	
 					index_data = IndexData.newCourse(index_data,a,Vacancies, noOfIndex,x);
 					CourseData.printCourse(course_data);
-					}
+					
 					break;
 					
 					
