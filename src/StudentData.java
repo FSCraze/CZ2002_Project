@@ -352,7 +352,23 @@ public class StudentData {
 					}
 
 				}
-				student_list[x][4] = student_list[x][4]+"-"+class_index;
+				
+				for(int d =0;d<100;d++)
+				{
+					if(index_data[d][1].equals(class_index))
+					{
+						String [] studentList = index_data[d][2].split("-");
+						y = studentList.length;
+						for(z=0;z<y;z++)
+						{
+							if(studentList[z].equals(student_num))
+							{
+								student_list[x][4] = student_list[x][4]+"-"+class_index;
+							}
+						}
+						break;
+					}
+				}
 			}
 		}
 		return student_list;
