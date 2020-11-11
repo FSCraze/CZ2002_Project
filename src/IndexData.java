@@ -787,10 +787,7 @@ public class IndexData {
 		int x,y=0;
 		for(x=0;x<100;x++)
 		{
-			if(index_data[x][0].equals(course_code))
-			{
-				return index_data;
-			}
+			
 			if(index_data[x][0] == null)
 			{
 				for(y=0;y<count;y++)
@@ -803,6 +800,10 @@ public class IndexData {
 					x++;					
 				}
 				break;
+			}
+			if(index_data[x][0].equals(course_code))
+			{
+				return index_data;
 			}
 		}
 		return index_data;
