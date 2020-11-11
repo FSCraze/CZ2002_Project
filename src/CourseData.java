@@ -122,11 +122,7 @@ public class CourseData {
 		
 		for(x=0;x<100;x++)
 		{
-			if(course_data[x][0].equals(Course_Code))
-			{
-				System.out.println("Error! Course code already exist");
-				break;
-			}
+			
 			
 			if(course_data[x][0] == null)
 			{
@@ -142,6 +138,11 @@ public class CourseData {
 					x++;
 				}
 				return course_data;
+			}
+			if(course_data[x][0].equals(Course_Code))
+			{
+				System.out.println("Error! Course code already exist");
+				break;
 			}
 		}
 		return course_data;
