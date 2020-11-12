@@ -48,9 +48,15 @@ public class LoginPage {
 		}
 		return false;
 	}
-
+	
+	/**
+	 * This function verifies wether the login id and password of a student is valid. 
+	 * @Param username refers to the username the user entered
+	 * @password refers to the password that the user entered
+	 */
 public static String verifyLogin(String username, String password) 
 	{
+	
 		String tempUsername;
 		String tempPassword;
 		Scanner x;
@@ -84,9 +90,12 @@ public static String verifyLogin(String username, String password)
 		return "z";	
 	}
 
-
+/** 
+ * This functions hashes a password using SHA-256 which is required as the password is stored using SHA-256 in the text file
+ */
 public static String returnPassword (String password) throws NoSuchAlgorithmException
 {
+	
 	MessageDigest md = MessageDigest.getInstance("SHA-256");
 	String text = password;
 	md.update(text.getBytes(StandardCharsets.UTF_8));
@@ -95,8 +104,14 @@ public static String returnPassword (String password) throws NoSuchAlgorithmExce
 	return password;
 }
 
+/**
+ * This function adds the Login details of a new Student
+ * @Param m_num refers to the matriculation number of a student which will be the username
+ * @Param password refers to the password of the new user
+ */
 	public static void newStudent (String m_num, String password) throws NoSuchAlgorithmException
 	{
+		
 		password = returnPassword(password);
 	    try {
 			FileWriter fwStudent = new FileWriter("login.txt",true);
@@ -110,8 +125,15 @@ public static String returnPassword (String password) throws NoSuchAlgorithmExce
 	    return;
 	    
 	}
+	
+	/**
+	 * This function adds the Login details of a new Student
+	 * @Param m_num refers to the matriculation number of a student which will be the username
+	 * @Param password refers to the password of the new user
+	 */
 public static String [][] newStudent (String login_data [][], String m_num, String password)
 	{
+	
 		int x,y=0;
 		for(x=0;x<100;x++)
 		{

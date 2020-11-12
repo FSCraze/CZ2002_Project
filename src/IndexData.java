@@ -6,57 +6,25 @@ import java.io.PrintWriter;
 import java.io.FileWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-public class IndexData {
-	public static void main (String args[]) throws FileNotFoundException
-	{
-		String[][] test = new String[100][5];
-		String a,b,c,d,e,f,g;
-		int y = 0;
-		int z =0;
-		Scanner x = new Scanner(new File("IndexData.txt"));
-		Scanner abc = new Scanner(System.in);
-		x.useDelimiter("[,\n]");
-		while(x.hasNext())
-		{		
-				a=x.next().trim();
-				b=x.next().trim();
-				c=x.next().trim();
-				d=x.next().trim();
-				e=x.next().trim();
-				test[y][0] = a;
-				test[y][1] = b;
-				test[y][2] = c;
-				test[y][3] = d;
-				test[y][4] = e;
-				y++;
-				
-		}
-
-		/*
-		getWaitList("A01",test);
-		System.out.println("");
-		getStudentList("A01",test);
-		System.out.println("");
-		getWaitStudent("A01",test);
-		System.out.println("");
-		System.out.println("");
-		test = dropStudent("A01","U01",test);
-		*/
-		System.out.println("");
+public class IndexData {	
 		
-		
-		for(y = 0;y<12;y++)
-		{
-			for(z=0;z<5;z++)
-			{
-				System.out.print(test[y][z] + " ");
-			}
-			System.out.println("");
-			
-		}
-	}
+	/**
+	 * @Author Isaac Soh
+	 * @version 1.0
+	 * @Since Novemeber 11th 2020
+	 * 
+	 * @Param student_list refers to the data of each students
+	 * @Param Index_data refers to the data of each classes
+	 * @Param course_data refers to the data of each courses
+	 */
+	
+	/**
+	 * Returns the number of vacancies left out of the total number of available vacancies
+	 * @param IndexCode refers to the class index that the user want to find
+	 */
 	public static void getVancanciesLeft(String IndexCode,String student_list[][]) // Return the number of vancancies
 	{
+		
 		int x,y=0;
 		for(x=0;x<100;x++)
 		{
@@ -75,9 +43,13 @@ public class IndexData {
 			}
 		}
 	}
-	
+	/**
+	 * Function that returns the list of student by Index Code
+	 * @ Param IndexCode refers to the class index that the user want to search for
+	 */
 	public static void getStudentList(String IndexCode, String student_List[][]) // Returns the list of students
-	{		
+	{	
+		
 		int x,y,z=0;
 		for(x=0;x<100;x++)
 		{
@@ -101,9 +73,13 @@ public class IndexData {
 			}
 		}
 	}
-	
+	/**
+	 * Function that returns the list of students in the waitlist of a particular index class
+	 * @Param IndexCode refers to the class index that the user want to search for
+	 */
 	public static void getWaitStudent(String IndexCode, String student_List[][]) // Returns the list of students in the waitlist
 	{
+		
 		int x,y=0;
 		for(x=0;x<100;x++)
 		{
@@ -115,9 +91,16 @@ public class IndexData {
 			}
 		}
 	}
-	
+	/**
+	 *  Adds a student into the class's index.
+	 *  This function also uses the checkclash function to see if any of the student's current classes clashes with the one he wants to add
+	 *  @Param student_num refers to the student's Matriculation Number
+	 *  @Param indexCode refers to the class index the student wants to add
+	 *  @Param Student_num refers to the Student's matriculation number
+	 */
 	public static String[][] addStudent(String IndexCode,String Student_num, String index_data[][], String student_data[][], String course_data[][])
 	{
+		
 		String temp;
 		int a =0;
 		boolean a2,b,c;
@@ -258,9 +241,14 @@ public class IndexData {
 		return index_data;
 	}
 	
-	
+	/**
+	 *  This functions remove a student from the class index
+	 *  @Param IndexCode refers to the class index the student wants to remove
+	 *  @Param student_num refers to the student's matriculation number
+	 */
 	public static String[][] dropStudent(String IndexCode,String Student_num, String student_List[][] , String [][]student_data) throws FileNotFoundException
 	{
+		
 		int x,y,z=0;
 		int a;
 		int count = 0;
@@ -344,9 +332,13 @@ public class IndexData {
 		
 		return student_List;
 	}
-	
+	/** 
+	 *  This functions prints out the list of students registered to a course
+	 *  @Param CourseCode refers to the coursecode the user wants to find
+	 */
 	public static void CourseStudentList (String coursecode, String student_list[][])
 	{
+		
 		int x,y,z=0;
 		int a =0;
 		for(x=0;x<100;x++)
@@ -372,9 +364,15 @@ public class IndexData {
 			}
 		}
 	}
-	
+	/**
+	 * This functions facilitates the swapping of index with another user
+	 * @Param current_course_index refers to the current class index the user has
+	 * @Param future_course_index refers to the class index that he wants to swap
+	 * @Param m_num refers to the student's matriculation number
+	 */
 	public static String [][] swapIndex (String current_course_index, String future_course_index, String m_num, String student_list[][], String [][] student_data) throws FileNotFoundException
 	{
+		
 		int a,b,c,x,y,z=0;
 		int temp1 = -1,temp2 =-1;
 		for(x=0; x<100; x++)
@@ -511,9 +509,15 @@ public class IndexData {
 		}
 		return student_list;
 	}
-		
+	/**
+	 *  Functions that records new class index that the admin added
+	 *  @Param course_code refers to the course that will be having a new index
+	 *  @Param index_code refers to the index of the newly added class
+	 *  @Param refers to the total number of available vacancy of the new index
+	 */
 	public static String[][] newIndex (String course_code,String index_code,String vacancy,String[][] index_data)
 	{
+		
 		int x,y=0;
 		for(x=0;x<100;x++)
 		{
@@ -527,9 +531,14 @@ public class IndexData {
 		index_data[x][4] = "NULL"; 
 		return index_data;
 	}
-	
+	/**
+	 *  This functions update vacancies of a class 
+	 *  @Param index_code refers to the index of the newly added class
+	 *  @Param refers to the total number of available vacancy of the new index
+	 */
 	public static String[][] updateVacancies (String index_code, String vacancies, String[][] index_data) 
 	{
+		
 		int x,y=0;
 		for(x=0;x<100;x++)
 		{
@@ -550,14 +559,17 @@ public class IndexData {
 		}
 		return index_data;
 	}
-
+	/**
+	 * This functions facilitates the swapping of class index between 2 students
+	 * @Param m_num1 = user 1
+	 * @Param m_num2 = user 2
+	 * @Param index_1 belongs to user1
+	 * @Param index_2 belongs to user2
+	 */
 	public static String [][] swapIndexWithStudents(String m_num1,String m_num2, String index_1 , String index_2, String index_data[][], String [][] course_data, String [][] student_data)
 	{
-		// m_num1 = user 1
-		// m_num2 = user 2
-		//index_1 belongs to user1
-		//index_2 belongs to user2
-		// check if m_num 1 & m_num 2 exist or not
+		
+
 		int s1 = 0;
 		int s2 = 0;
 		int x,y,z=0;
@@ -785,9 +797,15 @@ public class IndexData {
 		return index_data;
 		
 	}
-	
+	/**
+	 * This functions add a new course that is being added by the admin
+	 * @Param Course_code refers to the newly created course's code
+	 * @Param vacancies refers to the total number of vacancies per index
+	 * @Param noOfIndex refers to the list of index for the new course
+	 */
 	public static String [][] newCourse (String [][] index_data , String course_code,  String []Vacancies , String [] noOfIndex, int count)
 	{
+		
 		int x,y=0;
 		for(x=0;x<100;x++)
 		{
@@ -812,9 +830,12 @@ public class IndexData {
 		}
 		return index_data;
 	}
-	
+	/**
+	 * This function retrieve the Class indexes detail from a txt file.
+	 */
 	public static String [][] getIndexData() throws FileNotFoundException
 	{
+		
 		String[][] test = new String[100][5];
 		String a,b,c,d,e,f,g;
 		int y = 0;

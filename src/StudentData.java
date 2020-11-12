@@ -7,68 +7,29 @@ import java.io.FileWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 public class StudentData {
-	public static void main (String args[]) throws FileNotFoundException
-	{
-		String[][] test = new String[100][6];
-		String a,b,c,d,e,f;
-		int y = 0;
-		int z =0;
-		Scanner x = new Scanner(new File("StudentData.txt"));
-		Scanner abc = new Scanner(System.in);
-		x.useDelimiter("[,\n]");
-		while(x.hasNext())
-		{		
-				a=x.next().trim();
-				b=x.next().trim();
-				c=x.next().trim();
-				d=x.next().trim();
-				e=x.next().trim();
-				f=x.next().trim();
-				test[y][0] = a;
-				test[y][1] = b;
-				test[y][2] = c;
-				test[y][3] = d;
-				test[y][4] = e;
-				test[y][5] = f;
-				y++;
-				
-		}
-		test=dropClass ("E01", "U01", test);
-		/*System.out.println("Please input the name of the Student : ");
-		String name = abc.nextLine();
-		System.out.println("Get classes");
-		getClasses(name,test);
-		System.out.println("");
-		System.out.println("Get Student Classes");
-		getStudentsClass("J01",test);
-		System.out.println("Get Student");
-		getStudent(test);
-		System.out.println("");
-		test= dropClass("A01","U01",test);
-		*/
-		//test=swapIndex("E01","E02","U01",test);
+	/**
+	 * @Author Isaac Soh
+	 * @version 1.0
+	 * @Since Novemeber 11th 2020
+	 * 
+	 * @Param student_list refers to the data of each students
+	 * @Param Index_data refers to the data of each classes
+	 * @Param course_data refers to the data of each courses
+	 */
 		
-		String temp = "ABC-";
-		char last = temp.charAt(temp.length()-1);
-		System.out.println(last);
-		if(last == '-')
-		{
-			temp = temp.substring(0, temp.length() -1);
-			System.out.println(temp);
-		}
-		
-
-
-	}
-	
-	public static void getClasses (String Name, String student_list[][]) // Get a student's classes
+	/**
+	 * This functions return the list of classes a student registered
+	 * @Param m_num refers to the matriculation of a student
+	 */
+	public static void getClasses (String m_num, String student_list[][]) // Get a student's classes
 	{
+		
 		int x,y,z = 0;
 		for(x=0;x<100;x++)
 		{
 			if(student_list[x][0] == null)
 				break;
-			if(student_list[x][0].equals(Name))
+			if(student_list[x][0].equals(m_num))
 			{
 				System.out.println("You are taking the following courses.");
 				
@@ -82,9 +43,13 @@ public class StudentData {
 			}
 		}
 	}
-	
-	public static void getStudentsClass ( String index , String student_list[][]) // Get a list of students that belongs to a class
+	/**
+	 * This functions return a list of students that belongs to a class
+	 * @Param index refers to class index that we want to find
+	 */
+	public static void getStudentsClass ( String index , String student_list[][]) 
 	{
+		
 		int i =0;
 		int x = 0;
 		int y = 0;
@@ -113,9 +78,12 @@ public class StudentData {
 			System.out.println(names[x]);
 		}
 	}
-	
+	/**
+	 * This function returns the entire list of students with their Matriculation number
+	 */
 	public static void getStudent (String student_list[][])
 	{
+		
 		System.out.println("Current list of students ");
 		int x,y = 0;
 		for(x = 0; x<100;x++)
@@ -127,9 +95,14 @@ public class StudentData {
 			System.out.println(student_list[x][1]);
 		}
 	}
-	
+	/**
+	 * This functions remove a class for a student
+	 * @Param class_index refers to the class index that the student want to remove
+	 * @Param student_num refers to the Matriculation number of the student
+	 */
 	public static String[][] dropClass (String class_index, String student_num, String student_list[][])
 	{
+		
 		int x,y,z=0;
 		int a = 0;
 		String temp = "";
@@ -180,8 +153,18 @@ public class StudentData {
 		System.out.println("You are not registered in "+class_index);
 		return student_list;
 	}
+	/**
+	 * This functions add a new student into the data
+	 * @Param name refers to the name of the student
+	 * @Param Password refers to the password of the student
+	 * @Param Gender refers to the gender of the student
+	 * @Param m_num refers to the matriculation number of the student
+	 * @Param nationality refers to the nationality of the student
+	 * @Param email refers to the email of the student
+	 */
 	public static String[][] addStudent(String Name,String Password,String Gender,String m_num,String Nationality, String student_list[][], String email)
 	{
+		
 		int x,y=0;
 		for(x=0;x<100;x++)
 		{
@@ -205,9 +188,15 @@ public class StudentData {
 		}
 		return student_list;
 	}
-	
+	/**
+	 * This functions facilitates the swapping of index with another user
+	 * @Param current_course_index refers to the current class index the user has
+	 * @Param future_course_index refers to the class index that he wants to swap
+	 * @Param m_num refers to the student's matriculation number
+	 */
 	public static String[][] swapIndex (String current_course_index, String future_course_index, String m_num, String [][] student_list)
 	{
+		
 		int x,y,z=0;
 		int a,b=0;
 		for(x =0; x<100;x++)
@@ -259,7 +248,11 @@ public class StudentData {
 		}
 		return student_list;
 	}
-	
+	/**
+	 * Adds a student into the class
+	 * @Param class_index refers to the class indexes the student wants to register
+	 * @Param student_num refers to the matriculation number of the student
+	 */
 	public static String[][] addClass (String class_index, String student_num, String student_list[][], String course_data[][], String index_data[][] )
 	{
 		
@@ -413,9 +406,16 @@ public class StudentData {
 	//index_data = IndexData.swapIndexWithStudents(userName, b , a, c, index_data, course_data, student_data);
 	//student_data = StudentData.swapIndexWithStudents(m_num1, m_num2, index_1, index_2, index_data, student_data)
 	
-			
+	/**
+	 * This functions facilitates the swapping of class index between 2 students
+	 * @Param m_num1 = user 1
+	 * @Param m_num2 = user 2
+	 * @Param index_1 belongs to user1
+	 * @Param index_2 belongs to user2
+	 */		
 	public static String [][] swapIndexWithStudents ( String m_num1, String m_num2, String index_1, String index_2, String [][] index_data, String [][] student_data)
-	{
+	{	
+		
 		int x,y,z=0;
 		int a = 0;
 		for(x=0;x<100;x++)
@@ -499,9 +499,12 @@ public class StudentData {
 		
 		return student_data;
 	}
-	
+	/**
+	 * This function retrieve the Class indexes detail from a txt file.
+	 */
 	public static String[][] getStudentData() throws FileNotFoundException
 	{
+		
 		String[][] test = new String[100][6];
 		String a,b,c,d,e,f;
 		int y = 0;

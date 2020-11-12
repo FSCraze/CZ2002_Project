@@ -8,60 +8,24 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 public class CourseData {
 	// test
-	public static void main (String args[]) throws FileNotFoundException
-	{
-		String[][] test = new String[100][7];
-		String a,b,c,d,e,f,g;
-		int y = 0;
-		int z =0;
-		Scanner x = new Scanner(new File("CourseData.txt"));
-		x.useDelimiter("[,\n]");
-		while(x.hasNext())
-		{		
-				a=x.next().trim();
-				b=x.next().trim();
-				c=x.next().trim();
-				d=x.next().trim();
-				e=x.next().trim();
-				f=x.next().trim();
-				g=x.next().trim();
-				test[y][0] = a; // Course Code
-				test[y][1] = b; // Course Name
-				test[y][2] = c; // Course Index
-				test[y][3] = d; // Vacancies
-				test[y][4] = e; // Lecture
-				test[y][5] = f; // Lab
-				test[y][6] = g; // Tutorial
-				y++;
-				
-		}
-		/*
-		System.out.println("Get Lecture");
-		getLecture("J01",test);
-		System.out.println("Get Lab");
-		getLab("J01",test);
-		System.out.println("Get tutorial");
-		getTutorial("J01",test);
-		System.out.println("Get Index");
-		getIndex("Algorithms",test);
-			for(y = 0;y<16;y++)
-		{
-			for(z=0;z<7;z++)
-			{
-				System.out.print(test[y][z] + " ");
-			}
-			System.out.println("");
-			
-		}
-		*/
-		printCourse(test);
+	/**
+	 * @Author Isaac Soh
+	 * @version 1.0
+	 * @Since Novemeber 11th 2020
+	 * 
+	 * @Param student_list refers to the data of each students
+	 * @Param Index_data refers to the data of each classes
+	 * @Param course_data refers to the data of each courses
+	 */
 		
 	
-		
-
-	}
+	/**
+	 * This function returns the lecturing timing of a specific class's index
+	 * @Param index_no refers to the class's index the user wants to find
+	 */	
 	public static void getLecture (String index_no ,String test[][])
 	{
+		
 		int x,y =0;
 		for(x=0;x<4;x++)
 		{
@@ -71,9 +35,13 @@ public class CourseData {
 			}
 		}
 	}
-	
+	/**
+	 * This function returns the lab timing of a specific class's index
+	 * @Param index_no refers to the class's index the user wants to find
+	 */
 	public static void getLab (String index_no ,String test[][])
 	{
+		
 		int x,y =0;
 		for(x=0;x<4;x++)
 		{
@@ -83,9 +51,13 @@ public class CourseData {
 			}
 		}
 	}
-	
+	/**
+	 * This function returns the tutorial timing of a specific class's index
+	 * @Param index_no refers to the class's index the user wants to find
+	 */
 	public static void getTutorial (String index_no ,String test[][])
 	{
+		
 		int x,y =0;
 		for(x=0;x<100;x++)
 		{
@@ -99,9 +71,13 @@ public class CourseData {
 			}
 		}
 	}
-	
+	/**
+	 * This function returns the list of class index for a course
+	 * @Param course_code refers to the course code the user wants to find
+	 */
 	public static void getIndex (String course_code, String test[][])
 	{
+		
 		int x,y=0;
 		for(x=0;x<100;x++)
 		{
@@ -115,6 +91,14 @@ public class CourseData {
 			}
 		}
 	}
+	/**
+	 * This function adds a new course 
+	 * @Param vacancy refers to the number of available vacancies for each index
+	 * @Param course_index refers to the list of indexes the course will have
+	 * @Param lecture refers to the lecture timing
+	 * @Param tutorial refers to the tutorial timing
+	 * @Param Lab refers to the Lab timing
+	 */
 	public static String [][] addCourse (String Course_Code, String Course_Name,String []Course_index, String[] vacancy, String lecutre, String [] tutorial, String [] Lab, String course_data[][], int a)
 	{
 		int x,y,z=0;
@@ -186,8 +170,18 @@ public class CourseData {
 		
 	}
 	
+	/**
+	 * This function adds a new index to an existing course
+	 * @Param Course_code refers to the course code the newly index will be long to
+	 * @Param index_code refers to the index code of the new class
+	 * @Param lecture refers to the lecture timing
+	 * @Param tutorial refers to the tutorial timing
+	 * @Param Lab refers to the Lab timing
+	 */
 	public static String[][] addNewIndex (String course_code, String index_code, String vacancy, String Lecture, String lab, String tutorial, String[][] course_data )
-	{	boolean course_exist = false;
+	{	
+		
+		boolean course_exist = false;
 		int x,y = 0,z=0;
 		for(x=0;x<100;x++)
 		{
@@ -227,9 +221,14 @@ public class CourseData {
 		course_data[x][6] = tutorial;
 		return course_data;
 	}
-	
+	/**
+	 * This functions changes the courseName of a course code
+	 * @Param Course_code refers to the course code of the one we want to give a new name to
+	 * @Param new_name refers to the new name of the course
+	 */
 	public static String[][] changeCourseName (String course_code, String new_name, String[][] course_data)
 	{
+		
 		int x,y=0;
 		for(x=0;x<100;x++)
 		{
@@ -249,9 +248,14 @@ public class CourseData {
 		}
 		return course_data;
 	}
-	
+	 /**
+	 * This functions changes the number of vacancies of a course code
+	 * @Param Course_code refers to the course code of the one we want 
+	 * @Param vacancies refers to the new total number of vacancies
+	 */
 	public static String[][] changeVacancies (String index_code, String vacancies, String [][] course_data)
 	{
+		
 		int x,y=0;
 		for(x=0;x<100;x++)
 		{
@@ -270,7 +274,10 @@ public class CourseData {
 	}
 	
 	public static String [][] getCourseDataArray () throws FileNotFoundException
-	{
+	{	
+		/**
+		 * This function retrieve the Class indexes detail from a txt file.
+		 */
 		String[][] test = new String[100][7];
 		String a,b,c,d,e,f,g;
 		int y = 0;
@@ -298,8 +305,12 @@ public class CourseData {
 		}
 		return test;
 	}
+	/**
+	 * This functions print the entire catalog of courses
+	 */
 	public static void printCourse(String [][] course_data)
 	{
+		
 		int x,y=0;
 		for(x=0;x<100;x++)
 		{
