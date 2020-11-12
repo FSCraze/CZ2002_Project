@@ -363,7 +363,7 @@ public class StudentData {
 					}
 				}
 				
-				System.out.println("test1");
+			
 				for(x=0;x<100;x++)
 				{
 					if(index_data[x][0] == null)

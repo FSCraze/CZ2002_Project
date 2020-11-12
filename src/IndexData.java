@@ -313,7 +313,20 @@ public class IndexData {
 					}			
 					
 					
-					SendMailTLS.SendEmail(student_data, temp2[0]);
+					// SendMailTLS.SendEmail(student_data, temp2[0]);
+					System.out.println("Sent email to student " + temp2[0]);
+					
+					int temp_count=0;
+					for(temp_count=0;temp_count<100;temp_count++)
+					{
+						if(student_data[temp_count][0] == null)
+							break;
+						if(student_data[temp_count][0].equals(temp2[0]))
+						{
+							student_data[temp_count][4] = student_data[temp_count][4] + "-" + IndexCode;
+							break;
+						}
+					}
 					y = temp2.length;
 					temp ="";
 					if(y==1)
