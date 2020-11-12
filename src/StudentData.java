@@ -48,7 +48,14 @@ public class StudentData {
 		*/
 		//test=swapIndex("E01","E02","U01",test);
 		
-		getStudent(test);
+		String temp = "ABC-";
+		char last = temp.charAt(temp.length()-1);
+		System.out.println(last);
+		if(last == '-')
+		{
+			temp = temp.substring(0, temp.length() -1);
+			System.out.println(temp);
+		}
 		
 
 
@@ -150,9 +157,20 @@ public class StudentData {
 						}                                                                          
 					temp = temp+temp1[z]+"-";						
 					}
-				}				
+				}
+				
+				char last = temp.charAt(temp.length()-1);
+				if(last == '-')
+				{
+					temp = temp.substring(0, temp.length() -1);
+					student_list[x][4] = temp;
+				}
+				else
+				{
 				student_list[x][4] = temp;
+				}
 			}
+				
 			
 		}
 		if(a==1)
@@ -244,10 +262,12 @@ public class StudentData {
 	
 	public static String[][] addClass (String class_index, String student_num, String student_list[][], String course_data[][], String index_data[][] )
 	{
+		
 		boolean a = false;
 		boolean b = false;
 		boolean c = false;
 		int a2 = 0;
+		int a3 = 0;
 		String a1 ="";
 		String [] new_class_index_timings = new String[3];
 		int e,f=0,g=0;
@@ -295,7 +315,7 @@ public class StudentData {
 			if(course_data[x][2] == null)
 			{
 				System.out.println("There are no such index : "+class_index);
-				break;
+				return student_list;
 			}
 				
 			if(course_data[x][2].equals(class_index)) // Get the class_index timings that we want to add 
@@ -350,15 +370,41 @@ public class StudentData {
 						}
 					}
 				}
-				if(student_list[x][4].equals("NULL"))
+				System.out.println("test1");
+				for(x=0;x<100;x++)
 				{
-					student_list[x][4] = class_index;
+					if(index_data[x][0] == null)
+						break;
+					if(index_data[x][1].equals(class_index))
+					{
+						String [] list = index_data[x][2].split("-");
+						y = list.length;
+						for(z=0;z<y;z++)
+						{
+							if(list[z].equals(student_num))
+							{
+								a3 = 1;
+								break;
+							}
+						}
+						break;
+					}
 				}
-				else
+				System.out.println("test");
+				if(a3==1)
 				{
-					student_list[x][4] = student_list[x][4]+"-"+class_index;
+					if(student_list[x][4].equals("NULL"))
+					{
+						student_list[x][4] = class_index;
+						return student_list;
+					}
+					else
+					{
+						student_list[x][4] = student_list[x][4]+"-"+class_index;
+						return student_list;
+					}
 				}
-				
+				break;
 			}
 		}
 		return student_list;

@@ -67,7 +67,10 @@ public class IndexData {
 			}
 			if(student_list[x][1].equals(IndexCode))
 			{
-				System.out.println("Index : "+IndexCode+" has "+student_list[x][3]+" vacancies left");
+				String [] count = student_list[x][2].split("-");
+				y = count.length + Integer.parseInt(student_list[x][3]);;
+				
+				System.out.println("Index : "+IndexCode+" has "+student_list[x][3]+" vacancies left out of total " + y );
 				break;
 			}
 		}

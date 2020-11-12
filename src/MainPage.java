@@ -62,40 +62,21 @@ public class MainPage {
 					a = sc.nextLine();
 					index_data = IndexData.addStudent(a, userName, index_data, student_data, course_data);
 					student_data = StudentData.addClass(a, userName, student_data, course_data, index_data);
-					
-					for(int abc=0;abc<100;abc++)
+					for(int xy=0;xy<100;xy++)
 					{
-						if(index_data[abc][1] == null)
-						{
+						if(student_data[xy][0] == null)
 							break;
-						}
-						System.out.print(index_data[abc][0]);
+						System.out.print(student_data[xy][0]);
 						System.out.print(" ");
-						System.out.print(index_data[abc][1]);
+						System.out.print(student_data[xy][1]);
 						System.out.print(" ");
-						System.out.print(index_data[abc][2]);
+						System.out.print(student_data[xy][2]);
 						System.out.print(" ");
-						System.out.print(index_data[abc][3]);
-						System.out.print(" " + index_data[abc][4]);
-						System.out.println(" ");
-					}
-					
-					for(int abc=0;abc<100;abc++)
-					{
-						if(student_data[abc][1] == null)
-						{
-							break;
-						}
-						System.out.print(student_data[abc][0]);
+						System.out.print(student_data[xy][3]);
 						System.out.print(" ");
-						System.out.print(student_data[abc][1]);
+						System.out.print(student_data[xy][4]);
 						System.out.print(" ");
-						System.out.print(student_data[abc][2]);
-						System.out.print(" ");
-						System.out.print(student_data[abc][3]);
-						System.out.print(" " + student_data[abc][4]);
-						System.out.print(" " + student_data[abc][5]);
-						System.out.println(" ");
+						System.out.println("");
 					}
 					break;
 				case 2:
@@ -256,15 +237,16 @@ public class MainPage {
 					while(checkisTime(c)!=0) {
 						System.out.println("Please enter the Lecture date and timing in the format of DD-HHMM-HHMM for index " + noOfIndex[y]);
 						c = sc.nextLine();
-						checkisTime(c);
+						//checkisTime(c);
 					}
 				
 					System.out.println("Please enter the Lab date and timing in the format of DD-HHMM-HHMM for index " + noOfIndex[y]);
 					tempTimeLab = sc.nextLine();
 					while(checkisTime(tempTimeLab)!=0) {
+						System.out.println("test");
 						System.out.println("Please enter the Lab date and timing in the format of DD-HHMM-HHMM for index " + noOfIndex[y]);
 						tempTimeLab = sc.nextLine();
-						checkisTime(tempTimeLab);
+						//checkisTime(tempTimeLab);
 					}
 					LabTiming[y] = tempTimeLab;
 					
@@ -273,7 +255,7 @@ public class MainPage {
 					while(checkisTime(tempTimeTut)!=0) {
 						System.out.println("Please enter the Tutorial date and timing in the format of DD-HHMM-HHMM for index " + noOfIndex[y]);
 						tempTimeTut = sc.nextLine();
-						checkisTime(tempTimeTut);
+						//checkisTime(tempTimeTut);
 					}
 					
 					TutorialTiming[y] = tempTimeTut;
