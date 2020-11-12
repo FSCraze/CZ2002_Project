@@ -293,8 +293,26 @@ public class IndexData {
 
 				if(!student_List[x][4].equals("NULL")) 
 				{
-					String []temp2 = student_List[x][4].split("-");
-					student_List[x][2] = student_List[x][2]+"-"+temp2[0];
+					String []temp2 = student_List[x][4].split("-"); // Get current waitlist
+					// student_List[x][2] = student_List[x][2]+"-"+temp2[0];
+					String [] temp3 = student_List[x][2].split("-");
+					y = temp3.length;
+					student_List[x][2] = "";
+					for(z=0;z<y;z++)
+					{
+						if(temp3[z].equals(Student_num))
+						{
+							temp3[z] = temp2[0];
+						}
+						
+						student_List[x][2] = student_List[x][2]+temp3[z];
+						if(z!=(y-1))
+						{
+							student_List[x][2] = student_List[x][2] + "-";
+						}
+					}			
+					
+					
 					SendMailTLS.SendEmail(student_data, temp2[0]);
 					y = temp2.length;
 					temp ="";
@@ -303,15 +321,22 @@ public class IndexData {
 						student_List[x][4] = "NULL";
 						break;
 					}
-					for(a=1;a<y;a++)
+					else
 					{
-						temp = temp+temp2[a];
-						if(a!=(y-1))
+						for(a=1;a<y;a++)
 						{
-							temp = temp+"-";
+							temp = temp+temp2[a];
+							if(a!=(y-1))
+							{
+								temp = temp+"-";
+							}
 						}
+						student_List[x][4] = temp;
+						break;
 					}
+					
 				}
+				
 				if(count == 1)
 				{
 						student_List[x][2]="NULL";

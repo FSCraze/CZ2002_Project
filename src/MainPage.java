@@ -62,7 +62,7 @@ public class MainPage {
 					a = sc.nextLine();
 					index_data = IndexData.addStudent(a, userName, index_data, student_data, course_data);
 					student_data = StudentData.addClass(a, userName, student_data, course_data, index_data);
-					for(int xy=0;xy<100;xy++)
+					 for(int xy=0;xy<100;xy++)
 					{
 						if(student_data[xy][0] == null)
 							break;
@@ -78,6 +78,7 @@ public class MainPage {
 						System.out.print(" ");
 						System.out.println("");
 					}
+					
 					break;
 				case 2:
 					buffer = sc.nextLine();

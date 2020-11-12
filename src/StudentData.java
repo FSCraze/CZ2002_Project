@@ -320,7 +320,6 @@ public class StudentData {
 			}
 		}
 		
-		//System.out.println("test 3");
 		for(x=0;x<100;x++)
 		{
 
@@ -363,6 +362,7 @@ public class StudentData {
 						}
 					}
 				}
+				
 				System.out.println("test1");
 				for(x=0;x<100;x++)
 				{
@@ -383,21 +383,30 @@ public class StudentData {
 						break;
 					}
 				}
-				System.out.println("test");
-				if(a3==1)
+				
+				for(x=0;x<100;x++)
 				{
-					if(student_list[x][4].equals("NULL"))
+					if(student_list[x][0]==null)
+						break;
+					if(student_list[x][0].equals(student_num))
 					{
-						student_list[x][4] = class_index;
-						return student_list;
+						if(a3==1)
+					{
+						System.out.println(student_list[x][0]);
+						if(student_list[x][4].equals("NULL"))
+						{
+							student_list[x][4] = class_index;
+							return student_list;
+						}
+						else
+						{
+							student_list[x][4] = student_list[x][4]+"-"+class_index;
+							return student_list;
+						}
 					}
-					else
-					{
-						student_list[x][4] = student_list[x][4]+"-"+class_index;
-						return student_list;
+					break;
 					}
 				}
-				break;
 			}
 		}
 		return student_list;
