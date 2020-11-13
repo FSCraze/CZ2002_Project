@@ -114,8 +114,43 @@ public class MainPage {
 					System.out.println("Please enter the index that you want from the 2nd student : ");
 					c=sc.nextLine();
 					
+					
+					student_data = StudentData.swapIndexWithStudents(userName, b, a, c, index_data, student_data);
 					index_data = IndexData.swapIndexWithStudents(userName, b , a , c, index_data, course_data, student_data);
 					student_data = StudentData.swapIndexWithStudents(userName, b, a, c, index_data, student_data);
+					for(int abc =0;abc<100;abc++)
+					{
+						if(index_data[abc][0]==null)
+						{
+							break;
+						}
+						System.out.print(index_data[abc][0]);
+						System.out.print(" ");
+						System.out.print(index_data[abc][1]);
+						System.out.print(" ");
+						System.out.print(index_data[abc][2]);
+						System.out.print(" ");
+						System.out.print(index_data[abc][3]);
+						System.out.println(" ");
+					}
+					
+					for(int abc =0;abc<100;abc++)
+					{
+						if(student_data[abc][0]==null)
+						{
+							break;
+						}
+						System.out.print(student_data[abc][0]);
+						System.out.print(" ");
+						System.out.print(student_data[abc][1]);
+						System.out.print(" ");
+						System.out.print(student_data[abc][2]);
+						System.out.print(" ");
+						System.out.print(student_data[abc][3]);
+						System.out.print(" ");
+						System.out.print(student_data[abc][4]);
+						System.out.println(" ");
+					}
 					break;
 				case 8:
 					setCourseData(course_data);

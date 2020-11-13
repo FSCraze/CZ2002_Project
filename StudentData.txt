@@ -13,5 +13,5 @@ U12,June,F,Singaporean,A03-O03-G02,byun_l@hotmail.com
 U13,Thomas,M,Singaporean,A03-O03-G02,byun_l@hotmail.com
 U14,Jane,F,Singaporean,A03-O03-G02,byun_l@hotmail.com
 U15,John,M,Singaporean,A03-O03-G03,byun_l@hotmail.com
-U20,Benny,M,Singaporean,E01,byun_l@hotmail.com
+U20,Benny,M,Singaporean,E03,byun_l@hotmail.com
 U21,Benny,M,Singaporean,E01,byun_l@hotmail.com
