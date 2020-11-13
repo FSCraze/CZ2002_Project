@@ -178,9 +178,9 @@ public class CourseData {
 	 * @Param tutorial refers to the tutorial timing
 	 * @Param Lab refers to the Lab timing
 	 */
-	public static String[][] addNewIndex (String course_code, String index_code, String vacancy, String Lecture, String lab, String tutorial, String[][] course_data )
+	public static String[][] addNewIndex (String course_code, String index_code, String vacancy, String lab, String tutorial, String[][] course_data )
 	{	
-		
+		String lecture = null;
 		boolean course_exist = false;
 		int x,y = 0,z=0;
 		for(x=0;x<100;x++)
@@ -190,7 +190,9 @@ public class CourseData {
 			if(course_data[x][0].equals(course_code))
 			{
 				y=x;
+				lecture = course_data[x][4];
 				course_exist = true;
+				
 				break;
 			}
 		}
@@ -216,7 +218,7 @@ public class CourseData {
 		course_data[x][1] = course_data[y][1];
 		course_data[x][2] = index_code;
 		course_data[x][3] = vacancy;
-		course_data[x][4] = Lecture;
+		course_data[x][4] = lecture;
 		course_data[x][5] = lab;
 		course_data[x][6] = tutorial;
 		return course_data;

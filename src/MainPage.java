@@ -243,20 +243,34 @@ public class MainPage {
 				
 					System.out.println("Please enter the Lab date and timing in the format of DD-HHMM-HHMM for index " + noOfIndex[y]);
 					tempTimeLab = sc.nextLine();
-					while(checkisTime(tempTimeLab)!=0) {
-						System.out.println("test");
-						System.out.println("Please enter the Lab date and timing in the format of DD-HHMM-HHMM for index " + noOfIndex[y]);
-						tempTimeLab = sc.nextLine();
-						//checkisTime(tempTimeLab);
+					if(tempTimeLab.equals("NULL"))
+					{
+						
 					}
+					else
+					{
+						while(checkisTime(tempTimeLab)!=0) {
+							System.out.println("Please enter the Lab date and timing in the format of DD-HHMM-HHMM for index " + noOfIndex[y]);
+							tempTimeLab = sc.nextLine();
+							
+						}
+					}
+					
 					LabTiming[y] = tempTimeLab;
 					
 					System.out.println("Please enter the Tutorial date and timing in the format of DD-HHMM-HHMM for index " + noOfIndex[y]);
 					tempTimeTut = sc.nextLine();
-					while(checkisTime(tempTimeTut)!=0) {
-						System.out.println("Please enter the Tutorial date and timing in the format of DD-HHMM-HHMM for index " + noOfIndex[y]);
-						tempTimeTut = sc.nextLine();
-						//checkisTime(tempTimeTut);
+					if( tempTimeTut.equals("NULL") )
+					{
+						
+					}
+					else
+					{
+						while(checkisTime(tempTimeTut)!=0) {
+							System.out.println("Please enter the Tutorial date and timing in the format of DD-HHMM-HHMM for index " + noOfIndex[y]);
+							tempTimeTut = sc.nextLine();
+							//checkisTime(tempTimeTut);
+						}
 					}
 					
 					TutorialTiming[y] = tempTimeTut;
@@ -274,35 +288,68 @@ public class MainPage {
 					System.out.println("Please input the course code that you want to change : ");
 					System.out.println("Enter 1 if you want to change the course Name ");
 					System.out.println("Enter 2 if you want to add a course index ");
-					System.out.println("Enter 3 if you want to update a index's vacancy");
+					//System.out.println("Enter 3 if you want to update a index's vacancy");
 					x=sc.nextInt();
-					if(x==1)
+					if(x==1) // Checked
 					{
+						buffer = sc.nextLine();
 						System.out.println("Please enter the course code : ");
 						a = sc.nextLine();
-						System.out.println("Please enter the new name for "+a+" : ");
+						System.out.println("Please enter the new name for Course "+a+" : ");
 						b = sc.nextLine();
 						course_data=CourseData.changeCourseName(a, b, course_data);
+						
 					}
 					else if(x==2)
 					{
+						buffer = sc.nextLine();
 						System.out.println("Please enter the course code : ");
 						a = sc.nextLine();
 						System.out.println("Please enter the index code : ");
 						b = sc.nextLine();
 						System.out.println("Please enter the vacancy : ");
 						c = sc.nextLine();
-						System.out.println("Please enter the Lecture Timing : ");
-						d = sc.nextLine();
-						System.out.println("Please enter the Lab Timing : ");
-						e = sc.nextLine();
-						System.out.println("Please enter the Tutorial Timing : ");
-						f = sc.nextLine();
-						course_data = CourseData.addNewIndex(a, b, c, d, e, f, course_data);
+						System.out.println("Please enter the Lab date and timing in the format of DD-HHMM-HHMM for index " + b);
+						tempTimeLab = sc.nextLine();
+						if(tempTimeLab.equals("NULL"))
+						{						
+						}
+						else
+						{
+							while(checkisTime(tempTimeLab)!=0 ) {						
+								System.out.println("Please enter the Lab date and timing in the format of DD-HHMM-HHMM for index " + b);
+								tempTimeLab = sc.nextLine();
+								//checkisTime(tempTimeLab);
+							}
+						}						
+						e = tempTimeLab;
+
+						
+						System.out.println("Please enter the Tutorial date and timing in the format of DD-HHMM-HHMM for index " + b);
+						tempTimeTut = sc.nextLine();
+						if(tempTimeTut.equals("NULL"))
+						{						
+						}
+						else
+						{
+							while(checkisTime(tempTimeTut)!=0 ) {								
+								System.out.println("Please enter the Tutorial date and timing in the format of DD-HHMM-HHMM for index " + b);
+								tempTimeTut = sc.nextLine();
+								//checkisTime(tempTimeTut);
+							}
+						}
+						
+						f=tempTimeTut;
+						
+						course_data = CourseData.addNewIndex(a, b, c, e, f, course_data);
 						index_data = IndexData.newIndex(a, b, c, index_data);
+
+						
 					}
+					/*
 					else if(x==3)
 					{
+						buffer = sc.nextLine();
 						System.out.println("Please enter the index code : ");
 						a = sc.nextLine();
 						System.out.println("Please enter the new number of vacancies : ");
@@ -310,6 +357,7 @@ public class MainPage {
 						course_data = CourseData.changeVacancies(a, b, course_data);
 						index_data = IndexData.updateVacancies(a, b, index_data);
 					}
+					*/
 					else
 					{
 						System.out.println("Error input!");
