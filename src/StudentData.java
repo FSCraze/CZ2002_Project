@@ -8,9 +8,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 public class StudentData {
 	/**
-	 * @Author Isaac Soh
+	 * @Author Bryan Eng
 	 * @version 1.0
-	 * @Since Novemeber 11th 2020
+	 * @Since November 11th 2020
 	 * 
 	 * @Param student_list refers to the data of each students
 	 * @Param Index_data refers to the data of each classes
@@ -18,7 +18,7 @@ public class StudentData {
 	 */
 		
 	/**
-	 * This functions return the list of classes a student registered
+	 * This methods return the list of classes a student registered
 	 * @Param m_num refers to the matriculation of a student
 	 */
 	public static void getClasses (String m_num, String student_list[][]) // Get a student's classes
@@ -44,8 +44,9 @@ public class StudentData {
 		}
 	}
 	/**
-	 * This functions return a list of students that belongs to a class
+	 * This methods return a list of students that belongs to a class
 	 * @Param index refers to class index that we want to find
+	 * @Param student_list refers to the list list of all students' info
 	 */
 	public static void getStudentsClass ( String index , String student_list[][]) 
 	{
@@ -79,7 +80,8 @@ public class StudentData {
 		}
 	}
 	/**
-	 * This function returns the entire list of students with their Matriculation number
+	 * This method returns the entire list of students with their Matriculation number
+	 * @param student_list refers to the list of all students info
 	 */
 	public static void getStudent (String student_list[][])
 	{
@@ -96,9 +98,10 @@ public class StudentData {
 		}
 	}
 	/**
-	 * This functions remove a class for a student
+	 * This methods remove a class for a student
 	 * @Param class_index refers to the class index that the student want to remove
 	 * @Param student_num refers to the Matriculation number of the student
+	 * @return student list 
 	 */
 	public static String[][] dropClass (String class_index, String student_num, String student_list[][])
 	{
@@ -154,13 +157,14 @@ public class StudentData {
 		return student_list;
 	}
 	/**
-	 * This functions add a new student into the data
+	 * This methods add a new student into the data
 	 * @Param name refers to the name of the student
 	 * @Param Password refers to the password of the student
 	 * @Param Gender refers to the gender of the student
 	 * @Param m_num refers to the matriculation number of the student
 	 * @Param nationality refers to the nationality of the student
 	 * @Param email refers to the email of the student
+	 * @return student list
 	 */
 	public static String[][] addStudent(String Name,String Password,String Gender,String m_num,String Nationality, String student_list[][], String email)
 	{
@@ -189,10 +193,11 @@ public class StudentData {
 		return student_list;
 	}
 	/**
-	 * This functions facilitates the swapping of index with another user
+	 * This methods facilitates the swapping of index with another user
 	 * @Param current_course_index refers to the current class index the user has
 	 * @Param future_course_index refers to the class index that he wants to swap
 	 * @Param m_num refers to the student's matriculation number
+	 * @return student list
 	 */
 	public static String[][] swapIndex (String current_course_index, String future_course_index, String m_num, String [][] student_list)
 	{
@@ -252,6 +257,7 @@ public class StudentData {
 	 * Adds a student into the class
 	 * @Param class_index refers to the class indexes the student wants to register
 	 * @Param student_num refers to the matriculation number of the student
+	 * @return student list
 	 */
 	public static String[][] addClass (String class_index, String student_num, String student_list[][], String course_data[][], String index_data[][] )
 	{
@@ -416,11 +422,12 @@ public class StudentData {
 	//student_data = StudentData.swapIndexWithStudents(m_num1, m_num2, index_1, index_2, index_data, student_data)
 	
 	/**
-	 * This functions facilitates the swapping of class index between 2 students
+	 * This methods facilitates the swapping of class index between 2 students
 	 * @Param m_num1 = user 1
 	 * @Param m_num2 = user 2
 	 * @Param index_1 belongs to user1
 	 * @Param index_2 belongs to user2
+	 * @return student data
 	 */		
 	public static String [][] swapIndexWithStudents ( String m_num1, String m_num2, String index_1, String index_2, String [][] index_data, String [][] student_data)
 	{	
@@ -509,12 +516,12 @@ public class StudentData {
 		return student_data;
 	}
 	/**
-	 * This function retrieve the Class indexes detail from a txt file.
+	 * This method retrieve the Class indexes detail from a txt file.
 	 */
 	public static String[][] getStudentData() throws FileNotFoundException
 	{
 		
-		String[][] test = new String[100][6];
+		String[][] studentDataArray = new String[100][6];
 		String a,b,c,d,e,f;
 		int y = 0;
 		int z =0;
@@ -529,15 +536,15 @@ public class StudentData {
 				d=x.next().trim();
 				e=x.next().trim();
 				f=x.next().trim();
-				test[y][0] = a;
-				test[y][1] = b;
-				test[y][2] = c;
-				test[y][3] = d;
-				test[y][4] = e;
-				test[y][5] = f; // email;
+				studentDataArray[y][0] = a;
+				studentDataArray[y][1] = b;
+				studentDataArray[y][2] = c;
+				studentDataArray[y][3] = d;
+				studentDataArray[y][4] = e;
+				studentDataArray[y][5] = f; // email;
 				y++;
 		}
-		return test;
+		return studentDataArray;
 	}
 }
 

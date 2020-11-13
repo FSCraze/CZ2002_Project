@@ -15,7 +15,20 @@ import java.util.GregorianCalendar;
 
 
 public class LoginPage {
+	/**
+	 * @Author Isaac Soh
+	 * @version 1.0
+	 * @Since November 11th 2020
+	 * 
+	 * @Param student_list refers to the data of each students
+	 * @Param Index_data refers to the data of each classes
+	 * @Param course_data refers to the data of each courses
+	 */
 	
+	/**
+	 * this method checks if the current date/time is within the access period
+	 * @return true if within, false if not within
+	 */
 	
 	public static boolean verifyAccess() throws FileNotFoundException {
 		Scanner accessScan;
@@ -50,9 +63,10 @@ public class LoginPage {
 	}
 	
 	/**
-	 * This function verifies wether the login id and password of a student is valid. 
+	 * This method verifies whether the login id and password of a student is valid. 
 	 * @Param username refers to the username the user entered
 	 * @password refers to the password that the user entered
+	 * @return a for admin, s for student, z for default
 	 */
 public static String verifyLogin(String username, String password) 
 	{
@@ -91,7 +105,9 @@ public static String verifyLogin(String username, String password)
 	}
 
 /** 
- * This functions hashes a password using SHA-256 which is required as the password is stored using SHA-256 in the text file
+ * This methods hashes a password using SHA-256 which is required as the password is stored using SHA-256 in the text file
+ * @param password is plaintext password
+ * @return hashed password 
  */
 public static String returnPassword (String password) throws NoSuchAlgorithmException
 {
@@ -105,7 +121,7 @@ public static String returnPassword (String password) throws NoSuchAlgorithmExce
 }
 
 /**
- * This function adds the Login details of a new Student
+ * This method adds the Login details of a new Student
  * @Param m_num refers to the matriculation number of a student which will be the username
  * @Param password refers to the password of the new user
  */
@@ -127,9 +143,10 @@ public static String returnPassword (String password) throws NoSuchAlgorithmExce
 	}
 	
 	/**
-	 * This function adds the Login details of a new Student
+	 * This method adds the Login details of a new Student
 	 * @Param m_num refers to the matriculation number of a student which will be the username
 	 * @Param password refers to the password of the new user
+	 * @return login data
 	 */
 public static String [][] newStudent (String login_data [][], String m_num, String password)
 	{

@@ -12,6 +12,15 @@ import java.io.FileWriter;
 import java.io.FileReader;
 //test
 public class MainPage {
+	/**
+	 * @Author Terry Joel Ee
+	 * @version 1.0
+	 * @Since November 11th 2020
+	 * 
+	 * @Param student_list refers to the data of each students
+	 * @Param Index_data refers to the data of each classes
+	 * @Param course_data refers to the data of each courses
+	 */
 	public static void main(String args[]) throws NoSuchAlgorithmException, IOException
 	{
 		String a,b,c = null,d,e,f,g,h,i;
@@ -440,20 +449,12 @@ public class MainPage {
 		}
 		
 	}
-	
-	/* 	Calendar cal = Calendar.getInstance();
-	      int year = cal.get(Calendar.YEAR);
-	      int month = cal.get(Calendar.MONTH);      
-	      int day = cal.get(Calendar.DAY_OF_MONTH);
-	      int hour = cal.get(Calendar.HOUR_OF_DAY);
-	      int minute = cal.get(Calendar.MINUTE);
-		SimpleDateFormat dFormat = new SimpleDateFormat("YYYY,MM,d,HH,mm");
-		Calendar dateNow,startAccess,endAccess;
-		 dateNow = new GregorianCalendar(year,month,day,hour,minute);
-		 endAccess = new GregorianCalendar(acc[5],acc[6],acc[7],acc[8],acc[9]); //change this to end of access period 
-		 startAccess = new GregorianCalendar(acc[0],acc[1],acc[2],acc[3],acc[4]); //change this to start of access period*/
-	//2020,11,01,13,30
 
+	/**
+	 * This method sets the start and end of the access period for student login 
+	 * @Param start, end refers to start of access period and end of access period respectively 
+	 * @return 0 if successful, 1 if error is thrown
+	 */	
 
 public static int  setAccessPeriod(String start, String end ) throws IOException {
 	String[]startS = new String[10];
@@ -513,7 +514,10 @@ public static int  setAccessPeriod(String start, String end ) throws IOException
 }
 
 	
-
+/**
+ * This method writes into the CourseData.txt file  
+ * @Param course_data is data of every course 
+ */	
 	
 public static void setCourseData(String [][] course_data) throws IOException {
 		
@@ -538,6 +542,11 @@ public static void setCourseData(String [][] course_data) throws IOException {
 	
 }
 
+/**
+ * This method writes into the IndexData.txt file  
+ * @Param index_data is data of every index 
+ */	
+	
 public static void setIndexData(String [][] index_data) throws IOException {
 	
 		FileWriter fwIndex = new FileWriter("IndexData.txt",true);
@@ -558,6 +567,12 @@ public static void setIndexData(String [][] index_data) throws IOException {
 
 	
 }
+
+
+/**
+ * This method writes into the StudentData.txt file  
+ * @Param student_data is data of every student 
+ */	
 
 public static void setStudentData(String [][] student_data) throws IOException{
 	FileWriter fwStudent = new FileWriter("StudentData.txt", true);

@@ -11,7 +11,7 @@ public class CourseData {
 	/**
 	 * @Author Isaac Soh
 	 * @version 1.0
-	 * @Since Novemeber 11th 2020
+	 * @Since November 11th 2020
 	 * 
 	 * @Param student_list refers to the data of each students
 	 * @Param Index_data refers to the data of each classes
@@ -20,7 +20,7 @@ public class CourseData {
 		
 	
 	/**
-	 * This function returns the lecturing timing of a specific class's index
+	 * This method prints the lecturing timing of a specific class's index
 	 * @Param index_no refers to the class's index the user wants to find
 	 */	
 	public static void getLecture (String index_no ,String test[][])
@@ -36,7 +36,7 @@ public class CourseData {
 		}
 	}
 	/**
-	 * This function returns the lab timing of a specific class's index
+	 * This method prints the lab timing of a specific class's index
 	 * @Param index_no refers to the class's index the user wants to find
 	 */
 	public static void getLab (String index_no ,String test[][])
@@ -52,7 +52,7 @@ public class CourseData {
 		}
 	}
 	/**
-	 * This function returns the tutorial timing of a specific class's index
+	 * This method prints the tutorial timing of a specific class's index
 	 * @Param index_no refers to the class's index the user wants to find
 	 */
 	public static void getTutorial (String index_no ,String test[][])
@@ -72,7 +72,7 @@ public class CourseData {
 		}
 	}
 	/**
-	 * This function returns the list of class index for a course
+	 * This method prints the list of class index for a course
 	 * @Param course_code refers to the course code the user wants to find
 	 */
 	public static void getIndex (String course_code, String test[][])
@@ -92,12 +92,13 @@ public class CourseData {
 		}
 	}
 	/**
-	 * This function adds a new course 
+	 * This method adds a new course 
 	 * @Param vacancy refers to the number of available vacancies for each index
 	 * @Param course_index refers to the list of indexes the course will have
 	 * @Param lecture refers to the lecture timing
 	 * @Param tutorial refers to the tutorial timing
 	 * @Param Lab refers to the Lab timing
+	 * @return returns nested array of course_data
 	 */
 	public static String [][] addCourse (String Course_Code, String Course_Name,String []Course_index, String[] vacancy, String lecutre, String [] tutorial, String [] Lab, String course_data[][], int a)
 	{
@@ -131,6 +132,13 @@ public class CourseData {
 		}
 		return course_data;
 	}
+	
+	/**
+	 * 
+	 * @param time1 this is the first timeslot to check against the second
+	 * @param time2 this is the second timeslot to check against the first
+	 * @return true if there is a clash, false if no clash 
+	 */
 	
 	public static boolean checkClash(String time1, String time2) {
 		if(time1.contains("NULL")||time2.contains("NULL")) {
@@ -171,12 +179,13 @@ public class CourseData {
 	}
 	
 	/**
-	 * This function adds a new index to an existing course
+	 * This method adds a new index to an existing course
 	 * @Param Course_code refers to the course code the newly index will be long to
 	 * @Param index_code refers to the index code of the new class
 	 * @Param lecture refers to the lecture timing
 	 * @Param tutorial refers to the tutorial timing
 	 * @Param Lab refers to the Lab timing
+	 * @return nested array of index_data
 	 */
 	public static String[][] addNewIndex (String course_code, String index_code, String vacancy, String lab, String tutorial, String[][] course_data )
 	{	
@@ -224,9 +233,10 @@ public class CourseData {
 		return course_data;
 	}
 	/**
-	 * This functions changes the courseName of a course code
+	 * This methods changes the courseName of a course code
 	 * @Param Course_code refers to the course code of the one we want to give a new name to
 	 * @Param new_name refers to the new name of the course
+	 * @return nested array of course_data
 	 */
 	public static String[][] changeCourseName (String course_code, String new_name, String[][] course_data)
 	{
@@ -251,9 +261,10 @@ public class CourseData {
 		return course_data;
 	}
 	 /**
-	 * This functions changes the number of vacancies of a course code
+	 * This methods changes the number of vacancies of a course code
 	 * @Param Course_code refers to the course code of the one we want 
 	 * @Param vacancies refers to the new total number of vacancies
+	 * @return nested array of course_data
 	 */
 	public static String[][] changeVacancies (String index_code, String vacancies, String [][] course_data)
 	{
@@ -274,13 +285,16 @@ public class CourseData {
 		}
 		return course_data;
 	}
+	/**
+	 * 
+	 * @return data from "CourseData.txt" file
+	 * @throws FileNotFoundException
+	 */
 	
 	public static String [][] getCourseDataArray () throws FileNotFoundException
 	{	
-		/**
-		 * This function retrieve the Class indexes detail from a txt file.
-		 */
-		String[][] test = new String[100][7];
+		
+		String[][] courseDatarray = new String[100][7];
 		String a,b,c,d,e,f,g;
 		int y = 0;
 		int z =0;
@@ -295,20 +309,21 @@ public class CourseData {
 				e=x.next().trim();
 				f=x.next().trim();
 				g=x.next().trim();
-				test[y][0] = a; // Course Code
-				test[y][1] = b; // Course Name
-				test[y][2] = c; // Course Index
-				test[y][3] = d; // Vacancies
-				test[y][4] = e; // Lecture
-				test[y][5] = f; // Lab
-				test[y][6] = g; // Tutorial
+				courseDatarray[y][0] = a; // Course Code
+				courseDatarray[y][1] = b; // Course Name
+				courseDatarray[y][2] = c; // Course Index
+				courseDatarray[y][3] = d; // Vacancies
+				courseDatarray[y][4] = e; // Lecture
+				courseDatarray[y][5] = f; // Lab
+				courseDatarray[y][6] = g; // Tutorial
 				y++;
 				
 		}
-		return test;
+		return courseDatarray;
 	}
 	/**
-	 * This functions print the entire catalog of courses
+	 * This methods print the entire catalog of courses
+	 * @param course_data is the nested array storing info for all courses
 	 */
 	public static void printCourse(String [][] course_data)
 	{
