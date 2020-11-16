@@ -546,6 +546,34 @@ public class StudentData {
 		}
 		return studentDataArray;
 	}
+	
+	/**
+	 * This method returns student's details
+	 * @param m_num
+	 * @param student_data
+	 */
+	public static void getStudentInfo( String m_num, String [][] student_data)
+	{
+		
+		int x,y=0;
+		for(x=0;x<100;x++)
+		{
+			if(student_data[x][0]==null)
+			{
+				System.out.println("Error! There is not such student with matriculation number : " + m_num);
+			}
+			if(student_data[x][0].equals(m_num))
+			{
+				System.out.println("Student : " + student_data[x][0]);
+				System.out.println("Student's Name : " + student_data[x][1]);
+				System.out.println("Student's Gender : " + student_data[x][2]);
+				System.out.println("Student's Nationality : " + student_data[x][3]);
+				System.out.println("List of classes the student is taking  : " + student_data[x][4]);
+				System.out.println("Student's Email : " + student_data[x][5]);
+				return;
+			}
+		}
+	}
 }
 
 

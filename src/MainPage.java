@@ -66,6 +66,7 @@ public class MainPage {
 			System.out.println("(6) Swap index Number with another student"); 
 			System.out.println("(7) Exit");
 			System.out.println("(8) Save Data");
+			System.out.println("(9) Exit ");
 			
 			System.out.print("Enter the number of your choice: ");
 			choice = sc.nextInt();
@@ -142,6 +143,8 @@ public class MainPage {
 					setIndexData(index_data);
 					setStudentData(student_data);
 					break;
+				case 9:
+					System.exit(0);
 				default :
 					System.out.println("Error! Invalid Choice ");
 				}
@@ -166,8 +169,9 @@ public class MainPage {
 			System.out.println("(5) Check avilable slot for a index"); // Done
 			System.out.println("(6) Print student list by index number"); // Done
 			System.out.println("(7) Print Student list by course"); // Done
-			System.out.println("(8) Save Data");// Done
-			System.out.println("(9) Exit");
+			System.out.println("(8) Print Student details by Matriculation Number");
+			System.out.println("(9) Save Data");// Done
+			System.out.println("(10) Exit");
 			
 			System.out.print("Enter the number of your choice: ");
 			choice = sc.nextInt();
@@ -405,10 +409,17 @@ public class MainPage {
 					IndexData.CourseStudentList(temp, index_data);
 					break;
 				case 8:
+					buffer = sc.nextLine();
+					System.out.println("Please enter the Matriculation number of the student you want to find : ");
+					temp = sc.nextLine();
+					StudentData.getStudentInfo(temp, student_data);
+				case 9:
 					setCourseData(course_data);
 					setIndexData(index_data);
 					setStudentData(student_data);
 					break;
+				case 10:
+					System.exit(0);
 				default :
 					System.out.println("Error! Invalid Choice ");
 				}
