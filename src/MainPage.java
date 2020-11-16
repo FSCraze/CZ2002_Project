@@ -1,3 +1,4 @@
+import java.io.Console;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -42,6 +43,14 @@ public class MainPage {
 		String userName = sc.nextLine();
 		System.out.println("Enter Password");
 		String password = sc.nextLine();
+		
+		/*
+		 * System.out.println("Please Enter Password");
+		 * char[] passwd = System.console().readPassword("[%s]", "Password:");
+	    String password = new String(passwd);
+	    System.out.println(password);
+    
+		 */
 		if((LoginPage.verifyLogin(userName,password)) == "s" && LoginPage.verifyAccess()== true) // password is password1
 		{
 			System.out.println("");
@@ -127,45 +136,14 @@ public class MainPage {
 					student_data = StudentData.swapIndexWithStudents(userName, b, a, c, index_data, student_data);
 					index_data = IndexData.swapIndexWithStudents(userName, b , a , c, index_data, course_data, student_data);
 					student_data = StudentData.swapIndexWithStudents(userName, b, a, c, index_data, student_data);
-					for(int abc =0;abc<100;abc++)
-					{
-						if(index_data[abc][0]==null)
-						{
-							break;
-						}
-						System.out.print(index_data[abc][0]);
-						System.out.print(" ");
-						System.out.print(index_data[abc][1]);
-						System.out.print(" ");
-						System.out.print(index_data[abc][2]);
-						System.out.print(" ");
-						System.out.print(index_data[abc][3]);
-						System.out.println(" ");
-					}
-					
-					for(int abc =0;abc<100;abc++)
-					{
-						if(student_data[abc][0]==null)
-						{
-							break;
-						}
-						System.out.print(student_data[abc][0]);
-						System.out.print(" ");
-						System.out.print(student_data[abc][1]);
-						System.out.print(" ");
-						System.out.print(student_data[abc][2]);
-						System.out.print(" ");
-						System.out.print(student_data[abc][3]);
-						System.out.print(" ");
-						System.out.print(student_data[abc][4]);
-						System.out.println(" ");
-					}
 					break;
 				case 8:
 					setCourseData(course_data);
 					setIndexData(index_data);
 					setStudentData(student_data);
 					break;
+				default :
+					System.out.println("Error! Invalid Choice ");
 				}
 				System.out.println();
 				System.out.print("Enter the number of your choice: ");
@@ -431,6 +409,8 @@ public class MainPage {
 					setIndexData(index_data);
 					setStudentData(student_data);
 					break;
+				default :
+					System.out.println("Error! Invalid Choice ");
 				}
 						
 				

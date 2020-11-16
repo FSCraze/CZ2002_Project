@@ -288,9 +288,16 @@ public class IndexData {
 						if (z != (y - 1)) {
 							student_List[x][2] = student_List[x][2] + "-";
 						}
+<<<<<<< Updated upstream
 					}
 
 					// SendMailTLS.SendEmail(student_data, temp2[0]);
+=======
+					}			
+					
+					
+					SendMailTLS.SendEmail(student_data, temp2[0]);
+>>>>>>> Stashed changes
 					System.out.println("Sent email to student " + temp2[0]);
 
 					int temp_count = 0;
