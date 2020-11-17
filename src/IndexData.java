@@ -638,7 +638,7 @@ public class IndexData {
 
 			for (y = 0; y < 100; y++) {
 				if (course_data[y][2] == null) {
-					return index_data;
+					break;
 				}
 				if (course_data[y][2].equals(s1_classes[x])) {
 					classes_timing[x][0] = course_data[y][4]; // lecture timing
@@ -670,7 +670,7 @@ public class IndexData {
 
 			for (y = 0; y < 100; y++) {
 				if (course_data[y][2] == null) {
-					return index_data;
+					break;
 				}
 				if (course_data[y][2].equals(s2_classes[x])) {
 					classes_timing[x][0] = course_data[y][4]; // lecture timing
