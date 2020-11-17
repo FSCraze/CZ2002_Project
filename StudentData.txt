@@ -1,4 +1,4 @@
-U01,Isaac,M,Singaporean,A01-O01-G01,byun_l@hotmail.com
+U01,Isaac,M,Singaporean,O01-G01,byun_l@hotmail.com
 U02,Bryan,M,Singaporean,A01-O01-G01-E02,byun_l@hotmail.com
 U03,Terry,M,Singaporean,A01-O01-G01-E03,byun_l@hotmail.com
 U04,Erica,F,Singaporean,A01-O01-G01,byun_l@hotmail.com
