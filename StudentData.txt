@@ -2,8 +2,8 @@ U01,Isaac,M,Singaporean,A01-O01-G01,byun_l@hotmail.com
 U02,Bryan,M,Singaporean,A01-O01-G01-E02,byun_l@hotmail.com
 U03,Terry,M,Singaporean,A01-O01-G01-E03,byun_l@hotmail.com
 U04,Erica,F,Singaporean,A01-O01-G01,byun_l@hotmail.com
-U05,Sophie,F,Singaporean,A01-O01-G01,byun_l@hotmail.com
-U06,Jeremy,M,Singaporean,A02-O02-G01,byun_l@hotmail.com
+U05,Sophie,F,Singaporean,A01,byun_l@hotmail.com
+U06,Jeremy,M,Singaporean,A02,byun_l@hotmail.com
 U07,July,F,Singaporean,A02-O02-G01,byun_l@hotmail.com
 U08,Gordon,M,Singaporean,A02-O02-G01,byun_l@hotmail.com
 U09,Ivan,M,Singaporean,A02-O02-G01,byun_l@hotmail.com
@@ -13,4 +13,4 @@ U12,June,F,Singaporean,A03-O03-G02,byun_l@hotmail.com
 U13,Thomas,M,Singaporean,A03-O03-G02,byun_l@hotmail.com
 U14,Jane,F,Singaporean,A03-O03-G02,byun_l@hotmail.com
 U15,John,M,Singaporean,A03-O03-G03,byun_l@hotmail.com
-U20,Ben,M,Singaporean,NULL,ben@hotmail.com
+U20,Ben,M,Singaporean,D02-E02,ben@hotmail.com

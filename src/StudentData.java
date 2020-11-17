@@ -561,6 +561,7 @@ public class StudentData {
 			if(student_data[x][0]==null)
 			{
 				System.out.println("Error! There is not such student with matriculation number : " + m_num);
+				return;
 			}
 			if(student_data[x][0].equals(m_num))
 			{
@@ -572,6 +573,7 @@ public class StudentData {
 				System.out.println("Student's Email : " + student_data[x][5]);
 				return;
 			}
+
 		}
 	}
 }
