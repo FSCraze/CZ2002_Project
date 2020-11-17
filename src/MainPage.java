@@ -71,7 +71,7 @@ public class MainPage {
 			System.out.print("Enter the number of your choice: ");
 			choice = sc.nextInt();
 			
-			while(choice != 7)
+			while(choice != 10)
 			{
 				switch(choice)
 				{
@@ -176,7 +176,7 @@ public class MainPage {
 			System.out.print("Enter the number of your choice: ");
 			choice = sc.nextInt();
 			
-			while(choice != 9)
+			while(choice != 10)
 			{
 				switch(choice)
 				{
@@ -413,6 +413,7 @@ public class MainPage {
 					System.out.println("Please enter the Matriculation number of the student you want to find : ");
 					temp = sc.nextLine();
 					StudentData.getStudentInfo(temp, student_data);
+					break;
 				case 9:
 					setCourseData(course_data);
 					setIndexData(index_data);
